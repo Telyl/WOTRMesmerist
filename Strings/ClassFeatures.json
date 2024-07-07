@@ -1,3 +1,371 @@
 [
-
+  {
+    "Key": "MesmeristClass.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mesmerist"
+  },
+  {
+    "Key": "MesmeristClass.Description",
+    "enGB": "Experts at charm and deceit, mesmerists compel others to heed their words and bend to their will. Psychic powers, primarily those of enchantment and illusion, give mesmerists the tools they need to manipulate others—usually for their own personal gain. The very gaze of a mesmerist can hypnotize someone into following his whims. Mesmerists frequently form cults of personality around themselves, and they develop skills and contingency plans in case their ploys are discovered."
+  },
+  {
+    "Key": "MesmeristProficiencies.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mesmerist Proficiencies"
+  },
+  {
+    "Key": "MesmeristProficiencies.Description",
+    "enGB": "A Mesmerist is proficient with all simple weapons and light armor, but not shields."
+  },
+  {
+    "Key": "ConsummateLiar.Name",
+    "ProcessTemplates": false,
+    "enGB": "Consummate Liar"
+  },
+  {
+    "Key": "ConsummateLiar.Description",
+    "enGB": "A mesmerist adds 1/2 his mesmerist level (minimum 1) as a bonus on all Bluff checks. In addition, the mesmerist uses his charisma in place of his intelligence to qualify for feats such as Combat Expertise."
+  },
+  {
+    "Key": "HypnoticStare.Name",
+    "ProcessTemplates": false,
+    "enGB": "Hypnotic Stare"
+  },
+  {
+    "Key": "HypnoticStare.Description",
+    "enGB": "A mesmerist can focus his stare on one creature within 30 feet as a swift action. That creature takes a –2 penalty on Will saving throws for 1 round. This penalty changes to –3 at 8th level."
+  },
+  {
+    "Key": "PainfulStare.Name",
+    "ProcessTemplates": false,
+    "enGB": "Painful Stare"
+  },
+  {
+    "Key": "PainfulStare.Description",
+    "enGB": "When an attack that deals damage hits the target of a mesmerist’s hypnotic stare, the mesmerist can cause the target to take an amount of additional damage equal to 1/2 the mesmerist’s class level (minimum 1).\n\nThe mesmerist can use this ability as a free action, and can use it even if it isn’t his turn. If the mesmerist uses this ability to increase his own damage, the additional damage increases by 1d6 points for every 3 class levels the mesmerist possesses. This damage is precision damage and is not multiplied on a critical hit. A mesmerist can trigger this ability only once per round, but a single creature can take damage from multiple mesmerists’ painful stares in a round."
+  },
+  {
+    "Key": "MesmeristTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mesmerist Trick"
+  },
+  {
+    "Key": "MesmeristTrick.Description",
+    "enGB": "A mesmerist can create hypnotic bonds with his allies, implanting magical suggestions in their minds that he can later activate. Each day, he can implant a number of these tricks equal to 1/2 his mesmerist level (minimum 1) plus his Charisma bonus (if any). He can have only one trick implanted at a given time, and implanting a new trick ends the previous one (the mesmerist still loses the use of this ability he spent on the previous trick).\nTo implant a trick, the mesmerist must take a standard action and either touch a willing creature or implant the trick in himself. A creature can be the subject of only one mesmerist trick at a time.\nOnce triggered, a trick is no longer implanted, and can’t be triggered again until the mesmerist implants the trick again. The duration of the effect caused by triggering a trick is either instantaneous or appears in the trick’s entry. The DC for any mesmerist trick or masterful trick that requires a saving throw or skill check is 10 + 1/2 the mesmerist’s level + the mesmerist’s Charisma modifier. The Mesmerist gains the ability to add additional tricks at any given time through the Manifold Trick feature."
+  },
+  {
+    "Key": "BoldStare.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bold Stare"
+  },
+  {
+    "Key": "BoldStare.Description",
+    "enGB": "At 3rd level and every 4 levels thereafter, a mesmerist’s hypnotic stare imposes a further effect upon its target. The mesmerist chooses one option each time he gains a new bold stare improvement, and the choice can’t be changed later. The mesmerist can’t choose the same bold stare improvement more than once unless otherwise noted. All of the mesmerist’s bold stare improvements affect the target as long as it is affected by the mesmerist’s hypnotic stare."
+  },
+  {
+    "Key": "AstoundingAvoidance.Name",
+    "ProcessTemplates": false,
+    "enGB": "Astounding Avoidance"
+  },
+  {
+    "Key": "AstoundingAvoidance.Description",
+    "enGB": "The subject can avoid damage from magical and unusual attacks. The mesmerist can trigger this trick when the subject attempts a saving throw against an attack or spell that normally deals half damage on a successful save, before the subject rolls the save. If the subject succeeds at her save, she takes no damage. If the mesmerist is 12th level or higher, the subject takes only half damage if she fails her save. The benefits of this trick don’t stack with those of the evasion or stalwart class features."
+  },
+  {
+    "Key": "CompelAlacrity.Name",
+    "ProcessTemplates": false,
+    "enGB": "Compel Alacrity"
+  },
+  {
+    "Key": "CompelAlacrity.Description",
+    "enGB": "A dash of mental speed lets the subject push past her physical limits to avoid an enemy. The mesmerist allows the subject to use the Dimension Door as a swift action for a number of rounds equal to the Mesmerist's level.'"
+  },
+  {
+    "Key": "FalseFlanker.Name",
+    "ProcessTemplates": false,
+    "enGB": "False Flanker"
+  },
+  {
+    "Key": "FalseFlanker.Description",
+    "enGB": "A duplicate of the mesmerist appears momentarily, as though he were fighting in tandem with the subject. The mesmerist can maintain this for a number of rounds equal to the Mesmerist's level. This duplicate counts as threatening the enemy for the purposes of determining flanking, but can’t actually make attacks."
+  },
+  {
+    "Key": "FearsomeGuise.Name",
+    "ProcessTemplates": false,
+    "enGB": "Fearsome Guise"
+  },
+  {
+    "Key": "FearsomeGuise.Description",
+    "enGB": "A veil of illusion makes the subject appear to be someone else and then transform into a hideous monster at an opportune time. While this trick is implanted, the subject’s appearance is altered, as disguise self. The mesmerist can trigger this trick when the subject attacks a creature. The illusory appearance brief ly makes the subject appear monstrous, then ends. The mesmerist attempts an Intimidate check to demoralize the target of the triggering attack. The restrictions on attempts to demoralize a target (the target being within 30 feet and able to see and hear the creature attempting the Intimidate check) apply to the subject of the trick. This is an illusion (glamer) effect."
+  },
+  {
+    "Key": "FleetInShadows.Name",
+    "ProcessTemplates": false,
+    "enGB": "Fleet In Shadows"
+  },
+  {
+    "Key": "FleetInShadows.Description",
+    "enGB": "The mesmerist can trigger this trick whenever the target enters an area with dim or darker light. The subject can move double its normal speed (up to an additional 30 feet) for 1 round, but only while moving through areas of dim or darker light. Additionally, the subject can move at its normal speed and use the bonus speed from this trick in areas of total darkness, even if it cannot see."
+  },
+  {
+    "Key": "LevitationBuffer.Name",
+    "ProcessTemplates": false,
+    "enGB": "Levitation Buffer"
+  },
+  {
+    "Key": "LevitationBuffer.Description",
+    "enGB": "The mesmerist triggers this trick when an enemy attacks, and higs, in melee. The mesmerist slows enemies adjacent to the subject slightly, as well as pushes them away as though performing a bull-rush maneuver."
+  },
+  {
+    "Key": "LinkedReaction.Name",
+    "ProcessTemplates": false,
+    "enGB": "Linked Reaction"
+  },
+  {
+    "Key": "LinkedReaction.Description",
+    "enGB": "A hive mind allows the mesmerist and an ally to share one another’s reaction times. The mesmerist can trigger this trick when either the subject or the mesmerist is surprised and the other isn’t (even if the mesmerist would normally be unable to take actions because of being surprised). Both the mesmerist and the subject can act in this surprise round. The mesmerist can’t implant this trick on himself."
+  },
+  {
+    "Key": "MeekFacade.Name",
+    "ProcessTemplates": false,
+    "enGB": "Meek Facade"
+  },
+  {
+    "Key": "MeekFacade.Description",
+    "enGB": "The subject magically seems like a weak target, goading an enemy into attacking her. The mesmerist can trigger this trick when the subject misses a creature with an attack (even if it’s part of a full attack in which she hits that creature with another attack). The enemy must attack no one other than the subject, and the subject gains a +2 dodge bonus to AC against the triggering enemy’s attacks. Both of these effects last for 1 round. The bonus to AC increases by 1 for every 5 levels the mesmerist possesses. This is a mind-affecting compulsion effect."
+  },
+  {
+    "Key": "Misdirection.Name",
+    "ProcessTemplates": false,
+    "enGB": "Misdirection"
+  },
+  {
+    "Key": "Misdirection.Description",
+    "enGB": "An enemy’s perception of an attack by the subject shifts, making the foe unprepared to defend against the attack. The mesmerist can trigger this trick when the subject makes an attack or uses a spell that requires an attack roll. The mesmerist attempts a Bluff check to feint against a single target of the subject’s attack. Unlike a normal feint, this ability can be used on non-melee attacks. If the feint succeeds, the target of the attack is denied its Dexterity bonus to AC against the triggering attack. The target doesn’t suffer any additional effects that the mesmerist or the subject would cause on a normal feint or Bluff check. This is an illusion (glamer) effect."
+  },
+  {
+    "Key": "MesmericMirror.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mesmeric Mirror"
+  },
+  {
+    "Key": "MesmericMirror.Description",
+    "enGB": "An illusory image appears near the subject to throw off attackers. This ability functions like Mirror Image. Each image lasts for 1 minute per mesmerist level or until destroyed. This is an illusion (figment) effect."
+  },
+  {
+    "Key": "MesmericPantomime.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mesmeric Pantomime"
+  },
+  {
+    "Key": "MesmericPantomime.Description",
+    "enGB": "By orchestrating the movement of his ally’s body, the mesmerist imparts to that ally his own skill at a physical task. The mesmerist can trigger this trick when the subject attempts a Strength– or Dexterity-based skill check. The subject either uses the mesmerist’s bonus on the skill check in place of her own or gains a morale bonus on the check equal to the mesmerist’s Charisma bonus, Whichever results in a higher modifier. The mesmerist can’t implant this trick on himself."
+  },
+  {
+    "Key": "PsychosomaticSurge.Name",
+    "ProcessTemplates": false,
+    "enGB": "Psychosomatic Surge"
+  },
+  {
+    "Key": "PsychosomaticSurge.Description",
+    "enGB": "Psychic magic soothes the subject, alleviating her wounds temporarily. The mesmerist can trigger this trick when the subject takes damage. The subject gains a number of temporary hit points equal to 1d8 + 1/2 the mesmerist’s level. If the damage from the triggering attack would have reduced the subject to 0 hit points or fewer, this trick grants an additional 1d8 temporary hit points. These temporary hit points last for 1 hour or until discharged."
+  },
+  {
+    "Key": "ReflectFear.Name",
+    "ProcessTemplates": false,
+    "enGB": "Reflect Fear"
+  },
+  {
+    "Key": "ReflectFear.Description",
+    "enGB": "The mesmerist can trigger this trick when the subject is affected by a fear effect or is the target of an Intimidate check to demoralize it. When the trick is triggered, the subject suppresses the fear effect that triggered the trick for 1d4 rounds, and any creature that caused this effect must succeed at a Will save or become shaken for 1 round. The rounds during which the subject ignores the triggering fear effect still count against the effect’s duration. If the duration of the reflect fear trick is longer than the fear effect lasts, the subject isn’t affected by the fear effect at all."
+  },
+  {
+    "Key": "SeeInDarkness.Name",
+    "ProcessTemplates": false,
+    "enGB": "See In Darkness"
+  },
+  {
+    "Key": "SeeInDarkness.Description",
+    "enGB": "The subject gains darkvision with a range of 60 feet for 1 minute. The mesmerist can trigger this trick when the subject moves into an area of darkness."
+  },
+  {
+    "Key": "ShadowSplinter.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shadow Splinter"
+  },
+  {
+    "Key": "ShadowSplinter.Description",
+    "enGB": "The mesmerist protects the subject against an attack and redirects the harm to someone else. The mesmerist can trigger this trick when the subject takes damage from an attack. The damage the subject takes is reduced by an amount equal to 3 + the mesmerist’s Charisma modifier (to a maximum of the total amount of damage the attack deals). Another creature within range of the original attack, other than the attacker, is affected by a shadow illusion that makes it appear as if the attacker is attacking that creature instead of the attacker’s actual target. This second creature takes an amount of damage equal to the amount by which the attack’s damage was reduced. This shadow doesn’t require a roll to hit and ignores cover and concealment, but the target can attempt a Will save to disbelieve the effect. If it succeeds at this save, it neither takes the damage nor believes the attacker targeted it. This trick can’t be triggered if there’s no eligible second creature within range to take the redirected damage. This is an illusion (shadow) effect."
+  },
+  {
+    "Key": "SpectralSmoke.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spectral Smoke"
+  },
+  {
+    "Key": "SpectralSmoke.Description",
+    "enGB": "A cloud of smoke pops up around the subject, foiling attacks. The mesmerist can trigger this trick when the subject is targeted by an attack or by a spell that requires an attack roll. A smoke cloud appears in the subject’s square and in a 10-foot radius around it. This cloud lasts for 1 round per mesmerist level. The cloud functions as fog cloud, but is an illusion (figment) effect that can’t be dispersed by wind and can be used underwater. A creature that interacts with the cloud can attempt a saving throw to disbelieve the effect. The radius of the cloud increases by 5 feet for every 5 caster levels the mesmerist possesses, to a maximum of 30 feet at 20th level."
+  },
+  {
+    "Key": "VanishArrow.Name",
+    "ProcessTemplates": false,
+    "enGB": "Vanish Arrow"
+  },
+  {
+    "Key": "VanishArrow.Description",
+    "enGB": "With a flourish, the mesmerist snatches a projectile from an enemy before it can be shot. The mesmerist can trigger this trick when the subject is targeted by a ranged weapon attack, before the attack roll is made. The mesmerist attempts a Sleight of Hand check opposed by the attacker’s Perception check. If the mesmerist succeeds, that ranged attack automatically misses, and the projectile appears stowed on the mesmerist’s person. If the attacker is making a full attack, this affects only one of the attacks (of the mesmerist’s choice). If the attack is made with a javelin or other thrown weapon, the attacker gains a +4 bonus on its Perception check. Unusually massive ranged weapons (such as boulders or ballista bolts) and ranged attacks generated by natural attacks or spell effects are not affected by this ability."
+  },
+  {
+    "Key": "VoiceOfReason.Name",
+    "ProcessTemplates": false,
+    "enGB": "Voice of Reason"
+  },
+  {
+    "Key": "VoiceOfReason.Description",
+    "enGB": "The subject can more easily pierce mind-affecting, charm, or compulsion based spells with the mesmerist’s aid. The subject receives an insight bonus on her saving throw to disbelieve the illusion or charm equal to the mesmerist’s Charisma modifier. This trick cannot be used for illusions that do not allow a saving throw."
+  },
+  {
+    "Key": "Disorientation.Name",
+    "ProcessTemplates": false,
+    "enGB": "Disorientation"
+  },
+  {
+    "Key": "Disorientation.Description",
+    "enGB": "The hypnotic stare penalty also applies on attack rolls."
+  },
+  {
+    "Key": "Disquiet.Name",
+    "ProcessTemplates": false,
+    "enGB": "Disquiet"
+  },
+  {
+    "Key": "Disquiet.Description",
+    "enGB": "The target of the hypnotic stare is shaken."
+  },
+  {
+    "Key": "Distracted.Name",
+    "ProcessTemplates": false,
+    "enGB": "Distracted"
+  },
+  {
+    "Key": "Distracted.Description",
+    "enGB": "The hypnotic stare penalty also applies to concentration checks."
+  },
+  {
+    "Key": "Infiltration.Name",
+    "ProcessTemplates": false,
+    "enGB": "Infiltration"
+  },
+  {
+    "Key": "Infiltration.Description",
+    "enGB": "The hypnotic stare penalty also applies to the target’s Perception checks and CMD."
+  },
+  {
+    "Key": "Lethality.Name",
+    "ProcessTemplates": false,
+    "enGB": "Lethality"
+  },
+  {
+    "Key": "Lethality.Description",
+    "enGB": "The hypnotic stare penalty also applies to the target’s Fortitude saves."
+  },
+  {
+    "Key": "Nightmare.Name",
+    "ProcessTemplates": false,
+    "enGB": "Nightmare"
+  },
+  {
+    "Key": "Nightmare.Description",
+    "enGB": "The target of the hypnotic stare rolls twice on all Will saves versus fear, taking the lower result."
+  },
+  {
+    "Key": "PsychicInception.Name",
+    "ProcessTemplates": false,
+    "enGB": "Psychic Inception"
+  },
+  {
+    "Key": "PsychicInception.Description",
+    "enGB": "The hypnotic stare and its penalty can affect creatures that are mindless or immune to mind-affecting effects (such as an undead or vermin). It also suppresses the immunities to mind-affecting abilities of the target."
+  },
+  {
+    "Key": "SappedMagic.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sapped Magic"
+  },
+  {
+    "Key": "SappedMagic.Description",
+    "enGB": "The hypnotic stare penalty also applies to the DCs of spells and spell-like abilities used by the target, and to the target’s spell resistance (if any)."
+  },
+  {
+    "Key": "Sluggishness.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sluggishness"
+  },
+  {
+    "Key": "Sluggishness.Description",
+    "enGB": "The target of the hypnotic stare has all of its speeds reduced by 5 feet (to a minimum of 5 feet), and the hypnotic stare penalty also applies to the target’s Reflex saving throws."
+  },
+  {
+    "Key": "Timidity.Name",
+    "ProcessTemplates": false,
+    "enGB": "Timidity"
+  },
+  {
+    "Key": "Timidity.Description",
+    "enGB": "The hypnotic stare penalty also applies to damage rolls."
+  },
+  {
+    "Key": "ToweringEgo.Name",
+    "ProcessTemplates": false,
+    "enGB": "Towering Ego"
+  },
+  {
+    "Key": "ToweringEgo.Description",
+    "enGB": "At 2nd level, a mesmerist gains a bonus equal to his Charisma bonus (minimum 0) on Will saving throws."
+  },
+  {
+    "Key": "TouchTreatment.Name",
+    "ProcessTemplates": false,
+    "enGB": "Touch Treatment"
+  },
+  {
+    "Key": "TouchTreatment.Description",
+    "enGB": "At 3rd level, the mesmerist can help allies shake off harmful conditions—especially those that affect their minds—by channeling psychic energy through his healing hands. He can use touch treatment a number of times per day equal to 3 + his Charisma modifier. Using the ability is a standard action (or a swift action if the mesmerist uses it on himself ), and the mesmerist must be able to touch his target. He can remove one condition from one target each time he uses this ability. At 3rd level, he can remove any condition on the minor conditions list. At 6th level, he can remove any condition on the minor or moderate conditions list, and at 10th level, he can remove any condition on the minor, moderate, or greater conditions list.\n\nMinor Conditions: Fascinated, shaken.\nModerate Conditions: Confused, dazed, frightened, sickened.\nGreater Conditions: Cowering, nauseated, panicked, stunned.\nA 14th level, the mesmerist can instead expend one use of touch treatment to replicate the effects of break enchantment."
+  },
+  {
+    "Key": "TouchTreatmentSelf.Name",
+    "ProcessTemplates": false,
+    "enGB": "Touch Treatment - Self"
+  },
+  {
+    "Key": "TouchTreatmentSelf.Description",
+    "enGB": "The Mesmerist can touch himself up to 3 + his Charisma modifier times per day as a swift action to remove one condition from one target each time he uses this ability. \n\nMinor Conditions (3rd level): Fascinated, shaken.\nModerate Conditions (6th level): Confused, dazed, frightened, sickened.\nGreater Conditions (10th level): Cowering, nauseated, panicked, stunned.\nA 14th level, the mesmerist can instead expend one use of touch treatment to replicate the effects of break enchantment."
+  },
+  {
+    "Key": "TouchTreatmentOther.Name",
+    "ProcessTemplates": false,
+    "enGB": "Touch Treatment - Other"
+  },
+  {
+    "Key": "TouchTreatmentOther.Description",
+    "enGB": "The Mesmerist can touch an ally up to 3 + his Charisma modifier times per day as a standard action to remove one condition from one target each time he uses this ability. \n\nMinor Conditions (3rd level): Fascinated, shaken.\nModerate Conditions (6th level): Confused, dazed, frightened, sickened.\nGreater Conditions (10th level): Cowering, nauseated, panicked, stunned.\nA 14th level, the mesmerist can instead expend one use of touch treatment to replicate the effects of break enchantment."
+  },
+  {
+    "Key": "ManifoldTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Manifold Trick"
+  },
+  {
+    "Key": "ManifoldTrick.Description",
+    "enGB": "At 5th level, the mesmerist can have two tricks implanted at a time. The number of concurrent tricks increases by one for every 4 mesmerist levels he possesses beyond 5th. Each creature can still be the subject of only one trick at a time."
+  },
+  {
+    "Key": "UseTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Use Trick"
+  },
+  {
+    "Key": "UseTrick.Description",
+    "enGB": "Use the selected trick and selected manifold trick."
+  }
 ]

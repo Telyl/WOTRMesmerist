@@ -1,4 +1,5 @@
 using BlueprintCore.Utils;
+using CharacterOptionsPlus.Util;
 using Kingmaker.Blueprints;
 using Kingmaker.Localization;
 using ModMenu.Settings;
@@ -11,13 +12,13 @@ using Menu = ModMenu.ModMenu;
 
 /* Taken directly from CharacterOptionsPlus. See: https://github.com/WittleWolfie/CharacterOptionsPlus */
 /* Credit goes to WittleWolfie */
-namespace AddedFeats.Utils
+namespace Mesmerist.Utils
 {
     internal static class Settings
     {
-        private static readonly string RootKey = "addedfeats.settings";
+        private static readonly string RootKey = "mesmserist.settings";
 
-        private static readonly ModLogger Logger = Logging.GetLogger(nameof(Settings));
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Settings));
 
         internal static bool IsEnabled(string key)
         {
@@ -38,6 +39,14 @@ namespace AddedFeats.Utils
               SettingsBuilder.New(RootKey, GetString("Settings.Title"))
                 //.AddImage(ResourcesLibrary.TryGetResource<Sprite>("assets/illustrations/wolfie.png"), height: 200, imageScale: 0.75f)
                 .AddDefaultButton(OnDefaultsApplied);
+
+            settings.AddSubHeader(GetString("Settings.Classes.Title"));
+            foreach (var (guid, name) in Guids.Classes)
+            {
+                settings.AddToggle(
+                  Toggle.New(GetKey(guid), defaultValue: true, GetString(name))
+                    .WithLongDescription(GetString("Settings.EnableFeature")));
+            }
 
             settings.AddSubHeader(GetString("Settings.Homebrew.Title"));
             foreach (var (guid, name) in Guids.Homebrews)

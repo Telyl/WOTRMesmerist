@@ -2,15 +2,18 @@
   {
     "Key": "Settings.Title",
     "ProcessTemplates": false,
-    "enGB": "Added Features"
+    "enGB": "Mesmerist"
   },
-
   {
     "Key": "Settings.Homebrew.Title",
     "ProcessTemplates": false,
     "enGB": "Optional Rules"
   },
-
+  {
+    "Key": "Settings.Classes.Title",
+    "ProcessTemplates": false,
+    "enGB": "Classes"
+  },
   {
     "Key": "Settings.Archetypes.Title",
     "ProcessTemplates": false,

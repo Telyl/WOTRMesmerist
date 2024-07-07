@@ -1,5 +1,5 @@
-using AddedFeats.Feats;
-using AddedFeats.NewSpells;
+//using Mesmerist.NewSpells;
+//using Mesmerist.Homebrew;
 using BlueprintCore.Blueprints.Configurators.Root;
 using BlueprintCore.Utils;
 using HarmonyLib;
@@ -7,17 +7,19 @@ using Kingmaker.Blueprints.JsonSystem;
 using System;
 using UnityModManagerNet;
 using static UnityModManagerNet.UnityModManager.ModEntry;
-using AddedFeats.Utils;
+using Mesmerist.Utils;
 using Kingmaker.PubSubSystem;
-using AddedFeats.Homebrew;
+using Mesmerist.Mesmerist;
+using CharacterOptionsPlus.Util;
+using Mesmerist.Features;
 
-namespace AddedFeats
+
+namespace Mesmerist
 {
     public static class Main
     {
         public static bool Enabled;
-        private static readonly ModLogger Logger = Logging.GetLogger(nameof(Main));
-        //        private static readonly LogWrapper Logger = LogWrapper.Get("AddedFeats");
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Main));
 
         public static bool Load(UnityModManager.ModEntry modEntry)
         {
@@ -86,14 +88,15 @@ namespace AddedFeats
 
                     // First strings
                     LocalizationTool.LoadEmbeddedLocalizationPacks(
-                      "AddedFeats.Strings.Homebrew.json",
-                      "AddedFeats.Strings.Features.json",
-                      "AddedFeats.Strings.Settings.json",
-                      "AddedFeats.Strings.Spells.json");
+                      "Mesmerist.Strings.Homebrew.json",
+                      "Mesmerist.Strings.Features.json",
+                      "Mesmerist.Strings.Settings.json",
+                      "Mesmerist.Strings.Spells.json",
+                      "Mesmerist.Strings.ClassFeatures.json");
 
                     // Then settings
                     Settings.Init();
-
+                    ConfigureClasses();
                     ConfigureHomebrew();
                     ConfigureFeats();
                     ConfigureSpells();
@@ -103,10 +106,14 @@ namespace AddedFeats
                     Logger.LogException("Failed to initialize.", e);
                 }
             }
+            private static void ConfigureClasses()
+            {
+                Logger.Log("Configuring classes.");
+                MesmeristClass.Configure();
+            }
             private static void ConfigureHomebrew()
             {
                 Logger.Log("Configuring homebrew.");
-                MythicAnimalFocus.Configure();
             }
             private static void ConfigureArchetypes()
             {
@@ -119,26 +126,20 @@ namespace AddedFeats
             private static void ConfigureFeats()
             {
                 Logger.Log("Configuring features.");
-                PlanarFocus.Configure();
-                FavoredAnimalFocusSelection.Configure();
-                ForcefulCharge.Configure();
-                ImprovedNaturalAttack.Configure();
-                ImprovedNaturalArmor.Configure();
-                EvolvedCompanion.Configure();
-                VampiricCompanion.Configure();
-                SpiritsGift.Configure();
-                ShareSpells.Configure();
+                IntensePain.Configure();
+                DemoralizingStare.Configure();
+                //BleedingStare.Configure();
+                ExcoriatingStare.Configure();
+                FatiguingStare.Configure();
+                CompoundedPain.Configure();
             }
             private static void ConfigureSpells()
             {
                 Logger.Log("Configuring spells.");
-                StrongJaw.Configure();
-                Atavism.Configure();
             }
             private static void ConfigureFeatsDelayed()
             {
                 Logger.Log("Configuring delayed.");
-                TotemBeast.Configure();
             }
         }
     }
