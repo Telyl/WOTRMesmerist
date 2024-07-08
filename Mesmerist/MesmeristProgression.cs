@@ -59,6 +59,8 @@ namespace Mesmerist.Mesmerist
             SappedMagic.Configure();
             Sluggishness.Configure();
             Timidity.Configure();
+            
+
 
             TouchTreatment.Configure();
 
@@ -66,6 +68,7 @@ namespace Mesmerist.Mesmerist
             ManifoldTrick.Configure();
             HypnoticStare.Configure();
             PainfulStare.Configure();
+            ManifoldStare.Configure();
             MesmeristTricks.Configure();
             BoldStare.Configure();
 
@@ -73,7 +76,7 @@ namespace Mesmerist.Mesmerist
             var entries = LevelEntryBuilder.New()
                 .AddEntry(1, Guids.ConsummateLiar, Guids.MesmeristProficiencies, Guids.HypnoticStare, 
                 Guids.MesmeristTrickSelection, Guids.MesmeristTrickResourceFeature,
-                Guids.TouchTreatmentResourceFeat, Guids.TrickVariants, Guids.MesmeristTrickActiveVariants, Guids.InitialTrick)
+                Guids.TouchTreatmentResourceFeat, Guids.TrickVariants, Guids.MesmeristTrickActiveVariants, Guids.InitialTrick, Guids.ManifoldStarePainfulStare)
                 .AddEntry(2, Guids.MesmeristTrickSelection, Guids.ToweringEgo)
                 .AddEntry(3, Guids.PainfulStare, Guids.BoldStareSelection, Guids.TouchTreatment)
                 .AddEntry(4, Guids.MesmeristTrickSelection)

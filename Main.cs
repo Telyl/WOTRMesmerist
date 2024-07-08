@@ -12,6 +12,7 @@ using Kingmaker.PubSubSystem;
 using Mesmerist.Mesmerist;
 using CharacterOptionsPlus.Util;
 using Mesmerist.Features;
+using Mesmerist.Mesmerist.BoldStares;
 
 
 namespace Mesmerist

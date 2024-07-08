@@ -35,7 +35,7 @@ namespace Mesmerist.Mesmerist
                 .AddToAllFeatures([Guids.Disorientation, Guids.Disquiet, Guids.Distracted,
                 Guids.Infiltration, Guids.Lethality, Guids.Nightmare,
                 Guids.PsychicInception, Guids.SappedMagic, Guids.Sluggishness,
-                Guids.Timidity])
+                Guids.Timidity, Guids.ManifoldStare, Guids.ManifoldStare2, Guids.ManifoldStare3])
                 .Configure();
 
 

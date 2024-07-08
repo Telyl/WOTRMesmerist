@@ -43,5 +43,14 @@
   {
     "Key": "CompoundedPain.Description",
     "enGB": "Benefits: You can apply the effects of two stare feats to your painful stares.\nNormal: You can apply the effects of only one stare feat to a given painful stare."
+  },
+  {
+    "Key": "ManifoldStare.Name",
+    "ProcessTemplates": false,
+    "enGB": "Manifold Stare"
+  },
+  {
+    "Key": "ManifoldStare.Description",
+    "enGB": "Benefits: You can trigger your painful stare one additional time per round.\nSpecial:  This feat can be taken once by a 3rd-level mesmerist, and again when he reaches 9th and 15th levels. Its effects stack. A mesmerist can take this feat in place of a bold stare improvement."
   }
 ]

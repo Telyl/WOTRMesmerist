@@ -43,14 +43,14 @@ namespace Mesmerist.Mesmerist
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "StaticCooldown", Guids.PainfulStareStaticCooldown)
+            /*BuffConfigurator.New(FeatName + "StaticCooldown", Guids.PainfulStareStaticCooldown)
                 .SetFlags(BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.RemoveOnRest)
                 .SetStacking(StackingType.Replace)
                 .SetDescription(Description)
                 .SetDisplayName(DisplayName)
                 .SetIcon(AbilityRefs.WitchHexEvilEyeACAbility.Reference.Get().Icon)
                 .SetRanks(0)
-                .Configure();
+                .Configure();*/
 
             BuffConfigurator.New(FeatName + "Cooldown", Guids.PainfulStareCooldown)
                 .SetFlags(BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.RemoveOnRest)
@@ -58,7 +58,34 @@ namespace Mesmerist.Mesmerist
                 .SetDescription(Description)
                 .SetDisplayName(DisplayName)
                 .SetIcon(AbilityRefs.WitchHexEvilEyeACAbility.Reference.Get().Icon)
-                .SetRanks(0)
+                .SetStacking(StackingType.Rank)
+                .SetRanks(3)
+                .Configure();
+
+            var ManifoldStarePainfulStare = FeatureConfigurator.New("ManifoldStare" +FeatName, Guids.ManifoldStarePainfulStare)
+                .SetHideInUI()
+                .SetIsClassFeature()
+                .SetRanks(4)
+                .Configure();
+
+            FeatureConfigurator.For(ManifoldStarePainfulStare)
+                .AddContextRankConfig(new ContextRankConfig
+                {
+                    m_Type = AbilityRankType.Default,
+                    m_BaseValueType = ContextRankBaseValueType.FeatureRank,
+                    m_Feature = ManifoldStarePainfulStare.ToReference<BlueprintFeatureReference>(),
+                    m_Stat = StatType.Unknown,
+                    m_Buff = null,
+                    m_Progression = ContextRankProgression.AsIs,
+                    m_StartLevel = 0,
+                    m_StepLevel = 0,
+                    m_UseMin = false,
+                    m_Min = 0,
+                    m_UseMax = false,
+                    m_Max = 20,
+                    m_ExceptClasses = false,
+                    Archetype = null
+                })
                 .Configure();
 
             var PainfulStare = FeatureConfigurator.New(FeatName, Guids.PainfulStare)
@@ -71,19 +98,6 @@ namespace Mesmerist.Mesmerist
                 .Configure();
 
             FeatureConfigurator.For(PainfulStare)
-                .AddInitiatorAttackRollTrigger(action: ActionsBuilder.New().Conditional(ConditionsBuilder.New().HasBuff(Guids.HypnoticStareBuff).HasBuff(Guids.PainfulStareCooldown,true),
-                ifTrue: ActionsBuilder.New().ApplyBuff(Guids.PainfulStareCooldown, ContextDuration.Fixed(1)).DealDamage(new DamageTypeDescription()
-                {
-                    Type = DamageType.Physical,
-                    Common =
-                    {
-                        Precision = true
-                    },
-                    Physical =
-                    {
-                        Form = PhysicalDamageForm.Slashing & PhysicalDamageForm.Piercing & PhysicalDamageForm.Bludgeoning
-                    }
-                }, ContextDice.Value(DiceType.D6, ContextValues.Rank()), disableSneakDamage: true, ignoreCritical: true)), onlyHit: true)
                 .AddContextRankConfig(new ContextRankConfig
                 {
                     m_Type = AbilityRankType.Default,

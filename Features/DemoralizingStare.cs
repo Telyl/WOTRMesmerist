@@ -50,11 +50,6 @@ namespace Mesmerist.Features
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.PersuasionUseAbility.Reference.Get().Icon)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
-                .AddInitiatorAttackRollTrigger(
-                action: ActionsBuilder.New()
-                    .Conditional(ConditionsBuilder.New().HasBuff(Guids.HypnoticStareBuff),
-                    ifTrue: ActionsBuilder.New().SavingThrow(SavingThrowType.Will,
-                    onResult: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff(BuffRefs.Shaken.Reference.Get(), ContextDuration.Fixed(1))))), onlyHit: true)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "ActivatableAbility", Guids.DemoralizingStareActivatableAbility)

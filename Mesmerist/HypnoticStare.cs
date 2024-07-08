@@ -31,6 +31,9 @@ using Kingmaker.RuleSystem;
 using static Kingmaker.UnitLogic.Mechanics.Conditions.ContextConditionInContext;
 using Mesmerist.NewComponents;
 using Kingmaker.AI.Blueprints;
+using TabletopTweaks.Core.Utilities;
+using Mesmerist.NewComponents.Conditions;
+using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 
 namespace Mesmerist.Mesmerist
 {
@@ -44,29 +47,15 @@ namespace Mesmerist.Mesmerist
 
         public static void Configure()
         {
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
             BlueprintBuff hypnoticStareBuff = BuffConfigurator.New(FeatName + "Buff", Guids.HypnoticStareBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddUniqueBuff()
                 .SetIcon(AbilityRefs.Eyebite.Reference.Get().Icon)
-                .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(), ModifierDescriptor.UntypedStackable, 2, -1)
-                .AddContextRankConfig(ContextRankConfigs.CharacterLevel().WithCustomProgression((7, 2), (20, 3)))
-                .AddIncomingDamageTrigger(ActionsBuilder.New().Conditional(ConditionsBuilder.New().HasBuff(Guids.PainfulStareStaticCooldown, true),
-                ifTrue: ActionsBuilder.New().ApplyBuff(Guids.PainfulStareStaticCooldown, ContextDuration.Fixed(1), true, true, false, true).DealDamage(new DamageTypeDescription()
-                {
-                    Type = DamageType.Physical,
-                    Common =
-                    {
-                        Precision = true
-                    },
-                    Physical =
-                    {
-                        Form = PhysicalDamageForm.Slashing & PhysicalDamageForm.Piercing & PhysicalDamageForm.Bludgeoning
-                    }
-                }, ContextDice.Value(DiceType.One, ContextValues.Rank(AbilityRankType.DamageBonus)), disableSneakDamage: true, ignoreCritical: true)))
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist],false,AbilityRankType.DamageBonus, 10, 1).WithDiv2Progression())
+                .AddUniqueBuff()
+                .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
+                .AddComponent<AddPainfulStare>(C => C.CheckFactOnTarget = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown))
+                .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(AbilityRankType.Default), ModifierDescriptor.UntypedStackable, 2, -1)
+                .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((7, 2), (20, 3)))
                 .Configure();
 
             BlueprintAbility hypnoticStareAbility = AbilityConfigurator.New(FeatName + "Ability", Guids.HypnoticStareAbility)

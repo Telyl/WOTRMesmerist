@@ -40,9 +40,13 @@ namespace Mesmerist.Utils
         internal const string HypnoticStare = "59ae9ae1-eddb-4493-939a-3b9250b0d0cd";
         internal const string HypnoticStareAbility = "6d947d9c-da92-4612-ae48-c73b706ab000";
         internal const string HypnoticStareBuff = "47332794-eb36-4028-9b93-07c675b68343";
+
+
         internal const string PainfulStare = "c8ce0b5e-91c1-4348-bec8-39465aaea136";
         internal const string PainfulStareCooldown = "fac15451-3a9c-4140-b527-4d0f0f9f16a7";
-        internal const string PainfulStareStaticCooldown = "977a2ca2-155f-45ad-877e-63b1a1267c18";
+        internal const string ManifoldStarePainfulStare = "977a2ca2-155f-45ad-877e-63b1a1267c18";
+        internal const string ManifoldStareBuff = "9b747421-29d9-436f-b344-070a9de6f730";
+
         internal const string MesmeristTrickSelection = "dd565aa7-16ab-40f2-bc62-a4bc91561d94";
         internal const string MesmeristTrickResource = "ade07caf-bc01-4b5a-8f5e-4890e7b95db5";
         internal const string MesmeristTrickResourceFeature = "c95d80ef-5b35-4249-a505-e8a8690435cb";
@@ -92,6 +96,11 @@ namespace Mesmerist.Utils
         internal const string TimidityBuff = "519a60fd-deca-40a6-b193-f8982ac2aa65";
         internal const string Unaided = "f2cbfb49-0489-4702-8e8d-399ced707e23";
         internal const string UnaidedBuff = "8c168e80-ac6d-4d2b-8a2d-9b5d6a8d5e82";
+        internal const string ManifoldStare = "ba69bca9-85f2-4b9c-ad63-7ca6f83c9efe";
+        internal const string ManifoldStare2 = "eb792742-0bf5-449a-9a23-c3a800f3cf23";
+        internal const string ManifoldStare3 = "ea384c5a-3505-4fcb-a5b3-8185404b1909";
+        internal const string ManifoldStare2Buff = "0bee9cbe-5a6a-4429-a823-f8c464ec69e2";
+        internal const string ManifoldStare3Buff = "28241028-e8a7-4688-81a2-7167feced923";
 
         internal const string TrickVariants = "e32b6e42-e9cc-4d0c-8c7f-5665c149a259";
         internal const string TrickVariantsActivatableAbility = "5134abc9-0d44-4ad1-9598-91a1627eaeb7";
