@@ -14,11 +14,12 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class PsychosomaticSurge
@@ -54,7 +55,7 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.FalseLifeGreater.Reference.Get().Icon)
-                 .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                  .SetHiddenInUI()
                  .SetBuff(Guids.PsychosomaticSurgeBuff)
                  .SetDeactivateImmediately()

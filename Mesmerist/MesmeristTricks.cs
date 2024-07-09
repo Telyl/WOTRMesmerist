@@ -21,7 +21,6 @@ using BlueprintCore.Utils;
 using CharacterOptionsPlus.Util;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Mesmerist.NewComponents;
-using Mesmerist.MechanicsChanges;
 
 namespace Mesmerist.Mesmerist
 {

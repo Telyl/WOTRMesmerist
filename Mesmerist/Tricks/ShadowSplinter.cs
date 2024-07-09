@@ -12,10 +12,8 @@ using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ShadowSplinter
@@ -46,7 +44,7 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.ShadowEvocation.Reference.Get().Icon)
-                 .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                  .SetHiddenInUI()
                  .SetBuff(Guids.ShadowSplinterBuff)
                  .SetDeactivateImmediately()

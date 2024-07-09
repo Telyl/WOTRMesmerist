@@ -34,6 +34,7 @@ using Kingmaker.AI.Blueprints;
 using TabletopTweaks.Core.Utilities;
 using Mesmerist.NewComponents.Conditions;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
+using TabletopTweaks.Core.NewComponents;
 
 namespace Mesmerist.Mesmerist
 {
@@ -51,7 +52,9 @@ namespace Mesmerist.Mesmerist
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.Eyebite.Reference.Get().Icon)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddUniqueBuff()
+                
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .AddComponent<AddPainfulStare>(C => C.CheckFactOnTarget = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown))
                 .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(AbilityRankType.Default), ModifierDescriptor.UntypedStackable, 2, -1)
@@ -67,6 +70,11 @@ namespace Mesmerist.Mesmerist
                 .SetRange(AbilityRange.Close)
                 .SetActionType(CommandType.Swift)
                 .SetSpellDescriptor(SpellDescriptor.MindAffecting)
+                .AddComponent<AddPsychicInceptionAllowGaze>(c =>
+                {
+                    c.IgnoreDescriptors = SpellDescriptor.MindAffecting;
+                    c.BecauseOfFact = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PsychicInception);
+                })
                 .AllowTargeting(friends: false, enemies: true)
                 .SetCanTargetFriends(false)
                 .SetCanTargetEnemies(true)
@@ -74,35 +82,35 @@ namespace Mesmerist.Mesmerist
                    actions: ActionsBuilder.New()
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Disorientation),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.DisorientationBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.DisorientationBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Disquiet),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.DisquietBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.DisquietBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Distracted),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.DistractedBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.DistractedBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Infiltration),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.InfiltrationBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.InfiltrationBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Lethality),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LethalityBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LethalityBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Nightmare),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.NightmareBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.NightmareBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.PsychicInception),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychicInceptionBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychicInceptionBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.SappedMagic),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SappedMagicBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SappedMagicBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Sluggishness),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SluggishnessBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SluggishnessBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.Timidity),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.TimidityBuff))
-                   .ApplyBuffPermanent(hypnoticStareBuff))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.TimidityBuff, true, false))
+                   .ApplyBuffPermanent(hypnoticStareBuff, true))
                 .Configure();
 
             

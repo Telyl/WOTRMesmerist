@@ -32,7 +32,8 @@ using BlueprintCore.Actions.Builder.BasicEx;
 using Kingmaker.ElementsSystem;
 using Kingmaker.Blueprints.Classes;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using Mesmerist.MechanicsChanges;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 
 namespace Mesmerist.Features
 {
@@ -56,7 +57,7 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.TouchOfFatigueCast.Reference.Get().Icon)
-                .SetGroup(ExpandedActivatableAbilityGroup.Stares)
+                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1818))
                 .SetBuff(Guids.FatiguingStareBuff)
                 .SetDeactivateImmediately()
                 .Configure();

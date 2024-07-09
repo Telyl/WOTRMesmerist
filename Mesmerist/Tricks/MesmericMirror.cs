@@ -12,13 +12,9 @@ using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
-using Mesmerist.NewComponents;
-using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Buffs.Components;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class MesmericMirror
@@ -50,7 +46,8 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.MirrorImage.Reference.Get().Icon)
-                 .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
+
                  .SetBuff(Guids.MesmericMirrorBuff)
                  .SetDeactivateImmediately()
                  .SetHiddenInUI()

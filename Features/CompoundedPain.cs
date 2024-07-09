@@ -32,8 +32,9 @@ using BlueprintCore.Actions.Builder.BasicEx;
 using Kingmaker.ElementsSystem;
 using Kingmaker.Blueprints.Classes;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using Mesmerist.MechanicsChanges;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Kingmaker.UnitLogic.FactLogic;
 
 namespace Mesmerist.Features
 {
@@ -52,7 +53,7 @@ namespace Mesmerist.Features
             FeatureConfigurator.New(FeatName, Guids.CompoundedPain, [FeatureGroup.CombatFeat, FeatureGroup.Feat])
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddIncreaseActivatableAbilityGroupSize((ActivatableAbilityGroup)ExpandedActivatableAbilityGroup.Stares)
+                .AddIncreaseActivatableAbilityGroupSize((ActivatableAbilityGroup)1818)
                 .SetIsClassFeature(true)
                 .SetReapplyOnLevelUp(false)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 13)

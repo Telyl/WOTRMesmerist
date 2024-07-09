@@ -132,7 +132,7 @@ namespace Mesmerist
                 //BleedingStare.Configure();
                 ExcoriatingStare.Configure();
                 FatiguingStare.Configure();
-                CompoundedPain.Configure();
+                //CompoundedPain.Configure();
             }
             private static void ConfigureSpells()
             {

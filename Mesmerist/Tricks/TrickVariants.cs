@@ -12,10 +12,6 @@ using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class TrickVariants

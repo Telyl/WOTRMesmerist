@@ -11,14 +11,8 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
-using BlueprintCore.Actions.Builder;
-using BlueprintCore.Conditions.Builder;
-using BlueprintCore.Conditions.Builder.ContextEx;
-using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class MeekFacade
@@ -55,7 +49,7 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.ReducePerson.Reference.Get().Icon)
-                 .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                  .SetHiddenInUI()
                  .SetBuff(Guids.MeekFacadeBuff)
                  .SetDeactivateImmediately()

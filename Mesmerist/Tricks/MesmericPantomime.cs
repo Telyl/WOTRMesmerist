@@ -11,10 +11,8 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class MesmericPantomime
@@ -52,7 +50,7 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.BrilliantInspiration.Reference.Get().Icon)
-                 .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                  .SetHiddenInUI()
                  .SetBuff(Guids.MesmericPantomimeBuff)
                  .SetDeactivateImmediately()

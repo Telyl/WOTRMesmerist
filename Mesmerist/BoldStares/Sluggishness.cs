@@ -10,6 +10,11 @@ using Kingmaker.Enums;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using Kingmaker.Blueprints.Classes.Spells;
+using TabletopTweaks.Core.NewComponents;
+using Mesmerist.NewComponents;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {
@@ -30,6 +35,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDescription(Description)
                 .AddUniqueBuff()
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddContextStatBonus(StatType.SaveReflex, ContextValues.Rank(), ModifierDescriptor.UntypedStackable, 2, -1)
                 .AddBuffMovementSpeed(descriptor: ModifierDescriptor.UntypedStackable, value: -5, cappedMinimum: true, minimumCap: 5)
                 .AddContextRankConfig(ContextRankConfigs.CharacterLevel().WithCustomProgression((7, 2), (20, 3)))

@@ -13,6 +13,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Blueprints.Classes.Spells;
 using CharacterOptionsPlus.Util;
+using Mesmerist.NewComponents;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {
@@ -30,27 +31,9 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddUniqueBuff()
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
+                .AddComponent<AddPsychicInceptionSpells>()
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
-                .AddComponent<IgnoreSpellImmunity>(c =>
-                {
-                    c.SpellDescriptor = SpellDescriptor.MindAffecting;
-                })
-                .AddComponent<IgnoreSpellImmunity>(c =>
-                {
-                    c.SpellDescriptor = SpellDescriptor.Charm;
-                })
-                .AddComponent<IgnoreSpellImmunity>(c =>
-                {
-                    c.SpellDescriptor = SpellDescriptor.Compulsion;
-                })
-                .AddComponent<IgnoreSpellImmunity>(c =>
-                {
-                    c.SpellDescriptor = SpellDescriptor.Emotion;
-                })
-                .AddComponent<IgnoreSpellImmunity>(c =>
-                {
-                    c.SpellDescriptor = SpellDescriptor.NegativeEmotion;
-                })
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)

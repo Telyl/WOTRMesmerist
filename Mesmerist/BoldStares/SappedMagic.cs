@@ -11,6 +11,11 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using CharacterOptionsPlus.Util;
+using Kingmaker.Blueprints.Classes.Spells;
+using TabletopTweaks.Core.NewComponents;
+using Mesmerist.NewComponents;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {
@@ -29,6 +34,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddUniqueBuff()
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .SetIcon(BuffRefs.SappingAssaultIBuff.Reference.Get().Icon)
                 .AddIncreaseAllSpellsDC(descriptor: ModifierDescriptor.UntypedStackable, spellsOnly: false, value: ContextValues.Rank())
                 .AddSpellResistance(true, value: ContextValues.Rank())

@@ -129,6 +129,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="MechanicsChange\" />
+    <Folder Include="NewActions\" />
     <Folder Include="NewSpells\" />
   </ItemGroup>
 

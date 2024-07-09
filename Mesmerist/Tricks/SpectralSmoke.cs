@@ -14,14 +14,12 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
-using BlueprintCore.Actions.Builder;
-using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.Utility;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class SpectralSmoke
@@ -67,7 +65,7 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.MindFog.Reference.Get().Icon)
-                 .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                  .SetHiddenInUI()
                  .SetBuff(Guids.SpectralSmokeBuff)
                  .SetDeactivateImmediately()

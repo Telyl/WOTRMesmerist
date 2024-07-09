@@ -21,7 +21,6 @@ using BlueprintCore.Utils;
 using CharacterOptionsPlus.Util;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Mesmerist.NewComponents;
-using Mesmerist.MechanicsChanges;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder;
@@ -29,6 +28,7 @@ using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder.BasicEx;
 using Kingmaker.ElementsSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
+using Kingmaker.Blueprints.Classes.Spells;
 
 namespace Mesmerist.Mesmerist
 {
@@ -48,6 +48,7 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
                 .AddBuffActions(activated: ActionsBuilder.New()
                    .Conditional(
@@ -114,7 +115,8 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
+                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility2.Reference.Get().Icon)
                 .AddBuffActions(activated: ActionsBuilder.New()
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
@@ -177,7 +179,8 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
+                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility3.Reference.Get().Icon)
                 .AddBuffActions(activated: ActionsBuilder.New()
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
@@ -240,7 +243,8 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
+                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility4.Reference.Get().Icon)
                 .AddBuffActions(activated: ActionsBuilder.New()
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
@@ -303,7 +307,8 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
+                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility5.Reference.Get().Icon)
                 .AddBuffActions(activated: ActionsBuilder.New()
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
@@ -439,7 +444,7 @@ namespace Mesmerist.Mesmerist
             AbilityConfigurator.New(FeatName + "Variants", Guids.MesmeristTrickActiveVariants)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(FeatureRefs.ArcanistExploits.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility9.Reference.Get().Icon)
                 .AddAbilityVariants(variants: new() { Guids.MesmeristTrickActiveAbility1, 
                     Guids.MesmeristTrickActiveAbility2, Guids.MesmeristTrickActiveAbility3, 
                     Guids.MesmeristTrickActiveAbility4, Guids.MesmeristTrickActiveAbility5 })

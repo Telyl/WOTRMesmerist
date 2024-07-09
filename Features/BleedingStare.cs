@@ -11,7 +11,8 @@ using Kingmaker.UnitLogic.Mechanics;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Enums;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
-using Mesmerist.MechanicsChanges;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 
 namespace Mesmerist.Features
 {
@@ -42,7 +43,7 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.FalseLifeGreater.Reference.Get().Icon)
-                .SetGroup(ExpandedActivatableAbilityGroup.Stares)
+                .SetGroup((ActivatableAbilityGroup)(ExtentedActivatableAbilityGroup)1818)
                 .SetBuff(Guids.BleedingStareBuff)
                 .SetDeactivateImmediately()
                 .Configure();

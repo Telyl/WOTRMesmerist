@@ -5,6 +5,7 @@ using Mesmerist.Mesmerist;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 
 namespace Mesmerist.Utils
@@ -15,7 +16,6 @@ namespace Mesmerist.Utils
     public class Guids
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(Guids));
-
 
         #region Mesmerist
         internal const string Mesmerist = "3bc07235-efe6-4033-a30f-ca8ecb9f3dc6";
@@ -76,6 +76,7 @@ namespace Mesmerist.Utils
 
         internal const string Disorientation = "2018b3ad-b889-43e3-a9c0-4ec91c720f14";
         internal const string DisorientationBuff = "ac96991b-34f9-4374-8258-bb99ea62d56f";
+        internal const string DisorientationAbility = "286f50e6-fa67-4f80-93c8-a2d90a8c394c";
         internal const string Disquiet = "8c9659f8-d09d-46b9-a8ef-ea84dfcf46d6";
         internal const string DisquietBuff = "5824022e-0795-4295-b8e1-7d912df10e8b";
         internal const string Distracted = "296d61d7-2491-4297-b541-e97e003a0f9b";

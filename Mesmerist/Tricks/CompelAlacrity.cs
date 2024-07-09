@@ -15,7 +15,6 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
 using BlueprintCore.Utils;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.TargetCheckers;
@@ -23,6 +22,8 @@ using Mesmerist.NewComponents;
 using Kingmaker.Blueprints;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -73,7 +74,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon)
-                .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                 .SetHiddenInUI()
                 .SetBuff(Guids.CompelAlacrityBuff)
                  .SetDeactivateImmediately()

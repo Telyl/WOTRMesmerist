@@ -13,20 +13,8 @@ using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using BlueprintCore.Actions.Builder;
-using BlueprintCore.Actions.Builder.ContextEx;
-using Kingmaker.Designers.Mechanics.Facts;
-using BlueprintCore.Utils;
-using Kingmaker.Blueprints;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
 using CharacterOptionsPlus.Util;
-using Kingmaker.ResourceLinks;
-using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
-using Mesmerist.MechanicsChanges;
-using Mesmerist.NewComponents;
-using BlueprintCore.Conditions.Builder;
-using BlueprintCore.Conditions.Builder.BasicEx;
+using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -58,14 +46,14 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.Evasion.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
+                .SetFlags(BlueprintBuff.Flags.HiddenInUi)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.AstoundingAvoidanceAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.Evasion.Reference.Get().Icon)
-                .SetGroup(ExpandedActivatableAbilityGroup.MesmeristTricks)
+                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                 .SetHiddenInUI()
                 .SetBuff(Guids.AstoundingAvoidanceBuff)
                 .SetDeactivateImmediately()

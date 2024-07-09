@@ -12,6 +12,10 @@ using Kingmaker.Blueprints.Classes.Prerequisites;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using Kingmaker.Blueprints.Classes.Spells;
 using CharacterOptionsPlus.Util;
+using TabletopTweaks.Core.NewComponents;
+using Mesmerist.NewComponents;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {
@@ -30,6 +34,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddUniqueBuff()
+                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
                 .AddModifyD20(takeBest: false, rule: Kingmaker.Designers.Mechanics.Facts.RuleType.SavingThrow, 
                 rollsAmount: 1, spellDescriptor: SpellDescriptor.Fear, 
