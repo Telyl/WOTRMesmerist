@@ -23,21 +23,38 @@ namespace Mesmerist.NewComponents
 {
     [TypeId("5af58cb1a56c4c38be810dfc6b63fe86")]
     public class AddPsychicInceptionSpells : UnitFactComponentDelegate,
-        IInitiatorRulebookHandler<RuleSavingThrow>,
-        IRulebookHandler<RuleSavingThrow>,
-        ISubscriber,
-        IInitiatorRulebookSubscriber
+        IAfterRulebookEventTriggerHandler<RuleSavingThrow>,
+        IBeforeRulebookEventTriggerHandler<RuleSavingThrow>,
+        IAfterRulebookEventTriggerHandler<RuleSpellResistanceCheck>,
+        IGlobalSubscriber
+
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddPsychicInceptionSpells));
-        
-        public void OnEventAboutToTrigger(RuleSavingThrow evt)
+        private static bool wasImmune = false;
+
+        public void OnAfterRulebookEventTrigger(RuleSpellResistanceCheck evt)
         {
-            Logger.Log("AboutToTrigger RuleSavingThrow");
+            if (!evt.Context.MaybeCaster.HasFact(BecauseOfFact)) { return; }
+            if (!evt.Target.Descriptor.HasFact(BecauseOfFactBuff)) { return; }
+            if (!evt.Ability.SpellDescriptor.HasAnyFlag(IgnoreDescriptors)) { return; }
+            if (!evt.TargetIsImmune) { return; }
+            evt.TargetIsImmune = false;
+            wasImmune = true;
+        }
+        public void OnBeforeRulebookEventTrigger(RuleSavingThrow evt)
+        {
+            if (wasImmune)
+            {
+                evt.AddModifier(2, base.Fact, ModifierDescriptor.UntypedStackable);
+            }
         }
 
-        public void OnEventDidTrigger(RuleSavingThrow evt)
+        public void OnAfterRulebookEventTrigger(RuleSavingThrow evt)
         {
-            Logger.Log("DidTrigger RuleSavingThrow");
+            wasImmune = false;
         }
+        public SpellDescriptor IgnoreDescriptors;
+        public BlueprintFeatureReference BecauseOfFact;
+        public BlueprintBuffReference BecauseOfFactBuff;
     }
 }

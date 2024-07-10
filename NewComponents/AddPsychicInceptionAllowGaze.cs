@@ -38,7 +38,7 @@ namespace Mesmerist.NewComponents
 
         public void OnEventDidTrigger(RuleApplySpell evt)
         {
-            
+            //evt.SpellTarget.Unit.Ensure<UnitPartIgnoreBuffDescriptorImmunity>().RemoveEntry(base.Fact);
         }
         public SpellDescriptor IgnoreDescriptors;
         public BlueprintFeatureReference BecauseOfFact;

@@ -14,6 +14,15 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Blueprints.Classes.Spells;
 using CharacterOptionsPlus.Util;
 using Mesmerist.NewComponents;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using TabletopTweaks.Core.Utilities;
+using Kingmaker.Blueprints;
+using BlueprintCore.Utils;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using System.Linq;
+using Kingmaker.Utility;
+using Kingmaker.UnitLogic.Abilities.Components;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {
@@ -31,8 +40,12 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddUniqueBuff()
-                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
-                .AddComponent<AddPsychicInceptionSpells>()
+                .AddComponent<AddPsychicInceptionSpells>(c =>
+                {
+                    c.IgnoreDescriptors = SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion;
+                    c.BecauseOfFact = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PsychicInception);
+                    c.BecauseOfFactBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.HypnoticStareBuff);
+                })
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
                 .Configure();
 
@@ -42,7 +55,6 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDescription(Description)
                 .SetIsClassFeature()
                 .Configure();
-
 
         }
     }

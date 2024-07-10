@@ -54,7 +54,6 @@ namespace Mesmerist.Mesmerist
                 .SetIcon(AbilityRefs.Eyebite.Reference.Get().Icon)
                 .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddUniqueBuff()
-                
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .AddComponent<AddPainfulStare>(C => C.CheckFactOnTarget = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown))
                 .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(AbilityRankType.Default), ModifierDescriptor.UntypedStackable, 2, -1)
@@ -100,7 +99,7 @@ namespace Mesmerist.Mesmerist
                                ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.NightmareBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.PsychicInception),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychicInceptionBuff, true, false))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychicInceptionBuff, true, false, toCaster: true))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.SappedMagic),
                                ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SappedMagicBuff, true, false))
