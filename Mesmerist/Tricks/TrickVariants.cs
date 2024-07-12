@@ -28,7 +28,7 @@ namespace Mesmerist.Mesmerist.Tricks
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.TrickVariantsActivatableAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.AngelBringBackTouch.Reference.Get().Icon)
+                .SetIcon(FeatureRefs.ArcanistExploits.Reference.Get().Icon)
                 .AddActivatableAbilityVariants(variants: new() { Guids.AstoundingAvoidanceAbility, Guids.CompelAlacrityAbility, Guids.FalseFlankerAbility,
                 Guids.FearsomeGuiseAbility, Guids.FleetInShadowsAbility, Guids.LevitationBufferAbility,
                 Guids.LinkedReactionAbility, Guids.MeekFacadeAbility, Guids.MesmericMirrorAbility,

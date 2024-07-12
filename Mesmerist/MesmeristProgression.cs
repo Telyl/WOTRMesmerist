@@ -24,6 +24,7 @@ namespace Mesmerist.Mesmerist
             MesmeristProficiencies.Configure();
             ConsummateLiar.Configure();
             ToweringEgo.Configure();
+            MentalPotency.Configure();
 
             // Load Tricks
             AstoundingAvoidance.Configure();
@@ -80,22 +81,22 @@ namespace Mesmerist.Mesmerist
                 .AddEntry(2, Guids.MesmeristTrickSelection, Guids.ToweringEgo)
                 .AddEntry(3, Guids.PainfulStare, Guids.BoldStareSelection, Guids.TouchTreatment)
                 .AddEntry(4, Guids.MesmeristTrickSelection)
-                .AddEntry(5, Guids.ManifoldTrick)
+                .AddEntry(5, Guids.ManifoldTrick, Guids.MentalPotency)
                 .AddEntry(6, Guids.PainfulStare, Guids.MesmeristTrickSelection, Guids.TouchTreatmentModerate)
                 .AddEntry(7, Guids.BoldStareSelection)
                 .AddEntry(8, Guids.HypnoticStare, Guids.MesmeristTrickSelection)
                 .AddEntry(9, Guids.PainfulStare, Guids.ManifoldTrick)
-                .AddEntry(10, Guids.MesmeristTrickSelection, Guids.TouchTreatmentGreater)
+                .AddEntry(10, Guids.MesmeristTrickSelection, Guids.TouchTreatmentGreater, Guids.MentalPotency)
                 .AddEntry(11, Guids.BoldStareSelection)
                 .AddEntry(12, Guids.PainfulStare, Guids.MesmeristTrickSelection)
                 .AddEntry(13, Guids.ManifoldTrick)
                 .AddEntry(14, Guids.MesmeristTrickSelection, Guids.TouchTreatmentBreak)
-                .AddEntry(15, Guids.PainfulStare, Guids.BoldStareSelection)
+                .AddEntry(15, Guids.PainfulStare, Guids.BoldStareSelection, Guids.MentalPotency)
                 .AddEntry(16, Guids.MesmeristTrickSelection)
                 .AddEntry(17, Guids.ManifoldTrick)
                 .AddEntry(18, Guids.PainfulStare, Guids.MesmeristTrickSelection)
                 .AddEntry(19, Guids.BoldStareSelection)
-                .AddEntry(20, Guids.MesmeristTrickSelection);
+                .AddEntry(20, Guids.MesmeristTrickSelection, Guids.MentalPotency);
 
             return ProgressionConfigurator.New(ProgressionName, Guids.MesmeristProgression)
                 .SetAllowNonContextActions(false)

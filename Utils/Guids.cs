@@ -24,8 +24,11 @@ namespace Mesmerist.Utils
         internal const string MesmeristSpellsPerDayTable = "6a489392-accd-4a49-b43d-5ee7222bf084";
         internal const string MesmeristSpellSlotsTable = "712bba24-1160-4456-bb48-bec17ba57b5c";
         internal const string MesmeristSpellbook = "51c5279f-75bd-45bb-810c-a899fd6a7c65";
+        internal const string MesmeristSpellList = "8109a365-b02f-4876-8c33-ceb48dfd9de6";
         internal const string ConsummateLiar = "8e9e7d3f-4ba9-40b8-ac3f-33cbc17b8b01";
         internal const string ToweringEgo = "37ac11e9-d800-418e-8525-72863a223f8e";
+        internal const string MentalPotency = "abf5de27-d311-4530-aa87-d1ade07d52b5";
+        internal const string MentalPotencyUnitProperty = "61c6ea2e-943a-4fe7-a114-7124d69483d5";
 
         internal const string TouchTreatment = "f6ba9b44-7fad-4af7-8819-f2fab786d9f1";
         internal const string TouchTreatmentSelfAbility = "94bdbe73-eb07-499b-b158-893b0d7aef05";
@@ -234,7 +237,11 @@ namespace Mesmerist.Utils
         #endregion
 
         #region Spells
-        // Strong Jaw (Spell)
+        internal const string MesmeristSleepAbility = "9aea1556-1baa-47c9-98f2-861599d1a1f5";
+        internal const string MesmeristHypnotismAbility = "bb9b0ec7-0997-49d4-b135-23ae27b320ab";
+        internal const string MesmeristColorSprayAbility = "8270afa6-e18e-4208-8a7e-a4bb9dc0bf1a";
+        internal const string MesmeristRainbowPatternAbility = "3b23f4b6-77f6-41ea-903e-1254dcc2d414";
+
         internal static readonly (string guid, string displayName)[] Spells =
           new (string, string)[]
           {

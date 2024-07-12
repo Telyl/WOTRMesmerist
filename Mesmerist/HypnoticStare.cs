@@ -32,7 +32,6 @@ using static Kingmaker.UnitLogic.Mechanics.Conditions.ContextConditionInContext;
 using Mesmerist.NewComponents;
 using Kingmaker.AI.Blueprints;
 using TabletopTweaks.Core.Utilities;
-using Mesmerist.NewComponents.Conditions;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using TabletopTweaks.Core.NewComponents;
 

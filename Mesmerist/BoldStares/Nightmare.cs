@@ -38,7 +38,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
                 .AddModifyD20(takeBest: false, rule: Kingmaker.Designers.Mechanics.Facts.RuleType.SavingThrow, 
                 rollsAmount: 1, spellDescriptor: SpellDescriptor.Fear, 
-                savingThrowType: Kingmaker.RuleSystem.Rules.FlaggedSavingThrowType.Will)
+                savingThrowType: Kingmaker.RuleSystem.Rules.FlaggedSavingThrowType.Will, specificDescriptor: true)
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)

@@ -133,6 +133,7 @@
     <Folder Include="NewActions\" />
     <Folder Include="NewSpells\" />
   </ItemGroup>
+	
 
   <!-- Generates Assembly-CSharp_public.dll -->
   <Target Name="Publicize" AfterTargets="Clean">

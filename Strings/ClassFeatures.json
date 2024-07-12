@@ -367,5 +367,14 @@
   {
     "Key": "UseTrick.Description",
     "enGB": "Use the selected trick and selected manifold trick."
+  },
+  {
+    "Key": "MentalPotency.Name",
+    "ProcessTemplates": false,
+    "enGB": "Mental Potency"
+  },
+  {
+    "Key": "MentalPotency.Description",
+    "enGB": "At 5th level, the mesmerist can affect more powerful creatures or a greater number of creatures than normal with his mental effects. Both the HD limit and the total number of HD affected with each enchantment or illusion spell he casts increase by 1. For enchantment and illusion spells he casts that target a number of creatures greater than one, the number of creatures affected also increases by one (so a spell that targets one creature per level would be affected, but a spell that targets only one creature would not be). For example, a 5thlevel mesmerist could affect 5 HD worth of creatures with sleep, affect 2d4+1 HD worth of creatures with hypnotism, and change the categories for color spray to “3 HD or fewer,” “4 or 5 HD,” and “6 or more HD.” The number of additional HD or creatures increases by an additional 1 for every 5 levels beyond 5th, to a maximum increase of 4 at 20th level."
   }
 ]
