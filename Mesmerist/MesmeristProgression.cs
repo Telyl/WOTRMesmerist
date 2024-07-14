@@ -25,6 +25,8 @@ namespace Mesmerist.Mesmerist
             ConsummateLiar.Configure();
             ToweringEgo.Configure();
             MentalPotency.Configure();
+            MasterfulTricks.Configure();
+            PiercingGaze.Configure();
 
             // Load Tricks
             AstoundingAvoidance.Configure();
@@ -45,6 +47,8 @@ namespace Mesmerist.Mesmerist
             SpectralSmoke.Configure();
             VanishArrow.Configure();
             VoiceOfReason.Configure();
+            FreeInBody.Configure();
+            CursedSanction.Configure();
 
             // Load Trick Variant Ability
             TrickVariants.Configure();
@@ -88,7 +92,7 @@ namespace Mesmerist.Mesmerist
                 .AddEntry(9, Guids.PainfulStare, Guids.ManifoldTrick)
                 .AddEntry(10, Guids.MesmeristTrickSelection, Guids.TouchTreatmentGreater, Guids.MentalPotency)
                 .AddEntry(11, Guids.BoldStareSelection)
-                .AddEntry(12, Guids.PainfulStare, Guids.MesmeristTrickSelection)
+                .AddEntry(12, Guids.PainfulStare, Guids.MesmeristTrickSelection, Guids.MasterfulTricks)
                 .AddEntry(13, Guids.ManifoldTrick)
                 .AddEntry(14, Guids.MesmeristTrickSelection, Guids.TouchTreatmentBreak)
                 .AddEntry(15, Guids.PainfulStare, Guids.BoldStareSelection, Guids.MentalPotency)
@@ -96,7 +100,7 @@ namespace Mesmerist.Mesmerist
                 .AddEntry(17, Guids.ManifoldTrick)
                 .AddEntry(18, Guids.PainfulStare, Guids.MesmeristTrickSelection)
                 .AddEntry(19, Guids.BoldStareSelection)
-                .AddEntry(20, Guids.MesmeristTrickSelection, Guids.MentalPotency);
+                .AddEntry(20, Guids.MesmeristTrickSelection, Guids.MentalPotency, Guids.PiercingGaze);
 
             return ProgressionConfigurator.New(ProgressionName, Guids.MesmeristProgression)
                 .SetAllowNonContextActions(false)

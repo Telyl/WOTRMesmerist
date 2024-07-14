@@ -1,15 +1,10 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
-using static UnityModManagerNet.UnityModManager.ModEntry;
-using System;
 using Kingmaker.Enums;
 using BlueprintCore.Utils.Types;
-using Kingmaker.Blueprints.Classes.Prerequisites;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;

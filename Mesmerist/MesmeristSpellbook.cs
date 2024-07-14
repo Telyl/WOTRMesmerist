@@ -141,7 +141,6 @@ namespace Mesmerist.Mesmerist
                 BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.Restoration.ToString()),
                 BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.Serenity.ToString()),
                 BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.ShadowConjuration.ToString()),
-                BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.ShadowFormAbility.ToString()),
             };
             return spelllist;
         }

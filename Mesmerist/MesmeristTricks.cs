@@ -69,7 +69,7 @@ namespace Mesmerist.Mesmerist
                 Guids.LinkedReaction, Guids.MeekFacade, Guids.MesmericMirror,
                 Guids.MesmericPantomime, Guids.Misdirection, Guids.PsychosomaticSurge,
                 Guids.ReflectFear, Guids.SeeThroughInvisibility, Guids.ShadowSplinter,
-                Guids.SpectralSmoke, Guids.VanishArrow, Guids.VoiceOfReason])
+                Guids.SpectralSmoke, Guids.VanishArrow, Guids.VoiceOfReason, Guids.CursedSanction, Guids.FreeInBody])
                 .Configure();
 
         }

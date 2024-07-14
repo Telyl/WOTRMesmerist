@@ -1,34 +1,22 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.EntitySystem.Stats;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
-using static UnityModManagerNet.UnityModManager.ModEntry;
-using System;
 using Kingmaker.Enums;
 using BlueprintCore.Utils.Types;
-using Kingmaker.Blueprints.Classes.Prerequisites;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
-using Mesmerist.Mesmerist.Tricks;
-using BlueprintCore.Blueprints.CustomConfigurators;
 using Kingmaker.Blueprints;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Utils;
 using CharacterOptionsPlus.Util;
-using Kingmaker.UnitLogic.Mechanics.Components;
 using Mesmerist.NewComponents;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder.BasicEx;
-using Kingmaker.ElementsSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
-using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
 
@@ -39,6 +27,8 @@ namespace Mesmerist.Mesmerist
         private static readonly string FeatName = "ManifoldTrick";
         internal const string DisplayName = "ManifoldTrick.Name";
         private static readonly string Description = "ManifoldTrick.Description";
+        internal const string DisplayNameUseTrick = "UseTrick.Name";
+        private static readonly string DescriptionTrick = "UseTrick.Description";
 
         private static readonly Logging.Logger Logger = Logging.GetLogger(FeatName);
 
@@ -50,72 +40,9 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
-                .AddBuffActions(activated: ActionsBuilder.New()
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
-                               ifTrue: ActionsBuilder.New().Conditional(
-                                   ConditionsBuilder.New().IsUnitLevelLessThan(true, 12, false, new FactOwner()),
-                                   ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffect,
-                                   true, false, false, true, null),
-                                   ifFalse: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffectImproved, true, false, false, true, null)))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.CompelAlacrityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CompelAlacrityBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FalseFlankerBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FalseFlankerBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FearsomeGuiseBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FearsomeGuiseBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FleetInShadowsBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.FleetInShadowsBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LevitationBufferBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LevitationBufferBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LinkedReactionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LinkedReactionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MeekFacadeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MeekFacadeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericMirrorBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericMirrorBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericPantomimeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericPantomimeBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MisdirectionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MisdirectionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.PsychosomaticSurgeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychosomaticSurgeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ReflectFearBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ReflectFearBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SeeThroughInvisibilityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SeeThroughInvisibilityBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ShadowSplinterBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ShadowSplinterBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SpectralSmokeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpectralSmokeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VanishArrowBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null)))
+                .AddBuffActions(activated: TrickBuilder())
                 .Configure();
 
             var b2 = BuffConfigurator.New(FeatName + "Buff2", Guids.ManifoldTrick2Buff)
@@ -123,72 +50,9 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility2.Reference.Get().Icon)
-                .AddBuffActions(activated: ActionsBuilder.New()
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
-                               ifTrue: ActionsBuilder.New().Conditional(
-                                   ConditionsBuilder.New().IsUnitLevelLessThan(true, 12, false, new FactOwner()),
-                                   ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffect,
-                                   true, false, false, true, null),
-                                   ifFalse: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffectImproved, true, false, false, true, null)))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.CompelAlacrityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CompelAlacrityBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FalseFlankerBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FalseFlankerBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FearsomeGuiseBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FearsomeGuiseBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FleetInShadowsBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.FleetInShadowsBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LevitationBufferBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LevitationBufferBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LinkedReactionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LinkedReactionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MeekFacadeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MeekFacadeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericMirrorBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericMirrorBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericPantomimeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericPantomimeBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MisdirectionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MisdirectionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.PsychosomaticSurgeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychosomaticSurgeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ReflectFearBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ReflectFearBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SeeThroughInvisibilityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SeeThroughInvisibilityBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ShadowSplinterBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ShadowSplinterBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SpectralSmokeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpectralSmokeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VanishArrowBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null)))
+                .AddBuffActions(activated: TrickBuilder())
                 .Configure();
 
             var b3 = BuffConfigurator.New(FeatName + "Buff3", Guids.ManifoldTrick3Buff)
@@ -196,68 +60,9 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility3.Reference.Get().Icon)
-                .AddBuffActions(activated: ActionsBuilder.New()
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.CompelAlacrityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CompelAlacrityBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FalseFlankerBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FalseFlankerBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FearsomeGuiseBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FearsomeGuiseBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FleetInShadowsBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.FleetInShadowsBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LevitationBufferBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LevitationBufferBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LinkedReactionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LinkedReactionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MeekFacadeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MeekFacadeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericMirrorBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericMirrorBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericPantomimeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericPantomimeBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MisdirectionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MisdirectionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.PsychosomaticSurgeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychosomaticSurgeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ReflectFearBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ReflectFearBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SeeThroughInvisibilityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SeeThroughInvisibilityBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ShadowSplinterBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ShadowSplinterBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SpectralSmokeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpectralSmokeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VanishArrowBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null)))
+                .AddBuffActions(activated: TrickBuilder())
                 .Configure();
 
             var b4 = BuffConfigurator.New(FeatName + "Buff4", Guids.ManifoldTrick4Buff)
@@ -265,68 +70,9 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility4.Reference.Get().Icon)
-                .AddBuffActions(activated: ActionsBuilder.New()
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.CompelAlacrityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CompelAlacrityBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FalseFlankerBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FalseFlankerBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FearsomeGuiseBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FearsomeGuiseBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FleetInShadowsBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.FleetInShadowsBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LevitationBufferBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LevitationBufferBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LinkedReactionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LinkedReactionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MeekFacadeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MeekFacadeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericMirrorBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericMirrorBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericPantomimeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericPantomimeBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MisdirectionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MisdirectionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.PsychosomaticSurgeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychosomaticSurgeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ReflectFearBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ReflectFearBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SeeThroughInvisibilityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SeeThroughInvisibilityBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ShadowSplinterBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ShadowSplinterBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SpectralSmokeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpectralSmokeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VanishArrowBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null)))
+                .AddBuffActions(activated: TrickBuilder())
                 .Configure();
 
             var b5 = BuffConfigurator.New(FeatName + "Buff5", Guids.ManifoldTrick5Buff)
@@ -334,77 +80,15 @@ namespace Mesmerist.Mesmerist
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility5.Reference.Get().Icon)
-                .AddBuffActions(activated: ActionsBuilder.New()
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
-                               ifTrue: ActionsBuilder.New().Conditional(
-                                   ConditionsBuilder.New().IsUnitLevelLessThan(true, 12), 
-                                   ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffect, true, false, false, true, null),
-                                   ifFalse: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffectImproved, true, false, false, true, null)))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.CompelAlacrityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CompelAlacrityBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FalseFlankerBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FalseFlankerBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FearsomeGuiseBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FearsomeGuiseBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.FleetInShadowsBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.FleetInShadowsBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LevitationBufferBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LevitationBufferBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.LinkedReactionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LinkedReactionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MeekFacadeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MeekFacadeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericMirrorBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericMirrorBuffEffect, 
-                               ContextDuration.Variable( ContextValues.Rank() ,DurationRate.Minutes),true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericPantomimeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericPantomimeBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.MisdirectionBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MisdirectionBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.PsychosomaticSurgeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychosomaticSurgeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ReflectFearBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ReflectFearBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SeeThroughInvisibilityBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SeeThroughInvisibilityBuffEffect,
-                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.ShadowSplinterBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ShadowSplinterBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.SpectralSmokeBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpectralSmokeBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VanishArrowBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
-                   .Conditional(
-                               ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null)))
+                .AddBuffActions(activated: TrickBuilder())
                 .Configure();
 
             AbilityConfigurator.New(FeatName + "1", Guids.MesmeristTrickActiveAbility1)
                 .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+                .SetDisplayName(DisplayNameUseTrick)
+                .SetDescription(DescriptionTrick)
                 .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
                 .SetRange(AbilityRange.Touch)
@@ -416,8 +100,8 @@ namespace Mesmerist.Mesmerist
 
             AbilityConfigurator.New(FeatName + "2", Guids.MesmeristTrickActiveAbility2)
                 .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+                .SetDisplayName(DisplayNameUseTrick)
+                .SetDescription(DescriptionTrick)
                 .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility2.Reference.Get().Icon)
                 .AddComponent<AddRequirementOnFeatureRank>(c => {
@@ -433,8 +117,8 @@ namespace Mesmerist.Mesmerist
 
             AbilityConfigurator.New(FeatName + "3", Guids.MesmeristTrickActiveAbility3)
                 .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+                .SetDisplayName(DisplayNameUseTrick)
+                .SetDescription(DescriptionTrick)
                 .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility3.Reference.Get().Icon)
                 .AddComponent<AddRequirementOnFeatureRank>(c => {
@@ -451,8 +135,8 @@ namespace Mesmerist.Mesmerist
             AbilityConfigurator.New(FeatName + "4", Guids.MesmeristTrickActiveAbility4)
                 .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
                 .AddComponent<AddRequirementOnFeatureRank>()
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+                .SetDisplayName(DisplayNameUseTrick)
+                .SetDescription(DescriptionTrick)
                 .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility4.Reference.Get().Icon)
                 .AddComponent<AddRequirementOnFeatureRank>(c => {
@@ -468,8 +152,8 @@ namespace Mesmerist.Mesmerist
 
             AbilityConfigurator.New(FeatName + "5", Guids.MesmeristTrickActiveAbility5)
                 .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+                .SetDisplayName(DisplayNameUseTrick)
+                .SetDescription(DescriptionTrick)
                 .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility5.Reference.Get().Icon)
                 .AddComponent<AddRequirementOnFeatureRank>(c => {
@@ -484,8 +168,8 @@ namespace Mesmerist.Mesmerist
                 .Configure();
 
             AbilityConfigurator.New(FeatName + "Variants", Guids.MesmeristTrickActiveVariants)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+                .SetDisplayName(DisplayNameUseTrick)
+                .SetDescription(DescriptionTrick)
                 .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility9.Reference.Get().Icon)
                 .AddAbilityVariants(variants: new() { Guids.MesmeristTrickActiveAbility1, 
                     Guids.MesmeristTrickActiveAbility2, Guids.MesmeristTrickActiveAbility3, 
@@ -510,6 +194,79 @@ namespace Mesmerist.Mesmerist
                 .SetRanks(4)
                 .Configure();
 
+        }
+
+        private static ActionsBuilder TrickBuilder()
+        {
+            return ActionsBuilder.New()
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.AstoundingAvoidanceBuff),
+                               ifTrue: ActionsBuilder.New().Conditional(
+                                   ConditionsBuilder.New().IsUnitLevelLessThan(true, 12, false, new FactOwner()),
+                                   ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffect,
+                                   true, false, false, true, null),
+                                   ifFalse: ActionsBuilder.New().ApplyBuffPermanent(Guids.AstoundingAvoidanceBuffEffectImproved, true, false, false, true, null)))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.CompelAlacrityBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CompelAlacrityBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.CursedSanctionBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CursedSanctionBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.FalseFlankerBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FalseFlankerBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.FearsomeGuiseBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FearsomeGuiseBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.FreeInBodyBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.FreeInBodyBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.FleetInShadowsBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.FleetInShadowsBuffEffect,
+                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.LevitationBufferBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LevitationBufferBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.LinkedReactionBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.LinkedReactionBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.MeekFacadeBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MeekFacadeBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericMirrorBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericMirrorBuffEffect,
+                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.MesmericPantomimeBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.MesmericPantomimeBuffEffect,
+                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.MisdirectionBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.MisdirectionBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.PsychosomaticSurgeBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychosomaticSurgeBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.ReflectFearBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ReflectFearBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.SeeThroughInvisibilityBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SeeThroughInvisibilityBuffEffect,
+                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.ShadowSplinterBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.ShadowSplinterBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.SpectralSmokeBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpectralSmokeBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.VanishArrowBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
+                   .Conditional(
+                               ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null));
         }
     }
 }

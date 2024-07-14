@@ -29,6 +29,7 @@ namespace Mesmerist.Utils
         internal const string ToweringEgo = "37ac11e9-d800-418e-8525-72863a223f8e";
         internal const string MentalPotency = "abf5de27-d311-4530-aa87-d1ade07d52b5";
         internal const string MasterfulTricks = "61c6ea2e-943a-4fe7-a114-7124d69483d5";
+        internal const string PiercingGaze = "662519a1-f825-4afa-9bfa-3ebeda115f0d";
 
         internal const string TouchTreatment = "f6ba9b44-7fad-4af7-8819-f2fab786d9f1";
         internal const string TouchTreatmentSelfAbility = "94bdbe73-eb07-499b-b158-893b0d7aef05";
@@ -176,6 +177,11 @@ namespace Mesmerist.Utils
         internal const string LevitationBufferBuff = "c62ed60c-31bd-4c8a-bb96-aa8bf6de0d1e";
         internal const string LevitationBufferBuffEffect = "eed47d78-1014-457a-9c0f-4868537380a0";
 
+        internal const string FreeInBody = "2008109f-f09c-4f8a-a94a-c06a56e0c74c";
+        internal const string FreeInBodyAbility = "e41bebb8-34cf-4552-a972-f9c818d746d0";
+        internal const string FreeInBodyBuff = "806813a3-b003-43bb-9e5d-a9136c58600c";
+        internal const string FreeInBodyBuffEffect = "97f09ed1-9a6b-4b48-8218-2e032582acbd";
+
         internal const string FleetInShadows = "7f20d2ed-11b8-490e-a514-00f96f9a960a";
         internal const string FleetInShadowsAbility = "8f20d2ed-11b8-490e-a514-00f96f9a960a";
         internal const string FleetInShadowsBuff = "3e31923e-3f90-4fea-9e4e-d640ca355d66";
@@ -190,6 +196,12 @@ namespace Mesmerist.Utils
         internal const string FalseFlankerAbility = "ea20972b-cc07-4956-a8bf-e428a7b0afc5";
         internal const string FalseFlankerBuff = "7c8ecd81-19f3-4aeb-8635-b309386ce4c7";
         internal const string FalseFlankerBuffEffect = "f32c16a5-ad3e-48a9-a78e-84a70735e659";
+
+        internal const string CursedSanction = "d721d95f-65c8-416b-b428-13e3ac8e64b9";
+        internal const string CursedSanctionAbility = "99c55a94-f6c3-4382-b185-0fa7fef146f8";
+        internal const string CursedSanctionBuff = "bbc7d65e-2470-4c3c-9df6-086eeb89c7db";
+        internal const string CursedSanctionBuffEffect = "5c042265-3c0c-4750-a07c-c1a44c114916";
+        internal const string CursedSanctionDebuffEffect = "5ff5fa11-668a-4ca7-8c94-c73ace42b149";
 
         internal const string CompelAlacrity = "0138f132-f4e0-4acd-859d-8b1af605d29f";
         internal const string CompelAlacrityAbility = "b6db9e61-fd31-46b7-995c-7c5da8f25f79";

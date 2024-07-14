@@ -9,17 +9,15 @@ using System;
 using Kingmaker.Enums;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Prerequisites;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
-using Mesmerist.Mesmerist.BoldStares;
 using CharacterOptionsPlus.Util;
 
 namespace Mesmerist.Mesmerist
 {
-    public class BoldStare
+    public class PiercingGaze
     {
-        private static readonly string FeatName = "BoldStare";
-        internal const string DisplayName = "BoldStare.Name";
-        private static readonly string Description = "BoldStare.Description";
+        private static readonly string FeatName = "PiercingGaze";
+        internal const string DisplayName = "PiercingGaze.Name";
+        private static readonly string Description = "PiercingGaze.Description";
 
         private static readonly Logging.Logger Logger = Logging.GetLogger(FeatName);
 
@@ -27,18 +25,11 @@ namespace Mesmerist.Mesmerist
         {
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureSelectionConfigurator.New(FeatName, Guids.BoldStareSelection)
+            BlueprintFeature consummateLiar = FeatureConfigurator.New(FeatName, Guids.PiercingGaze)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .SetIsClassFeature()
-                .AddToAllFeatures([Guids.Disorientation, Guids.Disquiet, Guids.Distracted,
-                Guids.Infiltration, Guids.Lethality, Guids.Nightmare,
-                Guids.PsychicInception, Guids.SappedMagic, Guids.Sluggishness,
-                Guids.Timidity, Guids.ManifoldStare, Guids.ManifoldStare2, Guids.ManifoldStare3])
                 .Configure();
-
-
         }
     }
 }

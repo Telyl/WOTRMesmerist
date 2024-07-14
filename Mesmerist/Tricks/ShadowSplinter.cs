@@ -1,21 +1,14 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
-using static UnityModManagerNet.UnityModManager.ModEntry;
-using System;
 using Kingmaker.Enums;
 using BlueprintCore.Utils.Types;
-using Kingmaker.Blueprints.Classes.Prerequisites;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Actions.Builder;
-using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ShadowSplinter
@@ -33,7 +26,8 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.ShadowEvocation.Reference.Get().Icon)
-                .AddComponent<AddShadowSplinter>()
+                .AddDamageResistancePhysical(value: ContextValues.Rank())
+                .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.UntypedStackable, min:1))
                 //.AddDamageReductionAgainstFactOwner(checkedFact: Guids.HypnoticStareBuff, reduction: 3)
                 //.AddIncomingDamageTrigger(checkDamageDealt: true, actions)
                 //.AddDamageReductionAgainstFactOwner()

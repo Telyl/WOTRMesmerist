@@ -1,19 +1,6 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Blueprints.References;
-using Kingmaker.Blueprints.Classes;
-using Kingmaker.EntitySystem.Stats;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
-using static UnityModManagerNet.UnityModManager.ModEntry;
-using System;
-using Kingmaker.Enums;
-using BlueprintCore.Utils.Types;
-using Kingmaker.Blueprints.Classes.Prerequisites;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
-using Kingmaker.Blueprints.Classes.Spells;
 using CharacterOptionsPlus.Util;
-using Kingmaker.Blueprints;
-using Kingmaker.UnitLogic.Mechanics.Components;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {

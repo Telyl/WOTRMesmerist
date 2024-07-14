@@ -1,22 +1,13 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
-using Kingmaker.Blueprints.Classes;
-using Kingmaker.EntitySystem.Stats;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
-using static UnityModManagerNet.UnityModManager.ModEntry;
-using System;
-using Kingmaker.Enums;
-using BlueprintCore.Utils.Types;
-using Kingmaker.Blueprints.Classes.Prerequisites;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class TrickVariants
     {
-        private static readonly string FeatName = "TrickVariants";
+        private static readonly string FeatName = "Tricks";
         internal const string DisplayName = "MesmeristTrick.Name";
         private static readonly string Description = "MesmeristTrick.Description";
 
@@ -34,7 +25,8 @@ namespace Mesmerist.Mesmerist.Tricks
                 Guids.LinkedReactionAbility, Guids.MeekFacadeAbility, Guids.MesmericMirrorAbility,
                 Guids.MesmericPantomimeAbility, Guids.MisdirectionAbility, Guids.PsychosomaticSurgeAbility,
                 Guids.ReflectFearAbility, Guids.SeeThroughInvisibilityAbility, Guids.ShadowSplinterAbility,
-                Guids.SpectralSmokeAbility, Guids.VanishArrowAbility, Guids.VoiceOfReasonAbility })
+                Guids.SpectralSmokeAbility, Guids.VanishArrowAbility, Guids.VoiceOfReasonAbility, 
+                Guids.CursedSanctionAbility, Guids.FreeInBodyAbility })
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
