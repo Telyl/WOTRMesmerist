@@ -30,6 +30,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.MesmericMirrorBuffEffect)
                 .CopyFrom(BuffRefs.MirrorImageBuff.Reference.Get(), typeof(AddMirrorImage))
                 .CopyFrom(BuffRefs.MirrorImageBuff.Reference.Get(), typeof(ContextRankConfigs))
+                .AddRemoveWhenCombatEnded()
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.MirrorImage.Reference.Get().Icon)
@@ -46,7 +47,7 @@ namespace Mesmerist.Mesmerist.Tricks
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(AbilityRefs.MirrorImage.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
+                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
 
                  .SetBuff(Guids.MesmericMirrorBuff)
                  .SetDeactivateImmediately()

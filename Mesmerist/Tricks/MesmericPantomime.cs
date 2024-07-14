@@ -21,16 +21,12 @@ namespace Mesmerist.Mesmerist.Tricks
         internal const string DisplayName = "MesmericPantomime.Name";
         private static readonly string Description = "MesmericPantomime.Description";
 
-        
-
-
-
-
         public static void Configure()
         {
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.MesmericPantomimeBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.BrilliantInspiration.Reference.Get().Icon)
                 .AddContextStatBonus(StatType.SkillAthletics, ContextValues.Rank(), ModifierDescriptor.Morale)
                 .AddContextStatBonus(StatType.SkillMobility, ContextValues.Rank(), ModifierDescriptor.Morale)

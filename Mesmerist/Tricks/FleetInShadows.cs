@@ -31,8 +31,9 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.FleetInShadowsBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.Longstrider.Reference.Get().Icon)
-                .AddBuffActions(activated: ActionsBuilder.New().ApplyBuff(BuffRefs.ExpeditiousRetreatBuff.Reference.Get(), ContextDuration.Fixed(1)))
+                .AddBuffMovementSpeed(value: 30, descriptor: ModifierDescriptor.Enhancement)
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.FleetInShadowsBuff)

@@ -37,7 +37,6 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            
 
             AbilityConfigurator.New(FeatName + "DimensionDoorAbility", Guids.CompelAlacrityDimensionDoorAbility)
                 .CopyFrom(AbilityRefs.DimensionDoor.Reference.Get(),typeof(AbilityCustomDimensionDoor))
@@ -61,6 +60,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon)
                 .AddTemporaryFeat(Guids.CompelAlacrityDimensionDoorFeat)
+                .AddRemoveWhenCombatEnded()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.CompelAlacrityBuff)

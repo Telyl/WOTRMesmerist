@@ -21,21 +21,16 @@ namespace Mesmerist.Mesmerist.Tricks
         internal const string DisplayName = "MeekFacade.Name";
         private static readonly string Description = "MeekFacade.Description";
 
-        
-
-
-
-
-
         public static void Configure()
         {
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.MeekFacadeBuffEffect)
                 
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.ReducePerson.Reference.Get().Icon)
-                .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.Dodge, 1, 1)
-                .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
+                .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.Dodge, 2, 1)
+                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default).WithDivStepProgression(5))
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.MeekFacadeBuff)

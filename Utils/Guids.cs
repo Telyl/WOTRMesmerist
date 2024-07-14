@@ -28,7 +28,7 @@ namespace Mesmerist.Utils
         internal const string ConsummateLiar = "8e9e7d3f-4ba9-40b8-ac3f-33cbc17b8b01";
         internal const string ToweringEgo = "37ac11e9-d800-418e-8525-72863a223f8e";
         internal const string MentalPotency = "abf5de27-d311-4530-aa87-d1ade07d52b5";
-        internal const string MentalPotencyUnitProperty = "61c6ea2e-943a-4fe7-a114-7124d69483d5";
+        internal const string MasterfulTricks = "61c6ea2e-943a-4fe7-a114-7124d69483d5";
 
         internal const string TouchTreatment = "f6ba9b44-7fad-4af7-8819-f2fab786d9f1";
         internal const string TouchTreatmentSelfAbility = "94bdbe73-eb07-499b-b158-893b0d7aef05";

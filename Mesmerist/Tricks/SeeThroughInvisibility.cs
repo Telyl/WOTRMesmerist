@@ -18,9 +18,9 @@ namespace Mesmerist.Mesmerist.Tricks
 {
     public class SeeThroughInvisibility
     {
-        private static readonly string FeatName = "SeeInDarkness";
-        internal const string DisplayName = "SeeInDarkness.Name";
-        private static readonly string Description = "SeeInDarkness.Description";
+        private static readonly string FeatName = "SeeThroughInvisibility";
+        internal const string DisplayName = "SeeThroughInvisibility.Name";
+        private static readonly string Description = "SeeThroughInvisibility.Description";
 
         private static readonly Logging.Logger Logger = Logging.GetLogger(FeatName);
 

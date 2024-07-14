@@ -17,18 +17,13 @@ namespace Mesmerist.Mesmerist.Tricks
         internal const string DisplayName = "Misdirection.Name";
         private static readonly string Description = "Misdirection.Description";
 
-        
-
-
-
-
         public static void Configure()
         {
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.MisdirectionBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.Vanish.Reference.Get().Icon)
-                //.AddInitiatorAttackRollTrigger
                 .AddInitiatorAttackWithWeaponTrigger(action: 
                     ActionsBuilder.New().CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true), 
                     triggerBeforeAttack: true, onlyOnFirstAttack: true, checkDistance: false)

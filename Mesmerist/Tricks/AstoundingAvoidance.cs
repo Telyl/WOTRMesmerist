@@ -34,6 +34,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.Evasion.Reference.Get().Icon)
                 .AddTemporaryFeat(FeatureRefs.ImprovedEvasion.Reference.Get())
+                .AddRemoveWhenCombatEnded()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.AstoundingAvoidanceBuffEffect)
@@ -41,6 +42,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.Evasion.Reference.Get().Icon)
                 .AddTemporaryFeat(FeatureRefs.Evasion.Reference.Get())
+                .AddRemoveWhenCombatEnded()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.AstoundingAvoidanceBuff)

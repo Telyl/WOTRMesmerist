@@ -32,6 +32,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.CleaveAction.Reference.Get().Icon)
+                .AddRemoveWhenCombatEnded()
                 .AddComponent<AddFalseFlanker>()
                 .Configure();
 

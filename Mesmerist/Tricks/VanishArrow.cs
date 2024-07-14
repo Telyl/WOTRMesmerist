@@ -29,6 +29,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.VanishArrowBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.ProtectionFromArrows.Reference.Get().Icon)
                 .AddTemporaryFeat(FeatureRefs.DeflectArrows.Reference.Get())
                 .Configure();

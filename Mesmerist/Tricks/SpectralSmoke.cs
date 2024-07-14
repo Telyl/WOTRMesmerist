@@ -36,6 +36,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "AreaEffectBuff", Guids.SpectralSmokeAreaEffectBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetFxOnStart("45622cc69bf53fc4b88fea9c0209407d")
                 .AddConcealment(true, false, Concealment.Total, ConcealmentDescriptor.Fog, FeetExtension.Feet(5), onlyForAttacks:true)
                 .Configure();

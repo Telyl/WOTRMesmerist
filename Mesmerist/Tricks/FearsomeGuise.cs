@@ -32,6 +32,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.FearsomeGuiseBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.FrightfulAspect.Reference.Get().Icon)
                 .AddTargetAttackWithWeaponTrigger(actionsOnAttacker:
                  ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true),

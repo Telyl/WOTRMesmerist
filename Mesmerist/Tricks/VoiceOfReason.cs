@@ -30,6 +30,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.VoiceOfReasonBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.EarPiercingScream.Reference.Get().Icon)
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.MindAffecting, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Charm, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())

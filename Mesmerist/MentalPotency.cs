@@ -46,19 +46,7 @@ namespace Mesmerist.Mesmerist
 
         public static void Configure()
         {
-            UnitPropertyConfigurator.New(FeatName + "UnitProperty", Guids.MentalPotencyUnitProperty)
-                .AddClassLevelGetter(null, BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Mesmerist), new PropertySettings()
-                {
-                    m_Progression = PropertySettings.Progression.DivStep,
-                    m_StartLevel = 1,
-                    m_StepLevel = 5,
-                    m_Negate = false,
-                    m_LimitType = PropertySettings.LimitType.None,
-                    m_Max = 0,
-                    m_Min = 0
-                })
-                .Configure();
-
+            
             var MentalPotency = FeatureConfigurator.New(FeatName, Guids.MentalPotency)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)

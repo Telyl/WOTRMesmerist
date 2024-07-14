@@ -16,6 +16,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using BlueprintCore.Conditions.Builder;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ReflectFear
@@ -32,7 +33,8 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.Fear.Reference.Get().Icon)
-                .AddTargetAttackRollTrigger(actionsOnAttacker: 
+                .AddRemoveWhenCombatEnded()
+                .AddTargetAttackRollTrigger(actionsOnAttacker:
                 ActionsBuilder.New().SavingThrow(SavingThrowType.Will, 
                 onResult: ActionsBuilder.New().ConditionalSaved(succeed: ActionsBuilder.New().CastSpell(AbilityRefs.Fear.Reference.Get()))))
                 .Configure();

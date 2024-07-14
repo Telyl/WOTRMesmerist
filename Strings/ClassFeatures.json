@@ -78,7 +78,7 @@
   },
   {
     "Key": "CompelAlacrity.Description",
-    "enGB": "A dash of mental speed lets the subject push past her physical limits to avoid an enemy. The mesmerist allows the subject to use the Dimension Door as a swift action for a number of rounds equal to the Mesmerist's level.'"
+    "enGB": "A dash of mental speed lets the subject push past her physical limits to avoid an enemy. The mesmerist allows the subject to use the Dimension Door as a swift action.'"
   },
   {
     "Key": "FalseFlanker.Name",
@@ -87,7 +87,7 @@
   },
   {
     "Key": "FalseFlanker.Description",
-    "enGB": "A duplicate of the mesmerist appears momentarily, as though he were fighting in tandem with the subject. The mesmerist can maintain this for a number of rounds equal to the Mesmerist's level. This duplicate counts as threatening the enemy for the purposes of determining flanking, but can’t actually make attacks."
+    "enGB": "A duplicate of the mesmerist appears momentarily, as though he were fighting in tandem with the subject. This duplicate counts as threatening the enemy for the purposes of determining flanking, but can’t actually make attacks."
   },
   {
     "Key": "FearsomeGuise.Name",
@@ -96,7 +96,7 @@
   },
   {
     "Key": "FearsomeGuise.Description",
-    "enGB": "A veil of illusion makes the subject appear to be someone else and then transform into a hideous monster at an opportune time. While this trick is implanted, the subject’s appearance is altered, as disguise self. The mesmerist can trigger this trick when the subject attacks a creature. The illusory appearance brief ly makes the subject appear monstrous, then ends. The mesmerist attempts an Intimidate check to demoralize the target of the triggering attack. The restrictions on attempts to demoralize a target (the target being within 30 feet and able to see and hear the creature attempting the Intimidate check) apply to the subject of the trick. This is an illusion (glamer) effect."
+    "enGB": "A veil of illusion makes the subject appear to be someone else and then transform into a hideous monster at an opportune time. The mesmerist can trigger this trick when the subject attacks a creature. The illusory appearance briefly makes the subject appear monstrous. The mesmerist attempts an Intimidate check to demoralize the target of the triggering attack."
   },
   {
     "Key": "FleetInShadows.Name",
@@ -105,7 +105,7 @@
   },
   {
     "Key": "FleetInShadows.Description",
-    "enGB": "The mesmerist can trigger this trick whenever the target enters an area with dim or darker light. The subject can move double its normal speed (up to an additional 30 feet) for 1 round, but only while moving through areas of dim or darker light. Additionally, the subject can move at its normal speed and use the bonus speed from this trick in areas of total darkness, even if it cannot see."
+    "enGB": "The subject of this trick can move an additional 30 feet per move action. This trick lasts for 1 minute per Mesmerist level."
   },
   {
     "Key": "LevitationBuffer.Name",
@@ -114,7 +114,7 @@
   },
   {
     "Key": "LevitationBuffer.Description",
-    "enGB": "The mesmerist triggers this trick when an enemy attacks, and higs, in melee. The mesmerist slows enemies adjacent to the subject slightly, as well as pushes them away as though performing a bull-rush maneuver."
+    "enGB": "The mesmerist triggers this trick when an enemy attacks, and hits, in melee. Upon being hit, the subject of the Mesmerist trick pushes them away as though performing a bull-rush maneuver."
   },
   {
     "Key": "LinkedReaction.Name",
@@ -123,7 +123,7 @@
   },
   {
     "Key": "LinkedReaction.Description",
-    "enGB": "A hive mind allows the mesmerist and an ally to share one another’s reaction times. The mesmerist can trigger this trick when either the subject or the mesmerist is surprised and the other isn’t (even if the mesmerist would normally be unable to take actions because of being surprised). Both the mesmerist and the subject can act in this surprise round. The mesmerist can’t implant this trick on himself."
+    "enGB": "The subject of this trick, and the mesmerist, take on the other's initiative bonus for whomever's is higher."
   },
   {
     "Key": "MeekFacade.Name",
@@ -132,7 +132,7 @@
   },
   {
     "Key": "MeekFacade.Description",
-    "enGB": "The subject magically seems like a weak target, goading an enemy into attacking her. The mesmerist can trigger this trick when the subject misses a creature with an attack (even if it’s part of a full attack in which she hits that creature with another attack). The enemy must attack no one other than the subject, and the subject gains a +2 dodge bonus to AC against the triggering enemy’s attacks. Both of these effects last for 1 round. The bonus to AC increases by 1 for every 5 levels the mesmerist possesses. This is a mind-affecting compulsion effect."
+    "enGB": "The subject magically seems like a weak target. The mesmerist's 'subject gains a +2 dodge bonus to AC against triggering enemy’s attacks. The bonus to AC increases by 1 for every 5 levels the mesmerist possesses. This is a mind-affecting compulsion effect."
   },
   {
     "Key": "Misdirection.Name",
@@ -159,7 +159,7 @@
   },
   {
     "Key": "MesmericPantomime.Description",
-    "enGB": "By orchestrating the movement of his ally’s body, the mesmerist imparts to that ally his own skill at a physical task. The mesmerist can trigger this trick when the subject attempts a Strength– or Dexterity-based skill check. The subject either uses the mesmerist’s bonus on the skill check in place of her own or gains a morale bonus on the check equal to the mesmerist’s Charisma bonus, Whichever results in a higher modifier. The mesmerist can’t implant this trick on himself."
+    "enGB": "By orchestrating the movement of his ally’s body, the mesmerist imparts to that ally his own skill at a physical task. The mesmerist can trigger this trick when the subject attempts a Strength– or Dexterity-based skill check. The subject gains a morale bonus on the check equal to the mesmerist’s Charisma bonus."
   },
   {
     "Key": "PsychosomaticSurge.Name",
@@ -177,16 +177,16 @@
   },
   {
     "Key": "ReflectFear.Description",
-    "enGB": "The mesmerist can trigger this trick when the subject is affected by a fear effect or is the target of an Intimidate check to demoralize it. When the trick is triggered, the subject suppresses the fear effect that triggered the trick for 1d4 rounds, and any creature that caused this effect must succeed at a Will save or become shaken for 1 round. The rounds during which the subject ignores the triggering fear effect still count against the effect’s duration. If the duration of the reflect fear trick is longer than the fear effect lasts, the subject isn’t affected by the fear effect at all."
+    "enGB": "The mesmerist can trigger this trick when the subject succeeds against a will saving throw. When the trick is triggered, the enemy that cast a spell on the subject must succeed a saving throw or be feared."
   },
   {
-    "Key": "SeeInDarkness.Name",
+    "Key": "SeeThroughInvisibility.Name",
     "ProcessTemplates": false,
-    "enGB": "See In Darkness"
+    "enGB": "See Through Invisibility"
   },
   {
-    "Key": "SeeInDarkness.Description",
-    "enGB": "The subject gains darkvision with a range of 60 feet for 1 minute. The mesmerist can trigger this trick when the subject moves into an area of darkness."
+    "Key": "SeeThroughInvisibility.Description",
+    "enGB": "The subject gains the ability to see through invisibility for 1 minute per mesmerist level."
   },
   {
     "Key": "ShadowSplinter.Name",
@@ -195,7 +195,7 @@
   },
   {
     "Key": "ShadowSplinter.Description",
-    "enGB": "The mesmerist protects the subject against an attack and redirects the harm to someone else. The mesmerist can trigger this trick when the subject takes damage from an attack. The damage the subject takes is reduced by an amount equal to 3 + the mesmerist’s Charisma modifier (to a maximum of the total amount of damage the attack deals). Another creature within range of the original attack, other than the attacker, is affected by a shadow illusion that makes it appear as if the attacker is attacking that creature instead of the attacker’s actual target. This second creature takes an amount of damage equal to the amount by which the attack’s damage was reduced. This shadow doesn’t require a roll to hit and ignores cover and concealment, but the target can attempt a Will save to disbelieve the effect. If it succeeds at this save, it neither takes the damage nor believes the attacker targeted it. This trick can’t be triggered if there’s no eligible second creature within range to take the redirected damage. This is an illusion (shadow) effect."
+    "enGB": "The mesmerist can trigger this trick when the subject takes damage from an attack. The damage the subject takes is reduced by an amount equal to 3 + the mesmerist’s Charisma modifier (to a maximum of the total amount of damage the attack deals)."
   },
   {
     "Key": "SpectralSmoke.Name",
@@ -204,7 +204,7 @@
   },
   {
     "Key": "SpectralSmoke.Description",
-    "enGB": "A cloud of smoke pops up around the subject, foiling attacks. The mesmerist can trigger this trick when the subject is targeted by an attack or by a spell that requires an attack roll. A smoke cloud appears in the subject’s square and in a 10-foot radius around it. This cloud lasts for 1 round per mesmerist level. The cloud functions as fog cloud, but is an illusion (figment) effect that can’t be dispersed by wind and can be used underwater. A creature that interacts with the cloud can attempt a saving throw to disbelieve the effect. The radius of the cloud increases by 5 feet for every 5 caster levels the mesmerist possesses, to a maximum of 30 feet at 20th level."
+    "enGB": "A cloud of smoke pops up around the subject, foiling attacks. A smoke cloud appears in the subject’s square and in a 10-foot radius around it. Allies and the subject gain total concealment."
   },
   {
     "Key": "VanishArrow.Name",
@@ -213,7 +213,7 @@
   },
   {
     "Key": "VanishArrow.Description",
-    "enGB": "With a flourish, the mesmerist snatches a projectile from an enemy before it can be shot. The mesmerist can trigger this trick when the subject is targeted by a ranged weapon attack, before the attack roll is made. The mesmerist attempts a Sleight of Hand check opposed by the attacker’s Perception check. If the mesmerist succeeds, that ranged attack automatically misses, and the projectile appears stowed on the mesmerist’s person. If the attacker is making a full attack, this affects only one of the attacks (of the mesmerist’s choice). If the attack is made with a javelin or other thrown weapon, the attacker gains a +4 bonus on its Perception check. Unusually massive ranged weapons (such as boulders or ballista bolts) and ranged attacks generated by natural attacks or spell effects are not affected by this ability."
+    "enGB": "With a flourish, the mesmerist snatches a projectile from an enemy before it can be shot. The mesmerist can trigger this trick when the subject is targeted by a ranged weapon attack, before the attack roll is made. If the attacker is making a full attack, this affects only one of the attacks."
   },
   {
     "Key": "VoiceOfReason.Name",

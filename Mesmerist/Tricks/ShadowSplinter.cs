@@ -14,6 +14,8 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using BlueprintCore.Actions.Builder;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ShadowSplinter
@@ -29,8 +31,12 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.ShadowSplinterBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.ShadowEvocation.Reference.Get().Icon)
-                .AddDamageReductionAgainstFactOwner(checkedFact: Guids.HypnoticStareBuff, reduction: 2)
+                .AddComponent<AddShadowSplinter>()
+                //.AddDamageReductionAgainstFactOwner(checkedFact: Guids.HypnoticStareBuff, reduction: 3)
+                //.AddIncomingDamageTrigger(checkDamageDealt: true, actions)
+                //.AddDamageReductionAgainstFactOwner()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.ShadowSplinterBuff)

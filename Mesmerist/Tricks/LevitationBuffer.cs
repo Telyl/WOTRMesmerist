@@ -31,6 +31,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.LevitationBufferBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.FlyTest.Reference.Get().Icon)
                 .AddTargetAttackWithWeaponTrigger(actionsOnAttacker:
                  ActionsBuilder.New().CastSpell(AbilityRefs.BullRushAction.Reference.Get(), false, false, true),

@@ -14,6 +14,7 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LinkedReaction
@@ -30,9 +31,11 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.LinkedReactionBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .AddRemoveWhenCombatEnded()
+                .AddComponent<AddLinkedReaction>()
                 .SetIcon(AbilityRefs.OracleRevelationLifeLinkAbility.Reference.Get().Icon)
-                .AddContextStatBonus(StatType.Initiative,ContextValues.Rank(), ModifierDescriptor.UntypedStackable, 1)
-                .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
+                //.AddContextStatBonus(StatType.Initiative,ContextValues.Rank(), ModifierDescriptor.UntypedStackable, 1)
+                //.AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.LinkedReactionBuff)
