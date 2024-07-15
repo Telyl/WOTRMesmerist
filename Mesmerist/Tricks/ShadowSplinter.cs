@@ -33,7 +33,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRemoveWhenCombatEnded()
+                .AddRemoveWhenCombatEnded() 
                 .SetIcon(Icon)
                 .AddDamageResistancePhysical(value: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.UntypedStackable, min:1))

@@ -1,16 +1,8 @@
 ﻿using CharacterOptionsPlus.Util;
-using HarmonyLib;
-using Kingmaker.Armies.TacticalCombat;
 using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.EntitySystem.Entities;
-using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
-using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
-using Mesmerist.NewComponents;
-using System.Security.Policy;
-using TabletopTweaks.Core.Utilities;
 
 namespace Mesmerist.NewComponents
 {
@@ -23,18 +15,12 @@ namespace Mesmerist.NewComponents
             if ((!evt.Target.CombatState.IsFlanked || !evt.TargetIsFlanked) && evt.Weapon.Blueprint.IsMelee)
             {
                 evt.TargetIsFlanked = true;
-                UsedTrick = true;
             }
         }
 
         public void OnEventDidTrigger(RuleAttackRoll evt)
         {
-            if (UsedTrick)
-            {
-                evt.Initiator.Descriptor.Buffs.RemoveFact(base.Fact);
-            }
+           //evt.Initiator.Descriptor.Buffs.RemoveFact(base.Fact);
         }
-
-        private static bool UsedTrick = false;
     }
 }

@@ -267,7 +267,8 @@ namespace Mesmerist.Mesmerist
                                ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VanishArrowBuffEffect, true, false, false, true, null))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.VoiceOfReasonBuff),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.VoiceOfReasonBuffEffect, true, false, false, true, null));
+                               ifTrue: ActionsBuilder.New().ApplyBuff(Guids.VoiceOfReasonBuffEffect,
+                               ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes), true, false, false, true, null));
         }
     }
 }
