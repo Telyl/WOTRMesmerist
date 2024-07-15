@@ -19,6 +19,7 @@ using BlueprintCore.Conditions.Builder.BasicEx;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
+using BlueprintCore.Actions.Builder.BasicEx;
 
 namespace Mesmerist.Mesmerist
 {

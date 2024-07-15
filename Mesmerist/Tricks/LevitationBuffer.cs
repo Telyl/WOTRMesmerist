@@ -8,6 +8,10 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Mesmerist.NewComponents;
+using Kingmaker.EntitySystem.Stats;
+using BlueprintCore.Utils.Types;
+using Epic.OnlineServices.Stats;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LevitationBuffer
@@ -23,24 +27,24 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.LevitationBufferBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRemoveWhenCombatEnded()
-                .SetIcon(AbilityRefs.FlyTest.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.BullRushAction.Reference.Get().Icon)
                 .AddTargetAttackWithWeaponTrigger(actionsOnAttacker:
-                 ActionsBuilder.New().CastSpell(AbilityRefs.BullRushAction.Reference.Get(), false, false, true),
-                    waitForAttackResolve: true, onlyMelee: true, onlyOnFirstAttack: false, onlyRanged: false, onlyHit: true)
+                 ActionsBuilder.New().CastSpell(AbilityRefs.BullRushAction.Reference.Get(), false, false, true, ContextValues.Rank()),
+                    waitForAttackResolve: true, onlyMelee: true, onlyOnFirstAttack: false, onlyRanged: false, onlyHit: true,
+                    actionOnSelf: ActionsBuilder.New().RemoveBuff(Guids.LevitationBufferBuffEffect))
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.LevitationBufferBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FlyTest.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.BullRushAction.Reference.Get().Icon)
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.LevitationBufferAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FlyTest.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.BullRushAction.Reference.Get().Icon)
                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
                 .SetHiddenInUI()
                 .SetBuff(Guids.LevitationBufferBuff)

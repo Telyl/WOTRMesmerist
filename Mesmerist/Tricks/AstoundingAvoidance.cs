@@ -7,6 +7,9 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using CharacterOptionsPlus.Util;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Mesmerist.NewComponents;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -24,16 +27,20 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.Evasion.Reference.Get().Icon)
+                .AddComponent<AddAstoundingAvoidanceTrick>(c => {
+                    c.AstoundingAvoidanceBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.AstoundingAvoidanceBuffEffectImproved);
+                })
                 .AddTemporaryFeat(FeatureRefs.ImprovedEvasion.Reference.Get())
-                .AddRemoveWhenCombatEnded()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.AstoundingAvoidanceBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.Evasion.Reference.Get().Icon)
+                .AddComponent<AddAstoundingAvoidanceTrick>(c => {
+                    c.AstoundingAvoidanceBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.AstoundingAvoidanceBuffEffect);
+                })
                 .AddTemporaryFeat(FeatureRefs.Evasion.Reference.Get())
-                .AddRemoveWhenCombatEnded()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.AstoundingAvoidanceBuff)

@@ -24,7 +24,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.CleaveAction.Reference.Get().Icon)
                 .AddRemoveWhenCombatEnded()
-                .AddComponent<AddFalseFlanker>()
+                .AddComponent<AddFalseFlankerTrick>()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.FalseFlankerBuff)

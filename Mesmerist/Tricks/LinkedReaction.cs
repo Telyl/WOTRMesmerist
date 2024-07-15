@@ -26,8 +26,6 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddRemoveWhenCombatEnded()
                 .AddComponent<AddLinkedReaction>()
                 .SetIcon(AbilityRefs.OracleRevelationLifeLinkAbility.Reference.Get().Icon)
-                //.AddContextStatBonus(StatType.Initiative,ContextValues.Rank(), ModifierDescriptor.UntypedStackable, 1)
-                //.AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.LinkedReactionBuff)

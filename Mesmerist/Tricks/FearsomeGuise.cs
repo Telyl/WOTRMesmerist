@@ -8,6 +8,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FearsomeGuise
@@ -25,9 +26,18 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.FrightfulAspect.Reference.Get().Icon)
-                .AddTargetAttackWithWeaponTrigger(actionsOnAttacker:
-                 ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true),
-                    waitForAttackResolve: true, onlyMelee: false, onlyOnFirstAttack: true, onlyRanged: false, onlyHit: false)
+                .AddComponent<AddSubjectInitiateTrickTrigger>(c =>
+                {
+                    c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true).Build();
+                    c.OnlyMelee =  false;
+                    c.OnlyHit = false;
+                })
+                .Configure();
+
+            ActivatableAbilityConfigurator.New(FeatName + "ToggleEffect", Guids.FearsomeGuiseToggleEffect)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetBuff(Guids.FearsomeGuiseBuffEffect)
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.FearsomeGuiseBuff)

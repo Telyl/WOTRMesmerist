@@ -191,6 +191,7 @@ namespace Mesmerist.Utils
         internal const string FearsomeGuiseAbility = "5d31eeca-9975-43f9-bfe2-0da60b201a80";
         internal const string FearsomeGuiseBuff = "0edfb75e-8f71-4f7a-b1c8-4562293e966f";
         internal const string FearsomeGuiseBuffEffect = "fdbac1b5-d077-4e78-a203-546993b687d8";
+        internal const string FearsomeGuiseToggleEffect = "e4c2e40c-ab4c-4414-bb1a-a9cc185ff646";
 
         internal const string FalseFlanker = "992ed948-2397-4cd2-83a0-3755972bea3b";
         internal const string FalseFlankerAbility = "ea20972b-cc07-4956-a8bf-e428a7b0afc5";

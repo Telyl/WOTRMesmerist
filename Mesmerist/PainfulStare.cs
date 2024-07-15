@@ -53,7 +53,7 @@ namespace Mesmerist.Mesmerist
                 .Configure();*/
 
             BuffConfigurator.New(FeatName + "Cooldown", Guids.PainfulStareCooldown)
-                .SetFlags(BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.RemoveOnRest)
+                //.SetFlags(BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.RemoveOnRest)
                 .SetStacking(StackingType.Replace)
                 .SetDescription(Description)
                 .SetDisplayName(DisplayName)

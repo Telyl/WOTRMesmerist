@@ -366,7 +366,7 @@
   },
   {
     "Key": "UseTrick.Description",
-    "enGB": "Use the selected trick and selected manifold trick. The trick will last until the end of combat unless a specified duration is given."
+    "enGB": "Use the selected trick and selected manifold trick. The trick will last until it is triggered or unless a specified duration is given."
   },
   {
     "Key": "MentalPotency.Name",

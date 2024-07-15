@@ -7,6 +7,9 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Mesmerist.NewComponents;
+using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics.Components;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class Misdirection
@@ -20,11 +23,12 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.MisdirectionBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.Vanish.Reference.Get().Icon)
-                .AddInitiatorAttackWithWeaponTrigger(action: 
-                    ActionsBuilder.New().CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true), 
-                    triggerBeforeAttack: true, onlyOnFirstAttack: true, checkDistance: false)
+                .AddComponent<AddSubjectInitiateTrickTrigger>(c =>
+                {
+                    c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true).Build();
+                    c.BeforeAttackRoll = true;
+                })
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.MisdirectionBuff)

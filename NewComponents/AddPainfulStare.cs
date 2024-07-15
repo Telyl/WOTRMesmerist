@@ -22,6 +22,8 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder.BasicEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using Kingmaker.Utility;
 
 namespace Mesmerist.NewComponents
 {
@@ -49,18 +51,23 @@ namespace Mesmerist.NewComponents
 
             // If we're here because of ourselves, return.
             if (evt.Reason.Fact == base.Fact) { return; }
+            // Get the caster
             var caster = this.Context.MaybeCaster;
+
+            // Get the number of dice counts we should use.
             int diceCount = caster.Progression.Features.GetRank(BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PainfulStare));
+            // Get the number of manifold tricks we have. This can equal 0.
             int totalAttackNum = caster.Progression.Features.GetRank(BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStarePainfulStare));
             int bonusDmg = caster.Progression.GetClassLevel(BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Mesmerist)) / 2;
+            // Set our cooldown rank initially to 0.
             int cooldownRank = 0;
             try
             {
+                // Get the cooldown rank of the monster.
                 cooldownRank = evt.Target.GetFact(BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown)).GetRank();
             }
-
             catch { cooldownRank = 0; }
-            if (cooldownRank > totalAttackNum) { return; } 
+            if (cooldownRank >= totalAttackNum) { return; } 
             BaseDamage baseDamage = new DamageDescription
             {
                 TypeDescription = new DamageTypeDescription()
@@ -127,9 +134,9 @@ namespace Mesmerist.NewComponents
             catch { cooldownRank = 0; }
 
             if (evt.Reason.Fact == base.Fact) { return; }
-            evt.Target.AddBuff(CheckFactOnTarget, evt.Initiator, TimeSpan.FromSeconds(6));
-            if (cooldownRank > totalAttackNum) { return; }
-
+            
+            evt.Target.AddBuff(CheckFactOnTarget, caster, new Rounds(1).Seconds);
+            if (cooldownRank >= totalAttackNum) { return; }
             bool DemoralizingStare = caster.HasFact(BlueprintTool.GetRef<BlueprintBuffReference>(Guids.DemoralizingStareBuff));
             bool FatiguingStare = caster.HasFact(BlueprintTool.GetRef<BlueprintBuffReference>(Guids.FatiguingStareBuff));
             bool ExcoriatingStare = caster.HasFact(BlueprintTool.GetRef<BlueprintBuffReference>(Guids.ExcoriatingStareBuff));
