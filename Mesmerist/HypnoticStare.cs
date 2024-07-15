@@ -67,6 +67,9 @@ namespace Mesmerist.Mesmerist
                 .SetIcon(AbilityRefs.EyebiteAbility.Reference.Get().Icon)
                 .SetRange(AbilityRange.Close)
                 .SetActionType(CommandType.Swift)
+                .SetCanTargetSelf(false)
+                .SetCanTargetFriends(false)
+                .SetCanTargetEnemies(true)
                 .SetSpellDescriptor(SpellDescriptor.MindAffecting)
                 .AddComponent<AddPsychicInceptionAllowGaze>(c =>
                 {
@@ -74,8 +77,7 @@ namespace Mesmerist.Mesmerist
                     c.BecauseOfFact = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PsychicInception);
                 })
                 .AllowTargeting(friends: false, enemies: true)
-                .SetCanTargetFriends(false)
-                .SetCanTargetEnemies(true)
+                .SetNotOffensive(true)
                 .AddAbilityEffectRunAction(
                    actions: ActionsBuilder.New()
                    .Conditional(

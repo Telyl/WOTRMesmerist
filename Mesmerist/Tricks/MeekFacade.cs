@@ -33,8 +33,8 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDescription(Description)
                 .AddRemoveWhenCombatEnded()
                 .SetIcon(Icon)
-                .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.Dodge, 2, 1)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default).WithDivStepProgression(5))
+                .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.Dodge)
+                .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((4, 2), (9, 3), (14,4), (19,5), (20,6)))
                 .Configure();
 
             TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
