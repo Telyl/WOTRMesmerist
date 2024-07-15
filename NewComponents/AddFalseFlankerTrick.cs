@@ -22,13 +22,19 @@ namespace Mesmerist.NewComponents
         {
             if ((!evt.Target.CombatState.IsFlanked || !evt.TargetIsFlanked) && evt.Weapon.Blueprint.IsMelee)
             {
-                evt.TargetIsFlanked = true;;
+                evt.TargetIsFlanked = true;
+                UsedTrick = true;
             }
         }
 
         public void OnEventDidTrigger(RuleAttackRoll evt)
         {
-            evt.Initiator.Descriptor.Buffs.RemoveFact(base.Fact);
+            if (UsedTrick)
+            {
+                evt.Initiator.Descriptor.Buffs.RemoveFact(base.Fact);
+            }
         }
+
+        private static bool UsedTrick = false;
     }
 }

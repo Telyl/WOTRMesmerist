@@ -30,7 +30,6 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRemoveWhenCombatEnded()
                 .SetIcon(Icon)
                 .AddContextStatBonus(StatType.SkillAthletics, ContextValues.Rank(), ModifierDescriptor.Morale)
                 .AddContextStatBonus(StatType.SkillMobility, ContextValues.Rank(), ModifierDescriptor.Morale)
