@@ -38,10 +38,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(Icon)
-                .AddTargetAttackWithWeaponTrigger(actionsOnAttacker:
-                 ActionsBuilder.New().CastSpell(AbilityRefs.BullRushAction.Reference.Get(), false, false, true, ContextValues.Rank()),
-                    waitForAttackResolve: true, onlyMelee: true, onlyOnFirstAttack: false, onlyRanged: false, onlyHit: true,
-                    actionOnSelf: ActionsBuilder.New().RemoveBuff(Guids.LevitationBufferBuffEffect))
+                .AddComponent<AddLevitationBuffer>()
                 .Configure();
 
             TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
