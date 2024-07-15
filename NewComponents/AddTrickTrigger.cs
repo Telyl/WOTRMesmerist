@@ -81,7 +81,7 @@ namespace Mesmerist.NewComponents
         {
             return (!this.OnlyHit || evt.IsHit) && 
                 (evt.Initiator.IsEnemy(evt.Target));
-        }
+        } 
 
         public void OnEventAboutToTrigger(RuleSavingThrow evt)
         {

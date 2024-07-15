@@ -39,7 +39,10 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
             TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
-            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
+            var feature = TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
+            FeatureConfigurator.For(feature)
+                .AddPrerequisiteClassLevel(Guids.Mesmerist, 12)
+                .Configure();
         }
     }
 }
