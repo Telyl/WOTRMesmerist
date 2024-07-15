@@ -6,6 +6,9 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class VanishArrow
@@ -18,38 +21,23 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.VanishArrowBuffEffect)
+            var Icon = AbilityRefs.EarPiercingScream.Reference.Get().Icon;
+            var BuffEffect = Guids.VanishArrowBuffEffect;
+            var ToggleBuff = Guids.VanishArrowBuff;
+            var Ability = Guids.VanishArrowAbility;
+            var Feat = Guids.VanishArrow;
+
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddRemoveWhenCombatEnded()
                 .SetIcon(AbilityRefs.ProtectionFromArrows.Reference.Get().Icon)
-                .AddTemporaryFeat(FeatureRefs.DeflectArrows.Reference.Get())
+                .AddDeflectArrows()
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.VanishArrowBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ProtectionFromArrows.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.VanishArrowAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.ProtectionFromArrows.Reference.Get().Icon)
-                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.VanishArrowBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.VanishArrow)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.VanishArrowAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
 
 
         }

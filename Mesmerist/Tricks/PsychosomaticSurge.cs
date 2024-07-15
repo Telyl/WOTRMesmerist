@@ -8,6 +8,9 @@ using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class PsychosomaticSurge
@@ -23,7 +26,13 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.PsychosomaticSurgeBuffEffect)
+            var Icon = AbilityRefs.FalseLifeGreater.Reference.Get().Icon;
+            var BuffEffect = Guids.PsychosomaticSurgeBuffEffect;
+            var ToggleBuff = Guids.PsychosomaticSurgeBuff;
+            var Ability = Guids.PsychosomaticSurgeAbility;
+            var Feat = Guids.PsychosomaticSurge;
+
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .CopyFrom(BuffRefs.FalseLifeBuff.Reference.Get(), typeof(TemporaryHitPointsFromAbilityValue))
                 .CopyFrom(BuffRefs.FalseLifeBuff.Reference.Get(), typeof(ContextCalculateSharedValue))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithDiv2Progression())
@@ -32,30 +41,9 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetIcon(AbilityRefs.FalseLifeGreater.Reference.Get().Icon)
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.PsychosomaticSurgeBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.FalseLifeGreater.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.PsychosomaticSurgeAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.FalseLifeGreater.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.PsychosomaticSurgeBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.PsychosomaticSurge)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.PsychosomaticSurgeAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

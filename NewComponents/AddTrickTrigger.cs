@@ -21,17 +21,20 @@ using static Kingmaker.UI.CanvasScalerWorkaround;
 namespace Mesmerist.NewComponents
 {
     [TypeId("db85a277dbcb4237b6e4371ace0c44e6")]
-    public class AddSubjectInitiateTrickTrigger : UnitFactComponentDelegate,
+    public class AddTrickTrigger : UnitFactComponentDelegate,
         IInitiatorRulebookHandler<RuleAttackRoll>, IRulebookHandler<RuleAttackRoll>,
+        IInitiatorRulebookHandler<RuleSavingThrow>, IRulebookHandler<RuleSavingThrow>,
         ISubscriber, IInitiatorRulebookSubscriber
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddSubjectInitiateTrickTrigger));
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddTrickTrigger));
         public void OnEventAboutToTrigger(RuleAttackRoll evt)
         {
+            Logger.Log("AddTrickTrigger - EventAboutToTrigger - RuleAttackRoll");
             if (!this.BeforeAttackRoll)
             {
                 return;
             }
+            Logger.Log("AddTrickTrigger - EventAboutToTrigger - RuleAttackRoll - BeforeCheckConditions");
             using (BeforeAttackRoll ? null : ContextData<ContextAttackData>.Request().Setup(evt, null, 0, 0))
             {
                 IFactContextOwner factContextOwner = base.Fact as IFactContextOwner;
@@ -45,14 +48,17 @@ namespace Mesmerist.NewComponents
         }
         public void OnEventDidTrigger(RuleAttackRoll evt)
         {
+            Logger.Log("AddTrickTrigger - EventDidTrigger - RuleAttackRoll");
             if (evt.IsFake || this.BeforeAttackRoll)
             {
                 return;
             }
+            Logger.Log("AddTrickTrigger - EventDidTrigger - RuleAttackRoll - BeforeCheckConditions");
             if (this.CheckConditions(evt))
             {
                 using (this.DoNotPassAttackRoll ? null : ContextData<ContextAttackData>.Request().Setup(evt, null, 0, 0))
                 {
+                    Logger.Log("AddTrickTrigger - EventDidTrigger - RuleAttackRoll - Actions");
                     IFactContextOwner factContextOwner = base.Fact as IFactContextOwner;
                     if (factContextOwner != null)
                     {
@@ -65,7 +71,7 @@ namespace Mesmerist.NewComponents
                     if (factContextOwner2 != null)
                     {
                         Logger.Log("Actions on self:" + evt.Initiator.ToString());
-                        factContextOwner2.RunActionInContext(this.ActionOnSelf, evt.Initiator);
+                        factContextOwner2.RunActionInContext(this.ActionsOnSelf, evt.Initiator);
                         if (RemoveAfterUse) { evt.Initiator.Descriptor.Buffs.RemoveFact(base.Fact); }
                     }
                 }
@@ -74,44 +80,24 @@ namespace Mesmerist.NewComponents
         private bool CheckConditions(RuleAttackRoll evt)
         {
             return (!this.OnlyHit || evt.IsHit) && 
-                (!this.CriticalHit || (evt.IsCriticalConfirmed && !evt.FortificationNegatesCriticalHit)) && 
-                (!this.OnlyMelee || (evt.Weapon != null && evt.Weapon.Blueprint.IsMelee)) && (!this.NotReach || 
-                (evt.Weapon != null && !(evt.Weapon.Blueprint.Type.AttackRange > GameConsts.MinWeaponRange))) && 
-                (this.AffectFriendlyTouchSpells || 
-                evt.Initiator.IsEnemy(evt.Target) || (evt.Weapon.Blueprint.Type.AttackType != 
-                AttackType.Touch && evt.Weapon.Blueprint.Type.AttackType != AttackType.RangedTouch));
+                (evt.Initiator.IsEnemy(evt.Target));
         }
 
-        [HideIf("CriticalHit")]
+        public void OnEventAboutToTrigger(RuleSavingThrow evt)
+        {
+            Logger.Log("AddTrickTrigger - EventAboutToTrigger - RuleSavingThrow");
+        }
+
+        public void OnEventDidTrigger(RuleSavingThrow evt)
+        {
+            Logger.Log("AddTrickTrigger - EventDidTrigger - RuleSavingThrow");
+        }
         public bool OnlyHit = true;
-
         public bool BeforeAttackRoll = false;
-
-        // Token: 0x04008A7E RID: 35454
-        public bool CriticalHit;
-
-        // Token: 0x04008A7F RID: 35455
-        public bool OnlyMelee;
-
-        // Token: 0x04008A80 RID: 35456
-        public bool NotReach;
-
-        // Token: 0x04008A81 RID: 35457
-        public bool CheckCategory;
-
-        // Token: 0x04008A84 RID: 35460
-        public bool AffectFriendlyTouchSpells;
-
-        // Token: 0x04008A85 RID: 35461
         public ActionList ActionsOnTarget;
-
-        // Token: 0x04008A86 RID: 35462
-        public ActionList ActionOnSelf;
-
+        public ActionList ActionsOnSelf;
         public bool RemoveAfterUse = true;
-
-        // Token: 0x04008A87 RID: 35463
-        [InfoBox("Ignore attacker's roll")]
         public bool DoNotPassAttackRoll;
+
     }
 }

@@ -6,6 +6,9 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class SeeThroughInvisibility
@@ -18,37 +21,22 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.SeeThroughInvisibilityBuffEffect)
+            var Icon = AbilityRefs.SeeInvisibility.Reference.Get().Icon;
+            var BuffEffect = Guids.SeeThroughInvisibilityBuffEffect;
+            var ToggleBuff = Guids.SeeThroughInvisibilityBuff;
+            var Ability = Guids.SeeThroughInvisibilityAbility;
+            var Feat = Guids.SeeThroughInvisibility;
+
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.SeeInvisibility.Reference.Get().Icon)
                 .AddCondition(Kingmaker.UnitLogic.UnitCondition.SeeInvisibility)
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.SeeThroughInvisibilityBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.SeeInvisibility.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.SeeThroughInvisibilityAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.SeeInvisibility.Reference.Get().Icon)
-                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.SeeThroughInvisibilityBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.SeeThroughInvisibility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.SeeThroughInvisibilityAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

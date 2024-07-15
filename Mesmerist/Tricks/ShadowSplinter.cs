@@ -9,6 +9,9 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ShadowSplinter
@@ -21,42 +24,24 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.ShadowSplinterBuffEffect)
+            var Icon = AbilityRefs.ShadowEvocation.Reference.Get().Icon;
+            var BuffEffect = Guids.ShadowSplinterBuffEffect;
+            var ToggleBuff = Guids.ShadowSplinterBuff;
+            var Ability = Guids.ShadowSplinterAbility;
+            var Feat = Guids.ShadowSplinter;
+
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddRemoveWhenCombatEnded()
-                .SetIcon(AbilityRefs.ShadowEvocation.Reference.Get().Icon)
+                .SetIcon(Icon)
                 .AddDamageResistancePhysical(value: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.UntypedStackable, min:1))
-                //.AddDamageReductionAgainstFactOwner(checkedFact: Guids.HypnoticStareBuff, reduction: 3)
-                //.AddIncomingDamageTrigger(checkDamageDealt: true, actions)
-                //.AddDamageReductionAgainstFactOwner()
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.ShadowSplinterBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ShadowEvocation.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.ShadowSplinterAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.ShadowEvocation.Reference.Get().Icon)
-                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.ShadowSplinterBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.ShadowSplinter)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.ShadowSplinterAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

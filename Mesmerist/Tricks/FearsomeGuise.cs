@@ -9,6 +9,9 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Mesmerist.NewComponents;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FearsomeGuise
@@ -21,49 +24,26 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
+            var Icon = AbilityRefs.FrightfulAspect.Reference.Get().Icon;
+            var BuffEffect = Guids.FearsomeGuiseBuffEffect;
+            var ToggleBuff = Guids.FearsomeGuiseBuff;
+            var Ability = Guids.FearsomeGuiseAbility;
+            var Feat = Guids.FearsomeGuise;
+
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.FearsomeGuiseBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRemoveWhenCombatEnded()
-                .SetIcon(AbilityRefs.FrightfulAspect.Reference.Get().Icon)
-                .AddComponent<AddSubjectInitiateTrickTrigger>(c =>
+                .SetIcon(Icon)
+                .AddComponent<AddTrickTrigger>(c =>
                 {
                     c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true).Build();
-                    c.OnlyMelee =  false;
                     c.OnlyHit = false;
                 })
                 .Configure();
 
-            ActivatableAbilityConfigurator.New(FeatName + "ToggleEffect", Guids.FearsomeGuiseToggleEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetBuff(Guids.FearsomeGuiseBuffEffect)
-                .Configure();
-
-            BuffConfigurator.New(FeatName + "Buff", Guids.FearsomeGuiseBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.FrightfulAspect.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.FearsomeGuiseAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.FrightfulAspect.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                .SetHiddenInUI()
-                .SetBuff(Guids.FearsomeGuiseBuff)
-                 .SetDeactivateImmediately()
-                .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.FearsomeGuise)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.FearsomeGuiseAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

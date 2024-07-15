@@ -12,6 +12,9 @@ using Mesmerist.NewComponents;
 using Kingmaker.EntitySystem.Stats;
 using BlueprintCore.Utils.Types;
 using Epic.OnlineServices.Stats;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LevitationBuffer
@@ -24,40 +27,26 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
+
+            var Icon = AbilityRefs.BullRushAction.Reference.Get().Icon;
+            var BuffEffect = Guids.LevitationBufferBuffEffect;
+            var ToggleBuff = Guids.LevitationBufferBuff;
+            var Ability = Guids.LevitationBufferAbility;
+            var Feat = Guids.LevitationBuffer;
+
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.LevitationBufferBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.BullRushAction.Reference.Get().Icon)
+                .SetIcon(Icon)
                 .AddTargetAttackWithWeaponTrigger(actionsOnAttacker:
                  ActionsBuilder.New().CastSpell(AbilityRefs.BullRushAction.Reference.Get(), false, false, true, ContextValues.Rank()),
                     waitForAttackResolve: true, onlyMelee: true, onlyOnFirstAttack: false, onlyRanged: false, onlyHit: true,
                     actionOnSelf: ActionsBuilder.New().RemoveBuff(Guids.LevitationBufferBuffEffect))
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.LevitationBufferBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.BullRushAction.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.LevitationBufferAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.BullRushAction.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                .SetHiddenInUI()
-                .SetBuff(Guids.LevitationBufferBuff)
-                 .SetDeactivateImmediately()
-                .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.LevitationBuffer)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.LevitationBufferAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

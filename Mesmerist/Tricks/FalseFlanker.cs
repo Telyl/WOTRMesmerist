@@ -7,6 +7,9 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Mesmerist.NewComponents;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FalseFlanker
@@ -19,38 +22,23 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
+            var Icon = AbilityRefs.CleaveAction.Reference.Get().Icon;
+            var BuffEffect = Guids.FalseFlankerBuffEffect;
+            var ToggleBuff = Guids.FalseFlankerBuff;
+            var Ability = Guids.FalseFlankerAbility;
+            var Feat = Guids.FalseFlanker;
+
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.FalseFlankerBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.CleaveAction.Reference.Get().Icon)
+                .SetIcon(Icon)
                 .AddRemoveWhenCombatEnded()
                 .AddComponent<AddFalseFlankerTrick>()
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.FalseFlankerBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.CleaveAction.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.FalseFlankerAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.CleaveAction.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                .SetHiddenInUI()
-                .SetBuff(Guids.FalseFlankerBuff)
-                 .SetDeactivateImmediately()
-                .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.FalseFlanker)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.FalseFlankerAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

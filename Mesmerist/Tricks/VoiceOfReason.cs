@@ -22,43 +22,25 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.VoiceOfReasonBuffEffect)
+            var Icon = AbilityRefs.EarPiercingScream.Reference.Get().Icon;
+            var BuffEffect = Guids.VoiceOfReasonBuffEffect;
+            var ToggleBuff = Guids.VoiceOfReasonBuff;
+            var Ability = Guids.VoiceOfReasonAbility;
+            var Feat = Guids.VoiceOfReason;
+
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .AddRemoveWhenCombatEnded()
-                .SetIcon(AbilityRefs.EarPiercingScream.Reference.Get().Icon)
+                .SetIcon(Icon)
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.MindAffecting, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Charm, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Compulsion, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.VoiceOfReasonBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.EarPiercingScream.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.VoiceOfReasonAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.EarPiercingScream.Reference.Get().Icon)
-                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.VoiceOfReasonBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.VoiceOfReason)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.VoiceOfReasonAbility })
-                .SetIsClassFeature()
-                .Configure();
-
-
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

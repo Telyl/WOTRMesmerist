@@ -12,6 +12,8 @@ using BlueprintCore.Conditions.Builder.ContextEx;
 using Kingmaker.Utility;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Abilities;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class SpectralSmoke
@@ -24,6 +26,11 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
+            var Icon = AbilityRefs.MindFog.Reference.Get().Icon;
+            var BuffEffect = Guids.SpectralSmokeBuffEffect;
+            var ToggleBuff = Guids.SpectralSmokeBuff;
+            var Ability = Guids.SpectralSmokeAbility;
+            var Feat = Guids.SpectralSmoke;
 
             BuffConfigurator.New(FeatName + "AreaEffectBuff", Guids.SpectralSmokeAreaEffectBuff)
                 .SetDisplayName(DisplayName)
@@ -40,37 +47,16 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddAbilityAreaEffectBuff(Guids.SpectralSmokeAreaEffectBuff, true, ConditionsBuilder.New().IsAlly())
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.SpectralSmokeBuffEffect)
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.MindFog.Reference.Get().Icon)
                 .AddAreaEffect(Guids.SpectralSmokeAreaEffect)
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.SpectralSmokeBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.MindFog.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.SpectralSmokeAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.MindFog.Reference.Get().Icon)
-                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.SpectralSmokeBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.SpectralSmoke)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.SpectralSmokeAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

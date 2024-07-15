@@ -5,6 +5,9 @@ using Mesmerist.Utils;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FreeInBody
@@ -18,40 +21,25 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
+
+            var Icon = AbilityRefs.FreedomOfMovement.Reference.Get().Icon;
+            var BuffEffect = Guids.FreeInBodyBuffEffect;
+            var ToggleBuff = Guids.FreeInBodyBuff;
+            var Ability = Guids.FreeInBodyAbility;
+            var Feat = Guids.FreeInBody;
+
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.FreeInBodyBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddRemoveWhenCombatEnded()
                 .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetIcon(AbilityRefs.FreedomOfMovement.Reference.Get().Icon)
+                .SetIcon(Icon)
                 .AddFacts(new() { BuffRefs.FreedomOfMovementBuff.Reference.Get() })
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.FreeInBodyBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.FreedomOfMovement.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.FreeInBodyAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.FreedomOfMovement.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                .SetHiddenInUI()
-                .SetBuff(Guids.FreeInBodyBuff)
-                 .SetDeactivateImmediately()
-                .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.FreeInBody)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.FreeInBodyAbility })
-                .SetIsClassFeature()
-                .AddPrerequisiteFeature(Guids.MasterfulTricks)
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

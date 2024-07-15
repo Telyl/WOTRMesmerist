@@ -10,6 +10,9 @@ using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGr
 using Mesmerist.NewComponents;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class Misdirection
@@ -20,42 +23,26 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.MisdirectionBuffEffect)
+            var Icon = AbilityRefs.Vanish.Reference.Get().Icon;
+            var BuffEffect = Guids.MisdirectionBuffEffect;
+            var ToggleBuff = Guids.MisdirectionBuff;
+            var Ability = Guids.MisdirectionAbility;
+            var Feat = Guids.Misdirection;
+
+            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.Vanish.Reference.Get().Icon)
-                .AddComponent<AddSubjectInitiateTrickTrigger>(c =>
+                .SetIcon(Icon)
+                .AddComponent<AddTrickTrigger>(c =>
                 {
                     c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true).Build();
                     c.BeforeAttackRoll = true;
                 })
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.MisdirectionBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.Vanish.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.MisdirectionAbility)
-                 .SetDisplayName(DisplayName)
-                 .SetDescription(Description)
-                 .SetIcon(AbilityRefs.Vanish.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-
-                 .SetHiddenInUI()
-                 .SetBuff(Guids.MisdirectionBuff)
-                 .SetDeactivateImmediately()
-                 .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.Misdirection)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.MisdirectionAbility })
-                .SetIsClassFeature()
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }

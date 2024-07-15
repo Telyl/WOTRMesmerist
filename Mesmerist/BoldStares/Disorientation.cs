@@ -20,8 +20,6 @@ namespace Mesmerist.Mesmerist.BoldStares
 
         public static void Configure()
         {
-
-
             BuffConfigurator.New(FeatName + "Buff", Guids.DisorientationBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)

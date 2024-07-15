@@ -9,6 +9,9 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.Utility;
+using System.Drawing;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class CursedSanction
@@ -22,10 +25,16 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
+            var Icon = AbilityRefs.BestowCurse.Reference.Get().Icon;
+            var BuffEffect = Guids.CursedSanctionBuffEffect;
+            var ToggleBuff = Guids.CursedSanctionBuff;
+            var Ability = Guids.CursedSanctionAbility;
+            var Feat = Guids.CursedSanction;
+
             BuffConfigurator.New(FeatName + "DebuffEffect", Guids.CursedSanctionDebuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.BestowCurse.Reference.Get().Icon)
+                .SetIcon(Icon)
                 .AddUniqueBuff()
                 .AddStatBonus(ModifierDescriptor.UntypedStackable, false, StatType.AdditionalAttackBonus, -4)
                 .AddStatBonus(ModifierDescriptor.UntypedStackable, false, StatType.SaveFortitude, -4)
@@ -53,31 +62,9 @@ namespace Mesmerist.Mesmerist.Tricks
                  onResult: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuffPermanent(Guids.CursedSanctionDebuffEffect))))
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "Buff", Guids.CursedSanctionBuff)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.BestowCurse.Reference.Get().Icon)
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .Configure();
-
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.CursedSanctionAbility)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.BestowCurse.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                .SetHiddenInUI()
-                .SetBuff(Guids.CursedSanctionBuff)
-                 .SetDeactivateImmediately()
-                .Configure();
-
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.CursedSanction)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddFacts(new() { Guids.CursedSanctionAbility })
-                .SetIsClassFeature()
-                .AddPrerequisiteFeature(Guids.MasterfulTricks)
-                .Configure();
+            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
+            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
 }
