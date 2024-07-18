@@ -36,7 +36,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddRemoveWhenCombatEnded()
                 .AddFacts(new() { BuffRefs.FreedomOfMovementBuff.Reference.Get() })
                 .Configure();
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false);
             
             var feature = TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
             FeatureConfigurator.For(feature)

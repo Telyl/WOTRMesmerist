@@ -12,6 +12,8 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class MesmericPantomime
@@ -34,6 +36,10 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddContextStatBonus(StatType.SkillThievery, ContextValues.Rank(), ModifierDescriptor.Morale)
                 .AddContextStatBonus(StatType.SkillStealth, ContextValues.Rank(), ModifierDescriptor.Morale)
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
+                .AddInitiatorSkillRollTrigger(true, StatType.SkillAthletics, ActionsBuilder.New().RemoveSelf())
+                .AddInitiatorSkillRollTrigger(true, StatType.SkillMobility, ActionsBuilder.New().RemoveSelf())
+                .AddInitiatorSkillRollTrigger(true, StatType.SkillThievery, ActionsBuilder.New().RemoveSelf())
+                .AddInitiatorSkillRollTrigger(true, StatType.SkillStealth, ActionsBuilder.New().RemoveSelf())
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);

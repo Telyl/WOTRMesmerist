@@ -15,6 +15,8 @@ using Mesmerist.NewComponents.AbilitySpecific;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Mesmerist.NewComponents;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LinkedReaction
@@ -35,7 +37,7 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddRemoveWhenCombatEnded()
+                .AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
                 .AddComponent<AddLinkedReaction>()
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);

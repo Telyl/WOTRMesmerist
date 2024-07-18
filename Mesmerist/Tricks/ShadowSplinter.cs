@@ -13,6 +13,8 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ShadowSplinter
@@ -32,7 +34,7 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddRemoveWhenCombatEnded()
+                .AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
                 .AddDamageResistancePhysical(value: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.UntypedStackable, min: 1))
                 .Configure();

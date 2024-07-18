@@ -131,6 +131,7 @@
   <ItemGroup>
     <Folder Include="MechanicsChange\" />
     <Folder Include="NewActions\" />
+    <Folder Include="NewComponents\ContextCondition\" />
     <Folder Include="NewSpells\" />
   </ItemGroup>
 	

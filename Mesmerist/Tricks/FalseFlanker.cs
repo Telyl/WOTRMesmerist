@@ -35,7 +35,7 @@ namespace Mesmerist.Mesmerist.Tricks
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
 
             BuffConfigurator.For(TrickBuff)
-                .AddRemoveWhenCombatEnded()
+                .AddRemoveBuffOnAttack()
                 .AddComponent<AddForceFlanked>()
                 .Configure();
 

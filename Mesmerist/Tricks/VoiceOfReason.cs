@@ -11,6 +11,10 @@ using Kingmaker.Blueprints.Classes.Spells;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using Kingmaker.UnitLogic.Mechanics.Components;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class VoiceOfReason
@@ -30,12 +34,20 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
+                .AddTargetSavingThrowTrigger(ActionsBuilder.New().RemoveSelf(), onlyFail: true)
+                .AddComponent<AddTargetSavingThrowTriggerMesmerist>(c =>
+                {
+                    c.OnlyFail = true;
+                    c.SpecificSave = true;
+                    c.ChooseSave = SavingThrowType.Will;
+                    c.Action = ActionsBuilder.New().RemoveSelf().Build();
+                })
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.MindAffecting, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Charm, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Compulsion, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
                 .Configure();
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

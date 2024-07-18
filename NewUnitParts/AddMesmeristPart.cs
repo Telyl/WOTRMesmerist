@@ -156,11 +156,11 @@ namespace Mesmerist.NewUnitParts
             unitPartMesmerist.Setup(this);
             unitPartMesmerist.CleanupTrackedTricks();
 
-            /*foreach (Buff buff in base.Owner.Descriptor.Buffs)
+            foreach (Buff buff in base.Owner.Descriptor.Buffs)
             {
                 if (Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
                 {
-                    unitPartMesmerist.PlaceTrick(base.Owner, buff);
+                    unitPartMesmerist.AddTrick(base.Owner, buff);
                 }
             }
             foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
@@ -169,10 +169,10 @@ namespace Mesmerist.NewUnitParts
                 {
                     if (Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
                     {
-                        unitPartMesmerist.PlaceTrick(unitEntityData, buff);
+                        unitPartMesmerist.AddTrick(unitEntityData, buff);
                     }
                 }
-            }*/
+            }
         }
 
                 // Token: 0x0600CC34 RID: 52276 RVA: 0x003517A9 File Offset: 0x0034F9A9

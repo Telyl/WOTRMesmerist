@@ -12,6 +12,8 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class MeekFacade
@@ -29,7 +31,7 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddRemoveWhenCombatEnded()
+                .AddTargetAttackWithWeaponTrigger(actionOnSelf: ActionsBuilder.New().RemoveSelf(), onlyHit: true)
                 .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.Dodge)
                 .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((4, 2), (9, 3), (14, 4), (19, 5), (20, 6)))
                 .Configure();

@@ -33,11 +33,13 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddComponent<AddTrickTrigger>(c =>
+                .AddComponent<AddInitiatorAttackRollTrigger>(c =>
                 {
-                    c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true).Build();
-                    c.BeforeAttackRoll = true;
+                    c.Action = ActionsBuilder.New().RemoveBuff(TrickBuff, true)
+                    .CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true).Build();
+                    c.OnlyHit = false;
                 })
+                .AddRemoveBuffOnAttack()
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);

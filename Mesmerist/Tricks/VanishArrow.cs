@@ -10,6 +10,8 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class VanishArrow
@@ -29,7 +31,7 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddRemoveWhenCombatEnded()
+                .AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
                 .AddDeflectArrows()
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);

@@ -31,7 +31,7 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.For(TrickBuff)
                 .AddCondition(Kingmaker.UnitLogic.UnitCondition.SeeInvisibility)
                 .Configure();
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

@@ -13,6 +13,8 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.Mechanics.Components;
+using BlueprintCore.Conditions.Builder;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ReflectFear
@@ -32,7 +34,22 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddRemoveWhenCombatEnded()
+                //.AddTargetSavingThrowTrigger()
+                .AddComponent<AddInitiatorSavingThrowTrigger>(c=>
+                {
+                    c.SpecificSave = true;
+                    c.ChooseSave = SavingThrowType.Will;
+                    c.OnlyFail = true;
+                    c.Action = ActionsBuilder.New().CastSpell(AbilityRefs.Guidance.Reference.Get()).RemoveSelf().Build();
+                })
+                // Need to create a condition checker that lets me tell what saving throw type it is.
+                // Once I know that, we say, "On a will save that's been failed, remove self"
+                // Then apply "fear" on the target.
+                .AddComponent<AddTargetSavingThrowTrigger>( c=>
+                {
+                    c.OnlyFail = true;
+                    c.Action = ActionsBuilder.New().CastSpell(AbilityRefs.Fear.Reference.Get()).Build();
+                })
                 .AddTargetAttackRollTrigger(actionsOnAttacker:
                 ActionsBuilder.New().SavingThrow(SavingThrowType.Will,
                 onResult: ActionsBuilder.New().ConditionalSaved(succeed: ActionsBuilder.New().CastSpell(AbilityRefs.Fear.Reference.Get()))))

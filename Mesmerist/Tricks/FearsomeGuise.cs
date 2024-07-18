@@ -15,6 +15,8 @@ using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
+using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
+using Kingmaker.UnitLogic.Mechanics.Components;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FearsomeGuise
@@ -34,11 +36,12 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddComponent<AddTrickTrigger>(c =>
+                .AddComponent<AddInitiatorAttackRollTrigger>(c =>
                 {
-                    c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true).Build();
+                    c.Action =  ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true).Build();
                     c.OnlyHit = false;
                 })
+                .AddRemoveBuffOnAttack()
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
