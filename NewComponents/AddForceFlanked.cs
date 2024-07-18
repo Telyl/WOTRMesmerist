@@ -7,9 +7,9 @@ using Kingmaker.UnitLogic;
 namespace Mesmerist.NewComponents
 {
     [TypeId("7a5a7b221adf4d7db6913c0bda20ce44")]
-    public class AddFalseFlankerTrick : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleAttackRoll>, IRulebookHandler<RuleAttackRoll>, ISubscriber, IInitiatorRulebookSubscriber
+    public class AddForceFlanked : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleAttackRoll>, IRulebookHandler<RuleAttackRoll>, ISubscriber, IInitiatorRulebookSubscriber
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddFalseFlankerTrick));
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddForceFlanked));
         public void OnEventAboutToTrigger(RuleAttackRoll evt)
         {
             if ((!evt.Target.CombatState.IsFlanked || !evt.TargetIsFlanked) && evt.Weapon.Blueprint.IsMelee)

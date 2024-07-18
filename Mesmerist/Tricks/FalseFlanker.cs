@@ -10,6 +10,11 @@ using Mesmerist.NewComponents;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using BlueprintCore.Utils.Types;
+using Kingmaker.UnitLogic.Buffs.Components;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FalseFlanker
@@ -23,21 +28,18 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.CleaveAction.Reference.Get().Icon;
-            var BuffEffect = Guids.FalseFlankerBuffEffect;
-            var ToggleBuff = Guids.FalseFlankerBuff;
+            var TrickBuff = Guids.FalseFlankerBuff;
             var Ability = Guids.FalseFlankerAbility;
             var Feat = Guids.FalseFlanker;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.FalseFlankerBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+
+            BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
-                .AddComponent<AddFalseFlankerTrick>()
+                .AddComponent<AddForceFlanked>()
                 .Configure();
 
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

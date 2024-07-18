@@ -8,6 +8,7 @@ using Kingmaker.Blueprints.Classes;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
+using Mesmerist.NewComponents.AbilitySpecific;
 
 namespace Mesmerist.Features
 {
@@ -25,6 +26,10 @@ namespace Mesmerist.Features
                 .SetDescription(Description)
                 .SetIcon(BuffRefs.Sickened.Reference.Get().Icon)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
+                .AddComponent<AddCombatStare>(c => {
+                    c.SavingThrow = SavingThrowType.Will;
+                    c.CombatStareDebuff = BuffRefs.Sickened.Reference.Get();
+                })
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "ActivatableAbility", Guids.ExcoriatingStareActivatableAbility)

@@ -12,6 +12,7 @@ using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGr
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class ReflectFear
@@ -25,23 +26,18 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.Fear.Reference.Get().Icon;
-            var BuffEffect = Guids.ReflectFearBuffEffect;
-            var ToggleBuff = Guids.ReflectFearBuff;
+            var TrickBuff = Guids.ReflectFearBuff;
             var Ability = Guids.ReflectFearAbility;
             var Feat = Guids.ReflectFear;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.Fear.Reference.Get().Icon)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
                 .AddTargetAttackRollTrigger(actionsOnAttacker:
-                ActionsBuilder.New().SavingThrow(SavingThrowType.Will, 
+                ActionsBuilder.New().SavingThrow(SavingThrowType.Will,
                 onResult: ActionsBuilder.New().ConditionalSaved(succeed: ActionsBuilder.New().CastSpell(AbilityRefs.Fear.Reference.Get()))))
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

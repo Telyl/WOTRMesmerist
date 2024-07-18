@@ -21,6 +21,9 @@ using BlueprintCore.Utils;
 using CharacterOptionsPlus.Util;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Mesmerist.NewComponents;
+using Mesmerist.NewUnitParts;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using System.Collections.Generic;
 
 namespace Mesmerist.Mesmerist
 {
@@ -54,8 +57,52 @@ namespace Mesmerist.Mesmerist
                 .SetUseMax(false)
                 .Configure();
 
-            FeatureConfigurator.New(FeatName + "ResourceFeature", Guids.MesmeristTrickResourceFeature)
+            FeatureConfigurator.New(FeatName + "Feature", Guids.MesmeristTrickResourceFeature)
                 .SetHideInUI(true)
+                .AddComponent<AddMesmeristPart>(c =>
+                {
+                    c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Mesmerist);
+                    c.m_MaxTrick = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
+                    c.m_TrickResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MesmeristTrickResource);
+                    c.m_PainfulStareCooldown = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown);
+                    c.m_PainfulStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PainfulStare);
+                    c.m_ManifoldStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStarePainfulStare);
+                    c.m_HypnoticStare = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.HypnoticStareBuff);
+                    c.m_Tricks = 
+                       [Guids.AstoundingAvoidanceBuff,
+                        Guids.CompelAlacrityBuff,
+                        Guids.CursedSanctionBuff,
+                        Guids.FalseFlankerBuff ,
+                        Guids.FearsomeGuiseBuff ,
+                        Guids.FleetInShadowsBuff ,
+                        Guids.FreeInBodyBuff ,
+                        Guids.LevitationBufferBuff ,
+                        Guids.LinkedReactionBuff ,
+                        Guids.MeekFacadeBuff ,
+                        Guids.MesmericMirrorBuff ,
+                        Guids.MesmericPantomimeBuff ,
+                        Guids.MisdirectionBuff ,
+                        Guids.PsychosomaticSurgeBuff ,
+                        Guids.ReflectFearBuff ,
+                        Guids.SeeThroughInvisibilityBuff ,
+                        Guids.ShadowSplinterBuff ,
+                        Guids.SpectralSmokeAreaEffect ,
+                        Guids.VanishArrowBuff ,
+                        Guids.VoiceOfReasonBuff];
+                    c.m_Stares = new BlueprintFeatureReference[] {
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Disorientation),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Disquiet),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Distracted),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Infiltration),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Lethality),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStare),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Nightmare),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PsychicInception),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SappedMagic),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Sluggishness),
+                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Timidity),
+                    };
+                })
                 .AddAbilityResources(resource: mtresource, restoreAmount: true, useThisAsResource: false)
                 .Configure();
 

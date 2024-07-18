@@ -6,10 +6,15 @@ using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using Mesmerist.NewComponents;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using Mesmerist.NewComponents.AbilitySpecific;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LinkedReaction
@@ -24,22 +29,21 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.OracleRevelationLifeLinkAbility.Reference.Get().Icon;
-            var BuffEffect = Guids.LinkedReactionBuffEffect;
-            var ToggleBuff = Guids.LinkedReactionBuff;
+            var TrickBuff = Guids.LinkedReactionBuff;
             var Ability = Guids.LinkedReactionAbility;
             var Feat = Guids.LinkedReaction;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
                 .AddComponent<AddLinkedReaction>()
-                .SetIcon(Icon)
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
+
+            AbilityConfigurator.For(Ability)
+            .SetCanTargetSelf(false)
+            .Configure();
         }
     }
 }

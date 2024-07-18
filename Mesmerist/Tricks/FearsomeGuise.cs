@@ -12,6 +12,9 @@ using Mesmerist.NewComponents;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FearsomeGuise
@@ -25,24 +28,19 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.FrightfulAspect.Reference.Get().Icon;
-            var BuffEffect = Guids.FearsomeGuiseBuffEffect;
-            var ToggleBuff = Guids.FearsomeGuiseBuff;
+            var TrickBuff = Guids.FearsomeGuiseBuff;
             var Ability = Guids.FearsomeGuiseAbility;
             var Feat = Guids.FearsomeGuise;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.FearsomeGuiseBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddComponent<AddTrickTrigger>(c =>
                 {
                     c.ActionsOnTarget = ActionsBuilder.New().CastSpell(AbilityRefs.PersuasionUseAbility.Reference.Get(), false, false, true).Build();
                     c.OnlyHit = false;
                 })
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

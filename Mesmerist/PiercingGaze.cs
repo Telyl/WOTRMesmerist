@@ -24,8 +24,7 @@ namespace Mesmerist.Mesmerist
         public static void Configure()
         {
 
-            //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            BlueprintFeature consummateLiar = FeatureConfigurator.New(FeatName, Guids.PiercingGaze)
+            FeatureConfigurator.New(FeatName, Guids.PiercingGaze)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()

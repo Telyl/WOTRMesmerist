@@ -11,15 +11,14 @@ using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
-using Mesmerist.NewComponents;
 using Mesmerist.Utils;
 using System.Security.Policy;
 using TabletopTweaks.Core.Utilities;
 
-namespace Mesmerist.NewComponents
+namespace Mesmerist.NewComponents.AbilitySpecific
 {
     [TypeId("6f4d16b58ed74e3fb6aa48c45eecfaf3")]
-    public class AddLevitationBuffer : UnitFactComponentDelegate, 
+    public class AddLevitationBuffer : UnitFactComponentDelegate,
         ITargetRulebookHandler<RuleAttackWithWeapon>, IRulebookHandler<RuleAttackWithWeapon>,
         ISubscriber, ITargetRulebookSubscriber
     {
@@ -32,13 +31,13 @@ namespace Mesmerist.NewComponents
 
         public void OnEventDidTrigger(RuleAttackWithWeapon evt)
         {
-            RuleCombatManeuver cmb = new RuleCombatManeuver(base.Fact.MaybeContext.MaybeCaster, evt.Initiator, CombatManeuver.BullRush);
+            RuleCombatManeuver cmb = new RuleCombatManeuver(Fact.MaybeContext.MaybeCaster, evt.Initiator, CombatManeuver.BullRush);
             cmb.ReplaceBaseStat = Kingmaker.EntitySystem.Stats.StatType.Charisma;
-            cmb.ReplaceAttackBonus = base.Fact.MaybeContext.MaybeCaster.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Mesmerist));
+            cmb.ReplaceAttackBonus = Fact.MaybeContext.MaybeCaster.Progression.GetClassLevel(BlueprintTool.Get<BlueprintCharacterClass>(Guids.Mesmerist));
 
-            Game.Instance.Rulebook.TriggerEvent<RuleCombatManeuver>(cmb);
-            
-            evt.Target.Descriptor.Buffs.RemoveFact(base.Fact);
+            Game.Instance.Rulebook.TriggerEvent(cmb);
+
+            evt.Target.Descriptor.Buffs.RemoveFact(Fact);
         }
     }
 }

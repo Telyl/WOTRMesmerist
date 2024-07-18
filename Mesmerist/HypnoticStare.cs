@@ -29,11 +29,11 @@ using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.RuleSystem;
 using static Kingmaker.UnitLogic.Mechanics.Conditions.ContextConditionInContext;
-using Mesmerist.NewComponents;
 using Kingmaker.AI.Blueprints;
 using TabletopTweaks.Core.Utilities;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using TabletopTweaks.Core.NewComponents;
+using Mesmerist.NewComponents.AbilitySpecific;
 
 namespace Mesmerist.Mesmerist
 {
@@ -53,8 +53,8 @@ namespace Mesmerist.Mesmerist
                 .SetIcon(AbilityRefs.Eyebite.Reference.Get().Icon)
                 .AddSpellDescriptorComponent(SpellDescriptor.MindAffecting)
                 .AddUniqueBuff()
+                .SetFxOnStart("8de64fbe047abc243a9b4715f643739f")
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
-                .AddComponent<AddPainfulStare>(C => C.CheckFactOnTarget = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown))
                 .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(AbilityRankType.Default), ModifierDescriptor.UntypedStackable, 2, -1)
                 .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((7, 2), (19, 3), (20,5)))
                 .Configure();

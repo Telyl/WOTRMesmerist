@@ -4,9 +4,9 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 using CharacterOptionsPlus.Util;
-using Mesmerist.NewComponents;
 using Kingmaker.Blueprints;
 using BlueprintCore.Utils;
+using Mesmerist.NewComponents.AbilitySpecific;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {

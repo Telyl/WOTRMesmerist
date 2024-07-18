@@ -20,179 +20,52 @@ using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
 using BlueprintCore.Actions.Builder.BasicEx;
+using BlueprintCore.Blueprints.CustomConfigurators;
+using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.EntitySystem.Stats;
 
 namespace Mesmerist.Mesmerist
 {
     public class ManifoldTrick
     {
-        private static readonly string FeatName = "ManifoldTrick";
+        private static readonly string FeatName = "Tricks";
         internal const string DisplayName = "ManifoldTrick.Name";
         private static readonly string Description = "ManifoldTrick.Description";
-        internal const string DisplayNameUseTrick = "UseTrick.Name";
-        private static readonly string DescriptionTrick = "UseTrick.Description";
 
         private static readonly Logging.Logger Logger = Logging.GetLogger(FeatName);
 
         public static void Configure()
         {
 
-            var b=BuffConfigurator.New(FeatName + "Buff1", Guids.ManifoldTrick1Buff)
-                .AddUniqueBuff()
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
-                .AddBuffActions(activated: TrickBuilder())
-                .Configure();
+            
 
-            var b2 = BuffConfigurator.New(FeatName + "Buff2", Guids.ManifoldTrick2Buff)
-                .AddUniqueBuff()
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility2.Reference.Get().Icon)
-                .AddBuffActions(activated: TrickBuilder())
-                .Configure();
-
-            var b3 = BuffConfigurator.New(FeatName + "Buff3", Guids.ManifoldTrick3Buff)
-                .AddUniqueBuff()
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility3.Reference.Get().Icon)
-                .AddBuffActions(activated: TrickBuilder())
-                .Configure();
-
-            var b4 = BuffConfigurator.New(FeatName + "Buff4", Guids.ManifoldTrick4Buff)
-                .AddUniqueBuff()
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility4.Reference.Get().Icon)
-                .AddBuffActions(activated: TrickBuilder())
-                .Configure();
-
-            var b5 = BuffConfigurator.New(FeatName + "Buff5", Guids.ManifoldTrick5Buff)
-                .AddUniqueBuff()
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false, AbilityRankType.Default, 20, 1))
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility5.Reference.Get().Icon)
-                .AddBuffActions(activated: TrickBuilder())
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "1", Guids.MesmeristTrickActiveAbility1)
-                .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayNameUseTrick)
-                .SetDescription(DescriptionTrick)
-                .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility1.Reference.Get().Icon)
-                .SetRange(AbilityRange.Touch)
-                .SetCanTargetEnemies(false)
-                .SetCanTargetFriends(true)
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard)
-                .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(b))
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "2", Guids.MesmeristTrickActiveAbility2)
-                .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayNameUseTrick)
-                .SetDescription(DescriptionTrick)
-                .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility2.Reference.Get().Icon)
-                .AddComponent<AddRequirementOnFeatureRank>(c => {
-                    c.Feature =BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
-                    c.checkValue = 1;
-                })
-                .SetRange(AbilityRange.Touch)
-                .SetCanTargetEnemies(false)
-                .SetCanTargetFriends(true)
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard)
-                .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(b2))
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "3", Guids.MesmeristTrickActiveAbility3)
-                .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayNameUseTrick)
-                .SetDescription(DescriptionTrick)
-                .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility3.Reference.Get().Icon)
-                .AddComponent<AddRequirementOnFeatureRank>(c => {
-                    c.Feature =BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
-                    c.checkValue = 2;
-                })
-                .SetRange(AbilityRange.Touch)
-                .SetCanTargetEnemies(false)
-                .SetCanTargetFriends(true)
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard)
-                .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(b3))
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "4", Guids.MesmeristTrickActiveAbility4)
-                .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .AddComponent<AddRequirementOnFeatureRank>()
-                .SetDisplayName(DisplayNameUseTrick)
-                .SetDescription(DescriptionTrick)
-                .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility4.Reference.Get().Icon)
-                .AddComponent<AddRequirementOnFeatureRank>(c => {
-                    c.Feature =BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
-                    c.checkValue = 3;
-                })
-                .SetRange(AbilityRange.Touch)
-                .SetCanTargetEnemies(false)
-                .SetCanTargetFriends(true)
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard)
-                .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(b4))
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "5", Guids.MesmeristTrickActiveAbility5)
-                .CopyFrom(AbilityRefs.LayOnHandsSelf, typeof(AbilitySpawnFx))
-                .SetDisplayName(DisplayNameUseTrick)
-                .SetDescription(DescriptionTrick)
-                .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility5.Reference.Get().Icon)
-                .AddComponent<AddRequirementOnFeatureRank>(c => {
-                    c.Feature =BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
-                    c.checkValue = 4;
-                })
-                .SetRange(AbilityRange.Touch)
-                .SetCanTargetEnemies(false)
-                .SetCanTargetFriends(true)
-                .SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard)
-                .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(b5))
-                .Configure();
-
-            AbilityConfigurator.New(FeatName + "Variants", Guids.MesmeristTrickActiveVariants)
-                .SetDisplayName(DisplayNameUseTrick)
-                .SetDescription(DescriptionTrick)
-                .SetIcon(AbilityRefs.ArcanistConsumeSpellsAbility9.Reference.Get().Icon)
-                .AddAbilityVariants(variants: new() { Guids.MesmeristTrickActiveAbility1, 
-                    Guids.MesmeristTrickActiveAbility2, Guids.MesmeristTrickActiveAbility3, 
-                    Guids.MesmeristTrickActiveAbility4, Guids.MesmeristTrickActiveAbility5 })
-                .Configure();
-
-            FeatureConfigurator.New(FeatName + "InitialTrick", Guids.InitialTrick)
-                .SetIcon(AbilityRefs.EnlargePersonMass.Reference.Get().Icon)
-                .SetIsClassFeature(true)
-                .SetReapplyOnLevelUp(false)
-                .SetHideInUI()
-                .SetHideInCharacterSheetAndLevelUp()
-                .AddFacts(new() { Guids.MesmeristTrickActiveVariants })
-                .Configure();
-
-            BlueprintFeature manifoldTrick = FeatureConfigurator.New(FeatName + "ManifoldTrick", Guids.ManifoldTrick)
+            var feat = FeatureConfigurator.New(FeatName + "ManifoldTrick", Guids.ManifoldTrick)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.EnlargePersonMass.Reference.Get().Icon)
                 .SetIsClassFeature(true)
                 .SetReapplyOnLevelUp(false)
                 .SetRanks(4)
+                .Configure();
+
+            FeatureConfigurator.For(feat)
+                .AddContextRankConfig(new ContextRankConfig
+                {
+                    m_Type = AbilityRankType.Default,
+                    m_BaseValueType = ContextRankBaseValueType.FeatureRank,
+                    m_Feature = feat.ToReference<BlueprintFeatureReference>(),
+                    m_Stat = StatType.Unknown,
+                    m_Buff = null,
+                    m_Progression = ContextRankProgression.AsIs,
+                    m_StartLevel = 0,
+                    m_StepLevel = 0,
+                    m_UseMin = false,
+                    m_Min = 0,
+                    m_UseMax = false,
+                    m_Max = 20,
+                    m_ExceptClasses = false,
+                    Archetype = null
+                })
                 .Configure();
 
         }

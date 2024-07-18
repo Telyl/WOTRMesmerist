@@ -11,6 +11,10 @@ using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGr
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Mesmerist.NewComponents;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class MesmericMirror
@@ -24,22 +28,16 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.MirrorImage.Reference.Get().Icon;
-            var BuffEffect = Guids.MesmericMirrorBuffEffect;
-            var ToggleBuff = Guids.MesmericMirrorBuff;
+            var TrickBuff = Guids.MesmericMirrorBuff;
             var Ability = Guids.MesmericMirrorAbility;
             var Feat = Guids.MesmericMirror;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .CopyFrom(BuffRefs.MirrorImageBuff.Reference.Get(), typeof(AddMirrorImage))
                 .CopyFrom(BuffRefs.MirrorImageBuff.Reference.Get(), typeof(ContextRankConfigs))
-                .AddRemoveWhenCombatEnded()
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

@@ -3,6 +3,7 @@ using BlueprintCore.Blueprints.References;
 using Mesmerist.Utils;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class TrickVariants
@@ -16,11 +17,11 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
 
-            ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.TrickVariantsActivatableAbility)
+            AbilityConfigurator.New(FeatName + "Ability", Guids.TrickVariantsActivatableAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.ArcanistExploits.Reference.Get().Icon)
-                .AddActivatableAbilityVariants(variants: new() { Guids.AstoundingAvoidanceAbility, Guids.CompelAlacrityAbility, Guids.FalseFlankerAbility,
+                .AddAbilityVariants(variants: new() { Guids.AstoundingAvoidanceAbility, Guids.CompelAlacrityAbility, Guids.FalseFlankerAbility,
                 Guids.FearsomeGuiseAbility, Guids.FleetInShadowsAbility, Guids.LevitationBufferAbility,
                 Guids.LinkedReactionAbility, Guids.MeekFacadeAbility, Guids.MesmericMirrorAbility,
                 Guids.MesmericPantomimeAbility, Guids.MisdirectionAbility, Guids.PsychosomaticSurgeAbility,

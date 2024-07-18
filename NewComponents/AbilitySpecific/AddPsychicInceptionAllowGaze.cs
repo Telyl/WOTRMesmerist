@@ -14,12 +14,11 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Parts;
-using Mesmerist.NewComponents;
 using Mesmerist.Utils;
 using System.Security.Policy;
 using TabletopTweaks.Core.NewUnitParts;
 
-namespace Mesmerist.NewComponents
+namespace Mesmerist.NewComponents.AbilitySpecific
 {
     [TypeId("6ce6acee4e42469d8d8e692f31168fd9")]
     public class AddPsychicInceptionAllowGaze : UnitFactComponentDelegate,
@@ -29,11 +28,11 @@ namespace Mesmerist.NewComponents
         IInitiatorRulebookSubscriber
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddPsychicInceptionAllowGaze));
-        
+
         public void OnEventAboutToTrigger(RuleApplySpell evt)
         {
             if (!evt.Context.MaybeCaster.HasFact(BecauseOfFact)) { return; }
-            evt.SpellTarget.Unit.Ensure<UnitPartIgnoreBuffDescriptorImmunity>().AddEntry(IgnoreDescriptors, base.Fact);
+            evt.SpellTarget.Unit.Ensure<UnitPartIgnoreBuffDescriptorImmunity>().AddEntry(IgnoreDescriptors, Fact);
         }
 
         public void OnEventDidTrigger(RuleApplySpell evt)

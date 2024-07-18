@@ -10,6 +10,7 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.Blueprints.Classes.Spells;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class VoiceOfReason
@@ -23,23 +24,18 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.EarPiercingScream.Reference.Get().Icon;
-            var BuffEffect = Guids.VoiceOfReasonBuffEffect;
-            var ToggleBuff = Guids.VoiceOfReasonBuff;
+            var TrickBuff = Guids.VoiceOfReasonBuff;
             var Ability = Guids.VoiceOfReasonAbility;
             var Feat = Guids.VoiceOfReason;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.MindAffecting, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Charm, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddSavingThrowBonusAgainstDescriptor(spellDescriptor: SpellDescriptor.Compulsion, modifierDescriptor: ModifierDescriptor.Insight, bonus: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

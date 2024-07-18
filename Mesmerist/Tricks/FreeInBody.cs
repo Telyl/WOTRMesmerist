@@ -8,6 +8,10 @@ using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FreeInBody
@@ -23,22 +27,17 @@ namespace Mesmerist.Mesmerist.Tricks
         {
 
             var Icon = AbilityRefs.FreedomOfMovement.Reference.Get().Icon;
-            var BuffEffect = Guids.FreeInBodyBuffEffect;
-            var ToggleBuff = Guids.FreeInBodyBuff;
+            var TrickBuff = Guids.FreeInBodyBuff;
             var Ability = Guids.FreeInBodyAbility;
             var Feat = Guids.FreeInBody;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.FreeInBodyBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
-                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
-                .SetIcon(Icon)
                 .AddFacts(new() { BuffRefs.FreedomOfMovementBuff.Reference.Get() })
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            
             var feature = TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
             FeatureConfigurator.For(feature)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 12)

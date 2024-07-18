@@ -11,11 +11,10 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
-using Mesmerist.NewComponents;
 using System.Security.Policy;
 using TabletopTweaks.Core.Utilities;
 
-namespace Mesmerist.NewComponents
+namespace Mesmerist.NewComponents.AbilitySpecific
 {
     [TypeId("21273f91df984e7983274183ecd1cd7e")]
     public class AddShadowSplinter : UnitFactComponentDelegate,
@@ -26,13 +25,13 @@ namespace Mesmerist.NewComponents
 
         public void OnEventAboutToTrigger(RuleCalculateDamage evt)
         {
-            
+
         }
         public void OnEventDidTrigger(RuleCalculateDamage evt)
         {
             foreach (BaseDamage baseDamage in evt.DamageBundle)
             {
-                baseDamage.SetReductionBecauseResistance(3 + evt.Reason.Caster.Stats.Charisma, base.Fact);
+                baseDamage.SetReductionBecauseResistance(3 + evt.Reason.Caster.Stats.Charisma, Fact);
             }
         }
     }

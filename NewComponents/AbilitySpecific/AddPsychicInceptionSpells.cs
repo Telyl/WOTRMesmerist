@@ -14,12 +14,11 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Parts;
-using Mesmerist.NewComponents;
 using Mesmerist.Utils;
 using System.Security.Policy;
 using TabletopTweaks.Core.NewUnitParts;
 
-namespace Mesmerist.NewComponents
+namespace Mesmerist.NewComponents.AbilitySpecific
 {
     [TypeId("5af58cb1a56c4c38be810dfc6b63fe86")]
     public class AddPsychicInceptionSpells : UnitFactComponentDelegate,
@@ -45,7 +44,7 @@ namespace Mesmerist.NewComponents
         {
             if (wasImmune)
             {
-                evt.AddModifier(2, base.Fact, ModifierDescriptor.UntypedStackable);
+                evt.AddModifier(2, Fact, ModifierDescriptor.UntypedStackable);
             }
         }
 

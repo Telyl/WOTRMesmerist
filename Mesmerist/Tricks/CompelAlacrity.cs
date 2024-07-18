@@ -14,6 +14,7 @@ using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGr
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -29,7 +30,7 @@ namespace Mesmerist.Mesmerist.Tricks
         {
             var Icon = AbilityRefs.DimensionDoor.Reference.Get().Icon;
             var BuffEffect = Guids.CompelAlacrityBuffEffect;
-            var ToggleBuff = Guids.CompelAlacrityBuff;
+            var TrickBuff = Guids.CompelAlacrityBuff;
             var Ability = Guids.CompelAlacrityAbility;
             var Feat = Guids.CompelAlacrity;
 
@@ -49,17 +50,12 @@ namespace Mesmerist.Mesmerist.Tricks
                 .SetHideInUI()
                 .Configure();
 
-            // Add Temporary Feature - Dimensions Door
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.CompelAlacrityBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddTemporaryFeat(Guids.CompelAlacrityDimensionDoorFeat)
                 .AddRemoveWhenCombatEnded()
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

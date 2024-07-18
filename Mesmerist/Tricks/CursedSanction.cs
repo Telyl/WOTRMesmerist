@@ -12,6 +12,7 @@ using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class CursedSanction
@@ -26,8 +27,7 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.BestowCurse.Reference.Get().Icon;
-            var BuffEffect = Guids.CursedSanctionBuffEffect;
-            var ToggleBuff = Guids.CursedSanctionBuff;
+            var TrickBuff = Guids.CursedSanctionBuff;
             var Ability = Guids.CursedSanctionAbility;
             var Feat = Guids.CursedSanction;
 
@@ -52,18 +52,16 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddStatBonus(ModifierDescriptor.UntypedStackable, false, StatType.SkillKnowledgeWorld, -4)
                 .Configure();
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.CursedSanctionBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+
+            BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
-                .SetIcon(AbilityRefs.BestowCurse.Reference.Get().Icon)
-                .AddIncomingDamageTrigger(actionsOnInitiator: true, actions: ActionsBuilder.New().SavingThrow(SavingThrowType.Will, 
+                .AddIncomingDamageTrigger(actionsOnInitiator: true, actions: ActionsBuilder.New().SavingThrow(SavingThrowType.Will,
                  onResult: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuffPermanent(Guids.CursedSanctionDebuffEffect))))
                 .Configure();
 
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             var feature = TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
             FeatureConfigurator.For(feature)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 12)

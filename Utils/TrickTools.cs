@@ -1,8 +1,16 @@
-﻿using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.ElementsSystem;
+using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Mesmerist.NewComponents;
@@ -12,29 +20,53 @@ namespace Mesmerist.Utils
 {
     public class TrickTools
     {
-        public static BlueprintBuff CreateTrickToggleBuff(string FeatName, string GUID,
+        public static BlueprintBuff CreateTrickTrickBuff(string FeatName, string GUID,
             string DisplayName, string Description, UnityEngine.Sprite Icon)
         {
             return BuffConfigurator.New(FeatName, GUID)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(Icon)
-                .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+                .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
                 .Configure();
         }
 
-        public static BlueprintActivatableAbility CreateTrickActivatableAbility(string FeatName, string GUID,
-            string DisplayName, string Description, UnityEngine.Sprite Icon, string TrickBuff)
+        public static BlueprintAbility CreateTrickAbility(string FeatName, string GUID,
+            string DisplayName, string Description, UnityEngine.Sprite Icon, string TrickBuff, string FeatureRequired, bool permanent = true)
         {
-            return ActivatableAbilityConfigurator.New(FeatName, GUID)
+            var ability = AbilityConfigurator.New(FeatName, GUID)
                  .SetDisplayName(DisplayName)
                  .SetDescription(Description)
                  .SetIcon(Icon)
-                 .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1819))
-                 .SetHiddenInUI()
-                 .SetBuff(TrickBuff)
-                 .SetDeactivateImmediately()
+                 .SetHidden(true)
+                 .SetCanTargetFriends(true)
+                 .SetCanTargetEnemies(false)
+                 .SetRange(AbilityRange.Touch)
+                 .SetNotOffensive(true)
+                 .AddAbilitySpawnFx(Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxAnchor.SelectedTarget, 0,
+                   false, Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxAnchor.None,
+                   Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxOrientation.Copy,
+                   Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxAnchor.None, "224fb8fd952ec4d45b6d3436a77663d9")
+                 .AddAbilityResourceLogic(1, false, true, requiredResource: Guids.MesmeristTrickResource)
+                 .AddAbilityCasterHasFacts(new() { FeatureRequired })
                  .Configure();
+
+            if (!permanent)
+            {
+                AbilityConfigurator.For(GUID)
+                 .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(TrickBuff, ContextDuration.Variable(ContextValues.Rank(), Kingmaker.UnitLogic.Mechanics.DurationRate.Minutes), true, false, false, true))
+                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false))
+                 .Configure();
+            }
+            else
+            {
+                AbilityConfigurator.For(GUID)
+                 .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(TrickBuff, true, false, false, true))
+                 .Configure();
+            }
+
+            return ability;
+
         }
 
         public static BlueprintFeature CreateTrickFeature(string FeatName, string GUID, 

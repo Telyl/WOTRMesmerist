@@ -8,13 +8,14 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
-using Mesmerist.NewComponents;
 using Kingmaker.EntitySystem.Stats;
 using BlueprintCore.Utils.Types;
 using Epic.OnlineServices.Stats;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Mesmerist.NewComponents.AbilitySpecific;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LevitationBuffer
@@ -29,20 +30,15 @@ namespace Mesmerist.Mesmerist.Tricks
         {
 
             var Icon = AbilityRefs.BullRushAction.Reference.Get().Icon;
-            var BuffEffect = Guids.LevitationBufferBuffEffect;
-            var ToggleBuff = Guids.LevitationBufferBuff;
+            var TrickBuff = Guids.LevitationBufferBuff;
             var Ability = Guids.LevitationBufferAbility;
             var Feat = Guids.LevitationBuffer;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.LevitationBufferBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddComponent<AddLevitationBuffer>()
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

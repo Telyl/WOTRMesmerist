@@ -7,12 +7,18 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using CharacterOptionsPlus.Util;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
-using Mesmerist.NewComponents;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Mesmerist.NewComponents.AbilitySpecific;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.BasicEx;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Conditions.Builder.ContextEx;
+using static Kingmaker.UnitLogic.Mechanics.Conditions.ContextConditionInContext;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -27,34 +33,20 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = FeatureRefs.Evasion.Reference.Get().Icon;
-            var BuffEffectImproved = Guids.AstoundingAvoidanceBuffEffectImproved;
-            var BuffEffect = Guids.AstoundingAvoidanceBuffEffect;
-            var ToggleBuff = Guids.AstoundingAvoidanceBuff;
+            var TrickBuff = Guids.AstoundingAvoidanceBuff;
             var Ability = Guids.AstoundingAvoidanceAbility;
             var Feat = Guids.AstoundingAvoidance;
 
-            BuffConfigurator.New(FeatName + "BuffEffectImproved", BuffEffectImproved)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
-                .AddComponent<AddAstoundingAvoidanceTrick>(c => {
-                    c.AstoundingAvoidanceBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.AstoundingAvoidanceBuffEffectImproved);
-                })
-                .AddTemporaryFeat(FeatureRefs.ImprovedEvasion.Reference.Get())
-                .Configure();
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
 
-            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(Icon)
+            BuffConfigurator.For(TrickBuff)
                 .AddComponent<AddAstoundingAvoidanceTrick>(c => {
-                    c.AstoundingAvoidanceBuff = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.AstoundingAvoidanceBuffEffect);
+                    c.AstoundingAvoidance = BlueprintTool.GetRef<BlueprintBuffReference>(TrickBuff);
                 })
                 .AddTemporaryFeat(FeatureRefs.Evasion.Reference.Get())
                 .Configure();
 
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

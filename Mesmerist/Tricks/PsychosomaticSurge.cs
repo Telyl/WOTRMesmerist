@@ -11,6 +11,7 @@ using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGr
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class PsychosomaticSurge
@@ -27,22 +28,17 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.FalseLifeGreater.Reference.Get().Icon;
-            var BuffEffect = Guids.PsychosomaticSurgeBuffEffect;
-            var ToggleBuff = Guids.PsychosomaticSurgeBuff;
+            var TrickBuff = Guids.PsychosomaticSurgeBuff;
             var Ability = Guids.PsychosomaticSurgeAbility;
             var Feat = Guids.PsychosomaticSurge;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", BuffEffect)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .CopyFrom(BuffRefs.FalseLifeBuff.Reference.Get(), typeof(TemporaryHitPointsFromAbilityValue))
                 .CopyFrom(BuffRefs.FalseLifeBuff.Reference.Get(), typeof(ContextCalculateSharedValue))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithDiv2Progression())
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .SetIcon(AbilityRefs.FalseLifeGreater.Reference.Get().Icon)
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

@@ -9,6 +9,10 @@ using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Mesmerist.NewComponents;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FleetInShadows
@@ -23,21 +27,16 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.Longstrider.Reference.Get().Icon;
-            var BuffEffect = Guids.FleetInShadowsBuffEffect;
-            var ToggleBuff = Guids.FleetInShadowsBuff;
+            var TrickBuff = Guids.FleetInShadowsBuff;
             var Ability = Guids.FleetInShadowsAbility;
             var Feat = Guids.FleetInShadows;
 
-            BuffConfigurator.New(FeatName + "BuffEffect", Guids.FleetInShadowsBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
+            TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
-                .SetIcon(Icon)
-                .AddBuffMovementSpeed(value: 30, descriptor: ModifierDescriptor.Enhancement)
+                .AddBuffMovementSpeed(false, false, value: 30, descriptor: ModifierDescriptor.UntypedStackable)
                 .Configure();
-
-            TrickTools.CreateTrickToggleBuff(FeatName + "Buff", ToggleBuff, DisplayName, Description, Icon);
-            TrickTools.CreateTrickActivatableAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, ToggleBuff);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }
