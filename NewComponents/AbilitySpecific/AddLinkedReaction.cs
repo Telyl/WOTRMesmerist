@@ -27,7 +27,6 @@ namespace Mesmerist.NewComponents.AbilitySpecific
 
         public void HandleUnitJoinCombat(UnitEntityData unit)
         {
-            Logger.Log("Unit just joined combat!");
         }
 
         public void HandleUnitLeaveCombat(UnitEntityData unit)

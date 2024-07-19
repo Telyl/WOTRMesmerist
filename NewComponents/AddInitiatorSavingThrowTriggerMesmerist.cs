@@ -1,4 +1,5 @@
 ﻿using System;
+using CharacterOptionsPlus.Util;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
@@ -8,20 +9,19 @@ using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
+using Microsoft.Build.Utilities;
 
 namespace Mesmerist.NewComponents
 {
     // Token: 0x02001E23 RID: 7715
-    [TypeId("89f15541405c410e9a42869bdc3294cd")]
-    public class AddTargetSavingThrowTriggerMesmerist : UnitFactComponentDelegate, ITargetRulebookHandler<RuleSavingThrow>,
-        IRulebookHandler<RuleSavingThrow>, ISubscriber, ITargetRulebookSubscriber
+    [TypeId("d9824f4a3f7a4d0a94c55f8c1ce1b729")]
+    public class AddInitiatorSavingThrowTriggerMesmerist : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleSavingThrow>, IRulebookHandler<RuleSavingThrow>, ISubscriber, IInitiatorRulebookSubscriber
     {
-        // Token: 0x0600D025 RID: 53285 RVA: 0x0035FCC5 File Offset: 0x0035DEC5
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddInitiatorSavingThrowTriggerMesmerist));
         public void OnEventAboutToTrigger(RuleSavingThrow evt)
         {
         }
 
-        // Token: 0x0600D026 RID: 53286 RVA: 0x0035FCC8 File Offset: 0x0035DEC8
         public void OnEventDidTrigger(RuleSavingThrow evt)
         {
             if (this.CheckConditions(evt) && base.Fact.MaybeContext != null)
@@ -33,12 +33,15 @@ namespace Mesmerist.NewComponents
                     if (factContextOwner != null)
                     {
                         factContextOwner.RunActionInContext(this.Action, base.Owner);
+                        if (ActOnInitiator)
+                        {
+                            factContextOwner.RunActionInContext(this.ActionsOnInitiator, evt.Reason.Context.MaybeCaster);
+                        }
                     }
                 }
             }
         }
 
-        // Token: 0x0600D027 RID: 53287 RVA: 0x0035FD54 File Offset: 0x0035DF54
         private bool CheckConditions(RuleSavingThrow evt)
         {
             return (!this.OnlyPass || evt.IsPassed) && (!this.OnlyFail || !evt.IsPassed) && (!this.SpecificSave || this.ChooseSave == evt.Type);
@@ -53,10 +56,14 @@ namespace Mesmerist.NewComponents
         // Token: 0x04008A54 RID: 35412
         public bool SpecificSave;
 
+        public bool ActOnInitiator = false;
+
+        public ActionList ActionsOnInitiator;
+
         // Token: 0x04008A55 RID: 35413
         [ShowIf("SpecificSave")]
         [InfoBox("Don't use Unknown - will not work on any throw")]
-        public SavingThrowType ChooseSave = SavingThrowType.Will;
+        public SavingThrowType ChooseSave = SavingThrowType.Fortitude;
 
         // Token: 0x04008A56 RID: 35414
         public ActionList Action;

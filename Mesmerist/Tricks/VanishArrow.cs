@@ -24,14 +24,15 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            var Icon = AbilityRefs.EarPiercingScream.Reference.Get().Icon;
+            var Icon = AbilityRefs.ProtectionFromArrows.Reference.Get().Icon;
             var TrickBuff = Guids.VanishArrowBuff;
             var Ability = Guids.VanishArrowAbility;
             var Feat = Guids.VanishArrow;
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
+                //.AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
+                .AddRemoveWhenCombatEnded()
                 .AddDeflectArrows()
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);

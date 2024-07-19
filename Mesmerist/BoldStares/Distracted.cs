@@ -33,6 +33,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
+                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .Configure();
 
 

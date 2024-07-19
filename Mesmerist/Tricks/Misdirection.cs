@@ -16,6 +16,7 @@ using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class Misdirection
@@ -26,22 +27,26 @@ namespace Mesmerist.Mesmerist.Tricks
 
         public static void Configure()
         {
-            var Icon = AbilityRefs.Vanish.Reference.Get().Icon;
+            var Icon = AbilityRefs.FeintAbility.Reference.Get().Icon;
             var TrickBuff = Guids.MisdirectionBuff;
             var Ability = Guids.MisdirectionAbility;
             var Feat = Guids.Misdirection;
 
+            var CustomFeintFeature = FeatureConfigurator.New(FeatName + "Feint", Guids.MisdirectionFeintFeat)
+                .CopyFrom(FeatureRefs.Feint, c => c is not AddFacts)
+                .AddPlayerLeaveCombatTrigger(actions: ActionsBuilder.New().RemoveSelf())
+                .SetHideInUI(true)
+                .Configure();
+
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddComponent<AddInitiatorAttackRollTrigger>(c =>
-                {
-                    c.Action = ActionsBuilder.New().RemoveBuff(TrickBuff, true)
-                    .CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true).Build();
-                    c.OnlyHit = false;
-                })
+                .AddInitiatorAttackWithWeaponTrigger(onlyHit: false, triggerBeforeAttack: true, action: ActionsBuilder.New()
+                    .CastSpell(AbilityRefs.FeintAbility.Reference.Get(), false, false, true), onlyOnFirstAttack: true)
                 .AddRemoveBuffOnAttack()
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            AbilityConfigurator.For(Ability)
+                .AddFacts(new() { CustomFeintFeature });
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

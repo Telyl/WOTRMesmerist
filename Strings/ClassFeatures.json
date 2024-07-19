@@ -177,7 +177,7 @@
   },
   {
     "Key": "ReflectFear.Description",
-    "enGB": "The mesmerist can trigger this trick when the subject succeeds against a will saving throw. When the trick is triggered, the enemy that cast a spell on the subject must succeed a saving throw or be feared."
+    "enGB": "The mesmerist can trigger this trick when the subject succeeds against a will saving throw. When the trick is triggered, the enemy that cast a spell on the subject must succeed a saving throw or suffer from Castigate."
   },
   {
     "Key": "SeeThroughInvisibility.Name",
@@ -403,5 +403,14 @@
   {
     "Key": "PiercingGaze.Description",
     "enGB": "At 20th level, the mesmerist’s gaze carries with it something of the beyond. His stare penalty increases by 2."
+  },
+  {
+    "Key": "MasterfulTricks.Name",
+    "ProcessTemplates": false,
+    "enGB": "Masterful Tricks"
+  },
+  {
+    "Key": "MasterfulTricks.Description",
+    "enGB": "At 12th level, the mesmerist gains access to more powerful tricks."
   }
 ]

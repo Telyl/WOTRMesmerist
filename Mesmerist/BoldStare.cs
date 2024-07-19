@@ -30,7 +30,7 @@ namespace Mesmerist.Mesmerist
             FeatureSelectionConfigurator.New(FeatName, Guids.BoldStareSelection)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.Blindness.Reference.Get().Icon)
                 .SetIsClassFeature()
                 .AddToAllFeatures([Guids.Disorientation, Guids.Disquiet, Guids.Distracted,
                 Guids.Infiltration, Guids.Lethality, Guids.Nightmare,

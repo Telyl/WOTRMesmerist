@@ -35,8 +35,9 @@ namespace Mesmerist.Mesmerist.Tricks
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
                 .AddTargetSavingThrowTrigger(ActionsBuilder.New().RemoveSelf(), onlyFail: true)
-                .AddComponent<AddTargetSavingThrowTriggerMesmerist>(c =>
+                .AddComponent<AddInitiatorSavingThrowTrigger>(c =>
                 {
+                    c.OnlyPass = false;
                     c.OnlyFail = true;
                     c.SpecificSave = true;
                     c.ChooseSave = SavingThrowType.Will;

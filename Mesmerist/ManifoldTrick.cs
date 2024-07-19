@@ -42,7 +42,7 @@ namespace Mesmerist.Mesmerist
             var feat = FeatureConfigurator.New(FeatName + "ManifoldTrick", Guids.ManifoldTrick)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.EnlargePersonMass.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.OverwhelmingPresence.Reference.Get().Icon)
                 .SetIsClassFeature(true)
                 .SetReapplyOnLevelUp(false)
                 .SetRanks(4)

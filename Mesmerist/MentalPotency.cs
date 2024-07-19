@@ -46,11 +46,12 @@ namespace Mesmerist.Mesmerist
 
         public static void Configure()
         {
-            
+
             var MentalPotency = FeatureConfigurator.New(FeatName, Guids.MentalPotency)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
+                .SetIcon(AbilityRefs.PowerWordBlind.Reference.Get().Icon)
                 .SetRanks(4)
                 .Configure();
 

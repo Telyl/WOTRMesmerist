@@ -34,7 +34,8 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
+                //.AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
+                .AddRemoveWhenCombatEnded()
                 .AddDamageResistancePhysical(value: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.UntypedStackable, min: 1))
                 .Configure();

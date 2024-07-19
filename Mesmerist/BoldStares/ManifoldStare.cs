@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Mesmerist.Utils;
 using CharacterOptionsPlus.Util;
+using BlueprintCore.Blueprints.References;
 
 namespace Mesmerist.Mesmerist.BoldStares
 {
@@ -19,6 +20,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
+                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 3)
                 .AddFeatureOnApply(Guids.ManifoldStarePainfulStare)
                 .Configure();
@@ -27,6 +29,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
+                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 9)
                 .AddPrerequisiteFeature(Guids.ManifoldStare)
                 .AddFeatureOnApply(Guids.ManifoldStarePainfulStare)
@@ -36,6 +39,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
+                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .AddPrerequisiteFeature(Guids.ManifoldStare2)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 15)
                 .AddFeatureOnApply(Guids.ManifoldStarePainfulStare)

@@ -163,6 +163,7 @@ namespace Mesmerist.Utils
         internal const string MisdirectionAbility = "44fbaa5d048c424eb011f9ec43d4f57c";
         internal const string MisdirectionBuff = "b6521c7bffc749ffa32500259e1ce76c";
         internal const string MisdirectionBuffEffect = "6621f4ea56584905a48a3f7f5553c5ac";
+        internal const string MisdirectionFeintFeat = "db37465564b64f329fa72e7df2fd4ae3";
 
         internal const string MeekFacade = "64d24e857d2c4a35baecab50c747ffac";
         internal const string MeekFacadeAbility = "72d24e857d2c4a35baecab50c747ffac";

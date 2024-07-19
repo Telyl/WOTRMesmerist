@@ -34,6 +34,7 @@ namespace Mesmerist.Mesmerist.BoldStares
             FeatureConfigurator.New(FeatName, Guids.Disorientation)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
+                .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .SetIsClassFeature()
                 .Configure();
 

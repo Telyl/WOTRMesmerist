@@ -17,6 +17,7 @@ using Kingmaker.Blueprints;
 using Mesmerist.NewComponents;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Utils.Types;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class LinkedReaction
@@ -37,8 +38,11 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
-                .AddComponent<AddLinkedReaction>()
+                .AddRemoveWhenCombatEnded()
+                //.AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
+                //.AddComponent<AddLinkedReaction>()
+                .AddContextStatBonus(Kingmaker.EntitySystem.Stats.StatType.Initiative, ContextValues.Rank(), Kingmaker.Enums.ModifierDescriptor.UntypedStackable)
+                .AddContextRankConfig(ContextRankConfigs.StatBonus(Kingmaker.EntitySystem.Stats.StatType.Charisma, min: 1))
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);

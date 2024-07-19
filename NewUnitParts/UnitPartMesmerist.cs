@@ -149,7 +149,6 @@ namespace Mesmerist.NewUnitParts
         public void DequeueTrick()
         {
             if (LeftTricks > 0) { return; }
-            Logger.Log("UnitPartMesmerist - Dequeuing");
             TrickData OldTrick = m_TrickHolderCache.TrackedTricks[0];
             this.m_TrickHolderCache.TrackedTricks.RemoveAt(0);
             OldTrick.Unit.Entity.Descriptor.RemoveFact(OldTrick.Buff);
@@ -157,7 +156,6 @@ namespace Mesmerist.NewUnitParts
 
         public void AddTrick(EntityRef<UnitEntityData> Unit, Buff Buff)
         {
-            Logger.Log("UnitPartMesmerist - PlaceTrick");
             this.m_TrickHolderCache.TrackedTricks.Add(new TrickData
             {
                 Unit = Unit,
@@ -166,7 +164,6 @@ namespace Mesmerist.NewUnitParts
         }
         public void RemoveTrick(EntityRef<UnitEntityData> Unit, Buff Buff)
         {
-            Logger.Log("UnitPartMesmerist - RemoveTrick");
             this.m_TrickHolderCache.TrackedTricks.Remove(entry => entry.Matches(Unit, Buff));
 
         }
@@ -199,7 +196,6 @@ namespace Mesmerist.NewUnitParts
 
         private BaseDamage CalculateDamage(int diceCount, DiceType diceType, EntityFact fact)
         {
-            Logger.Log("Creating damage");
             return new DamageDescription
             {
                 TypeDescription = new DamageTypeDescription()
@@ -264,12 +260,10 @@ namespace Mesmerist.NewUnitParts
         public void HandleBuffDidAdded(Buff buff)
         {
             if (!Tricks.Contains(buff.Blueprint.AssetGuid.ToString())) { return; }
-            Logger.Log("HandleBuffDidAdded - Buff is a Trick");
             
             // If we have an active entry, remove the trick and then add the trick to refresh place in List.
             if (HasActiveEntry(buff.Owner.Unit, buff))
             {
-                Logger.Log("HandleBuffDidAdded - Had Active Entry - Refreshing List");
                 RemoveTrick(buff.Owner.Unit, buff);
                 AddTrick(buff.Owner.Unit, buff);
                 return;
@@ -277,7 +271,6 @@ namespace Mesmerist.NewUnitParts
             // No active entry, make sure we have enough resources, check dequeue then add trick.
             else
             {
-                Logger.Log("HandleBuffDidAdded - New Entry");
                 DequeueTrick();
                 AddTrick(buff.Owner.Unit, buff);
             }
@@ -286,11 +279,9 @@ namespace Mesmerist.NewUnitParts
         public void HandleBuffDidRemoved(Buff buff)
         {
             if (!Tricks.Contains(buff.Blueprint.AssetGuid.ToString())) { return; }
-            Logger.Log("HandleBuffDidRemoved - Buff is a Trick");
 
             if (HasActiveEntry(buff.Owner.Unit, buff))
             {
-                Logger.Log("HandleBuffDidRemoved - Had Active Entry - Removing");
                 RemoveTrick(buff.Owner.Unit, buff);
                 return;
             }
