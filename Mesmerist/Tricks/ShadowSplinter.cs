@@ -34,10 +34,13 @@ namespace Mesmerist.Mesmerist.Tricks
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                //.AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
-                .AddRemoveWhenCombatEnded()
-                .AddDamageResistancePhysical(value: ContextValues.Rank())
-                .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.UntypedStackable, min: 1))
+                .AddDamageResistancePhysical(value: ContextValues.Rank(AbilityRankType.StatBonus), isStackable: true)
+                .AddDamageResistancePhysical(value: ContextValues.Constant(3), isStackable: true)
+                .AddDamageResistanceEnergy(value: ContextValues.Rank(AbilityRankType.StatBonus))
+                .AddDamageResistanceForce(value: ContextValues.Rank(AbilityRankType.StatBonus))
+                .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma, ModifierDescriptor.None, AbilityRankType.StatBonus))
+                .AddIncomingDamageTrigger(actions: ActionsBuilder.New().RemoveSelf())
+                //.AddIncomingDamageTrigger(actions: ActionsBuilder.New().DealDamage(damageType: DamageType), actionsOnInitiator: true)
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
