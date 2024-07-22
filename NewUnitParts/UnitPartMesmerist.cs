@@ -30,6 +30,7 @@ using Kingmaker.ElementsSystem;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using HarmonyLib;
 
 namespace Mesmerist.NewUnitParts
 {
@@ -66,7 +67,6 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                Logger.Log("Used Tricks: " + this.ActiveEntryCount().ToString());
                 return this.ActiveEntryCount();
             }
         }
@@ -74,7 +74,6 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                Logger.Log("Max Tricks: " + (1 + base.Owner.Progression.Features.GetRank(this.m_Settings.MaxTrick)).ToString());
                 return Math.Max(0, 1 + base.Owner.Progression.Features.GetRank(this.m_Settings.MaxTrick));
             }
         }
@@ -82,7 +81,6 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                Logger.Log("Left Tricks: " + (this.MaxTricks - this.UsedTricks).ToString());
                 return Math.Max(0, this.MaxTricks - this.UsedTricks);
             }
         }
@@ -143,6 +141,7 @@ namespace Mesmerist.NewUnitParts
         public void Setup(AddMesmeristPart settings)
         {
             this.m_TrickHolderCache = base.Owner.Ensure<UnitPartMesmeristTrickHolder>();
+            this.m_StareHolderCache = base.Owner.Ensure<UnitPartMesmeristStareHolder>();
             this.m_Settings = settings;
         }
 
@@ -184,14 +183,13 @@ namespace Mesmerist.NewUnitParts
 
         public void HandleNewCombatRound(UnitEntityData unit)
         {
-            if (unit.HasFact(PainfulStareCooldown)) {
-                unit.Descriptor.Buffs.RemoveFact(PainfulStareCooldown);
+            if (unit.Progression.Features.HasFact(PainfulStare)) {
+                foreach (var u in m_StareHolderCache.TrackedStare)
+                {
+                    u.Entity.Descriptor.RemoveFact(PainfulStareCooldown);
+                }
+                m_StareHolderCache.TrackedStare.Clear();
             }
-        }
-
-        public BlueprintGuid GetAbilityGuidByBuff(BlueprintBuff buff)
-        {
-            return new BlueprintGuid(new Guid(InvertedTricks[buff.AssetGuid.ToString()]));
         }
 
         private BaseDamage CalculateDamage(int diceCount, DiceType diceType, EntityFact fact)
@@ -250,6 +248,9 @@ namespace Mesmerist.NewUnitParts
                 });
             }
             evt.Target.AddBuff(PainfulStareCooldown, base.Owner, new Rounds(1).Seconds);
+            m_StareHolderCache.TrackedStare.Add(evt.Target);
+            Logger.Log(m_StareHolderCache.TrackedStare.ToString());
+            Logger.Log(m_StareHolderCache.TrackedStare.Count.ToString());
         }
 
         public void HandleUnitRest(UnitEntityData unit)
@@ -289,6 +290,6 @@ namespace Mesmerist.NewUnitParts
 
         private AddMesmeristPart m_Settings;
         private UnitPartMesmeristTrickHolder m_TrickHolderCache;
-        private Dictionary<string, string> InvertedTricks = new Dictionary<string, string>();
+        private UnitPartMesmeristStareHolder m_StareHolderCache;
     }
 }

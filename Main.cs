@@ -114,6 +114,7 @@ namespace Mesmerist
             }
             private static void ConfigureHomebrew()
             {
+                MythicAwesomeDisplay.Configure();
                 Logger.Log("Configuring homebrew.");
             }
             private static void ConfigureArchetypes()
@@ -132,7 +133,7 @@ namespace Mesmerist
                 //BleedingStare.Configure();
                 ExcoriatingStare.Configure();
                 FatiguingStare.Configure();
-                CompoundedPain.Configure();
+                //CompoundedPain.Configure();
             }
             private static void ConfigureSpells()
             {

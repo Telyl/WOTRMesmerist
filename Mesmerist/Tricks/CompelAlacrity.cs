@@ -15,6 +15,9 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using System.Drawing;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.BasicEx;
+using BlueprintCore.Actions.Builder.ContextEx;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -54,6 +57,9 @@ namespace Mesmerist.Mesmerist.Tricks
             BuffConfigurator.For(TrickBuff)
                 .AddTemporaryFeat(Guids.CompelAlacrityDimensionDoorFeat)
                 .AddRemoveWhenCombatEnded()
+                .Configure();
+
+            AbilityConfigurator.For(Guids.CompelAlacrityDimensionDoorAbility)
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);

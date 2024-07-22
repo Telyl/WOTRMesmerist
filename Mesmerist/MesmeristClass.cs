@@ -53,7 +53,7 @@ namespace Mesmerist.Mesmerist
             CharacterClassConfigurator.For(Guids.Mesmerist)
                 .SetLocalizedName(DisplayName)
                 .SetLocalizedDescription(Description)
-                .SetSkillPoints(3) // Medium is 4 + INT in TT
+                .SetSkillPoints(4) // Mesmerist is 6 + INT in TT
                 .SetHitDie(DiceType.D8)
                 .SetPrestigeClass(false)
                 .SetIsMythic(false)
@@ -68,16 +68,18 @@ namespace Mesmerist.Mesmerist
                 .SetIsArcaneCaster(false)
                 .SetStartingGold(411)
                 .SetStartingItems(
-                ItemWeaponRefs.ColdIronShortsword.Reference.Get(),
-                ItemArmorRefs.ScalemailStandard.Reference.Get(),
+                ItemWeaponRefs.ColdIronDagger.Reference.Get(),
+                ItemArmorRefs.StuddedStandard.Reference.Get(),
                 ItemEquipmentUsableRefs.PotionOfCureLightWounds.Reference.Get(),
                 ItemEquipmentUsableRefs.ScrollOfMageArmor.Reference.Get(),
                 ItemEquipmentUsableRefs.ScrollOfMageShield.Reference.Get())
-                .SetPrimaryColor(11)
-                .SetSecondaryColor(47)
+                .SetPrimaryColor(0)
+                .SetSecondaryColor(52)
                 .SetDifficulty(3)
-                .AddToMaleEquipmentEntities("1f538abc2802c5649b7ce177183f88c8", "54de61e669f916543b96da841357d2ff")
-                .AddToFemaleEquipmentEntities("dc822f0446c675a45809202953fa52a7", "67d82fc7662a522449d5dc8ed622e33a")
+                .AddToEquipmentEntities("b6909b0518714fa695f5f7f80761524a", "21d733c2019c4db780a172680e16198c")
+                .AddToMaleEquipmentEntities("ae5e71563e46899428dd0205914391db", "195163e220b10fb43be4d86038cdb72f")
+                .AddToFemaleEquipmentEntities("a212481fa5646dd428e4c7fd9f720c8d", "b9a1009f8f1387c4f891e37a24e189ca")
+                .AddToRecommendedAttributes(StatType.Charisma) 
                 .AddToClassSkills(
                 StatType.SkillPersuasion,
                 StatType.SkillMobility,

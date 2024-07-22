@@ -123,7 +123,7 @@
   },
   {
     "Key": "LinkedReaction.Description",
-    "enGB": "The subject of this trick, and the mesmerist, take on the other's initiative bonus for whomever's is higher."
+    "enGB": "The subject of this trick gains an initiative bonus equal to the Mesmerist's charisma modifier."
   },
   {
     "Key": "MeekFacade.Name",
@@ -132,7 +132,7 @@
   },
   {
     "Key": "MeekFacade.Description",
-    "enGB": "The subject magically seems like a weak target. The mesmerist's 'subject gains a +2 dodge bonus to AC against triggering enemy’s attacks. The bonus to AC increases by 1 for every 5 levels the mesmerist possesses. This is a mind-affecting compulsion effect."
+    "enGB": "The subject magically seems like a weak target. The mesmerist's 'subject gains a +2 dodge bonus to AC against triggering enemy’s attacks. The bonus to AC increases by 1 for every 5 levels the mesmerist possesses. This buff lasts until the the subject is hit. This is a mind-affecting compulsion effect."
   },
   {
     "Key": "Misdirection.Name",
@@ -141,7 +141,7 @@
   },
   {
     "Key": "Misdirection.Description",
-    "enGB": "An enemy’s perception of an attack by the subject shifts, making the foe unprepared to defend against the attack. The mesmerist can trigger this trick when the subject makes an attack or uses a spell that requires an attack roll. The mesmerist attempts a Bluff check to feint against a single target of the subject’s attack. Unlike a normal feint, this ability can be used on non-melee attacks. If the feint succeeds, the target of the attack is denied its Dexterity bonus to AC against the triggering attack. The target doesn’t suffer any additional effects that the mesmerist or the subject would cause on a normal feint or Bluff check. This is an illusion (glamer) effect."
+    "enGB": "An enemy’s perception of an attack by the subject shifts, making the foe unprepared to defend against the attack. The mesmerist can trigger this trick when the subject makes an attack that requires an attack roll. The mesmerist attempts a Bluff check to feint against a single target of the subject’s attack. Unlike a normal feint, this ability can be used on non-melee attacks. If the feint succeeds, the target of the attack is denied its Dexterity bonus to AC against the triggering attack. The target doesn’t suffer any additional effects that the mesmerist or the subject would cause on a normal feint or Bluff check. This is an illusion (glamer) effect."
   },
   {
     "Key": "MesmericMirror.Name",
@@ -177,7 +177,7 @@
   },
   {
     "Key": "ReflectFear.Description",
-    "enGB": "The mesmerist can trigger this trick when the subject succeeds against a will saving throw. When the trick is triggered, the enemy that cast a spell on the subject must succeed a saving throw or suffer from Castigate."
+    "enGB": "The mesmerist can trigger this trick when the subject fails against a will saving throw. When the trick is triggered, the enemy that cast a spell on the subject must succeed a saving throw or suffer from Castigate."
   },
   {
     "Key": "SeeThroughInvisibility.Name",
@@ -213,7 +213,7 @@
   },
   {
     "Key": "VanishArrow.Description",
-    "enGB": "With a flourish, the mesmerist snatches a projectile from an enemy before it can be shot. The mesmerist can trigger this trick when the subject is targeted by a ranged weapon attack, before the attack roll is made. If the attacker is making a full attack, this affects only one of the attacks."
+    "enGB": "With a flourish, the mesmerist snatches a projectile from an enemy before it can be shot. The mesmerist can trigger this trick when the subject is targeted by a ranged weapon attack, before the attack roll is made. If the attacker is making a full attack, this affects only one of the attacks. This trick lasts until the end of combat."
   },
   {
     "Key": "VoiceOfReason.Name",
@@ -222,7 +222,7 @@
   },
   {
     "Key": "VoiceOfReason.Description",
-    "enGB": "The subject can more easily pierce mind-affecting, charm, or compulsion based spells with the mesmerist’s aid. The subject receives an insight bonus on her saving throw to disbelieve the illusion or charm equal to the mesmerist’s Charisma modifier. This trick cannot be used for illusions that do not allow a saving throw."
+    "enGB": "The subject can more easily pierce mind-affecting, charm, or compulsion based spells with the mesmerist’s aid. The subject receives an insight bonus on her saving throw to disbelieve the illusion or charm equal to the mesmerist’s Charisma modifier. This trick lasts until the subject fails a will saving throw."
   },
   {
     "Key": "Disorientation.Name",

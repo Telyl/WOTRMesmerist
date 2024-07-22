@@ -62,7 +62,7 @@ namespace Mesmerist.Mesmerist
             BlueprintAbility hypnoticStareAbility = AbilityConfigurator.New(FeatName + "Ability", Guids.HypnoticStareAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetShouldTurnToTarget(true)
+                //.SetShouldTurnToTarget(true)
                 .SetLocalizedDuration(Duration.OneRound)
                 .SetIcon(AbilityRefs.EyebiteAbility.Reference.Get().Icon)
                 .SetRange(AbilityRange.Close)
@@ -76,7 +76,7 @@ namespace Mesmerist.Mesmerist
                     c.IgnoreDescriptors = SpellDescriptor.MindAffecting;
                     c.BecauseOfFact = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PsychicInception);
                 })
-                .AllowTargeting(friends: false, enemies: true)
+                //.AllowTargeting(friends: false, enemies: true)
                 .SetNotOffensive(true)
                 .AddAbilityEffectRunAction(
                    actions: ActionsBuilder.New()

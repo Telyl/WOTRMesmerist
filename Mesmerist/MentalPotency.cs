@@ -84,16 +84,33 @@ namespace Mesmerist.Mesmerist
             {
                 if (__instance.Context.MaybeCaster == null) { return; }
                 int rank = __instance.Context.MaybeCaster.Progression.Features.GetRank(BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MentalPotency));
+                var contextOwner = __instance.Context.MaybeOwner;
+                bool awesomeDisplay = contextOwner.Progression.Features.HasFact(BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.MythicAwesomeDisplay));
+                int awesomeDisplay_cha = contextOwner.Stats.Charisma.Bonus;
 
                 UnitEntityData unit = __instance.Target.Unit;
                 int num = __instance.Context[__instance.SharedValue];
                 if (__instance.AddSharedValue)
                 {
-                    __result = unit != null && unit.Descriptor.Progression.CharacterLevel <= __instance.HitDice + num + rank;
+                    if (awesomeDisplay)
+                    {
+                        __result = unit != null && (unit.Descriptor.Progression.CharacterLevel - awesomeDisplay_cha) <= __instance.HitDice + num + rank;
+                    }
+                    else
+                    {
+                        __result = unit != null && unit.Descriptor.Progression.CharacterLevel <= __instance.HitDice + num + rank;
+                    }
                 }
                 else
                 {
-                    __result = unit != null && unit.Descriptor.Progression.CharacterLevel <= __instance.HitDice + rank;
+                    if (awesomeDisplay)
+                    {
+                        __result = unit != null && (unit.Descriptor.Progression.CharacterLevel - awesomeDisplay_cha) <= __instance.HitDice + rank;
+                    }
+                    else
+                    {
+                        __result = unit != null && unit.Descriptor.Progression.CharacterLevel <= __instance.HitDice  + rank;
+                    }
                 }
             }
         }

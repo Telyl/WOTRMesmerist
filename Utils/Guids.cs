@@ -267,6 +267,7 @@ namespace Mesmerist.Utils
         #endregion
 
         #region Homebrew
+        internal const string MythicAwesomeDisplay = "99903520f75241beb88d932a13432720";
         internal static readonly (string guid, string displayName)[] Homebrews =
           new (string, string)[]
           {

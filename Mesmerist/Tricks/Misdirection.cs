@@ -17,6 +17,8 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using Kingmaker.Blueprints.Classes;
+using System.Text.RegularExpressions;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class Misdirection
@@ -35,7 +37,10 @@ namespace Mesmerist.Mesmerist.Tricks
             var CustomFeintFeature = FeatureConfigurator.New(FeatName + "Feint", Guids.MisdirectionFeintFeat)
                 .CopyFrom(FeatureRefs.Feint, c => c is not AddFacts)
                 .AddPlayerLeaveCombatTrigger(actions: ActionsBuilder.New().RemoveSelf())
+                .SetGroups()
                 .SetHideInUI(true)
+                .SetHideInCharacterSheetAndLevelUp(true)
+                .SetHideNotAvailibleInUI(true)
                 .Configure();
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
