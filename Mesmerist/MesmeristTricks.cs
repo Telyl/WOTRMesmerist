@@ -70,12 +70,14 @@ namespace Mesmerist.Mesmerist
                     c.m_HypnoticStare = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.HypnoticStareBuff);
                     c.m_Tricks = 
                        [Guids.AstoundingAvoidanceBuff,
+                        Guids.AstoundingAvoidanceBuffImproved,
                         Guids.CompelAlacrityBuff,
                         Guids.CursedSanctionBuff,
                         Guids.FalseFlankerBuff ,
                         Guids.FearsomeGuiseBuff ,
                         Guids.FleetInShadowsBuff ,
-                        Guids.FreeInBodyBuff ,
+                        Guids.FreeInBodyBuff,
+                        Guids.GoodHopeTrickBuff,
                         Guids.LevitationBufferBuff ,
                         Guids.LinkedReactionBuff ,
                         Guids.MeekFacadeBuff ,
@@ -85,6 +87,7 @@ namespace Mesmerist.Mesmerist
                         Guids.PsychosomaticSurgeBuff ,
                         Guids.ReflectFearBuff ,
                         Guids.SeeThroughInvisibilityBuff ,
+                        Guids.ShadowBlendBuff,
                         Guids.ShadowSplinterBuff ,
                         Guids.SpectralSmokeAreaEffect ,
                         Guids.VanishArrowBuff ,
@@ -116,7 +119,9 @@ namespace Mesmerist.Mesmerist
                 Guids.LinkedReaction, Guids.MeekFacade, Guids.MesmericMirror,
                 Guids.MesmericPantomime, Guids.Misdirection, Guids.PsychosomaticSurge,
                 Guids.ReflectFear, Guids.SeeThroughInvisibility, Guids.ShadowSplinter,
-                Guids.SpectralSmoke, Guids.VanishArrow, Guids.VoiceOfReason, Guids.CursedSanction, Guids.FreeInBody])
+                Guids.SpectralSmoke, Guids.VanishArrow, Guids.VoiceOfReason,
+                Guids.CursedSanction, Guids.FreeInBody, Guids.GoodHopeTrick,
+                Guids.ShadowBlend])
                 .Configure();
 
         }

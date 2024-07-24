@@ -49,6 +49,8 @@ namespace Mesmerist.Mesmerist
             VoiceOfReason.Configure();
             FreeInBody.Configure();
             CursedSanction.Configure();
+            GoodHope.Configure();
+            ShadowBlend.Configure();
 
             // Load Trick Variant Ability
             TrickVariants.Configure();
@@ -109,7 +111,8 @@ namespace Mesmerist.Mesmerist
                 .SetHideNotAvailibleInUI(false)
                 .SetRanks(1)
                 .SetReapplyOnLevelUp(false)
-                .SetIsClassFeature(false)
+                .SetIsClassFeature(true)
+                .AddToClasses(Guids.Mesmerist)
                 .SetForAllOtherClasses(false)
                 .SetLevelEntries(entries)
                 .Configure();

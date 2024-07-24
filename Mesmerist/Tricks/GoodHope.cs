@@ -12,30 +12,35 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Mesmerist.NewComponents;
-using Kingmaker.Blueprints.Classes.Spells;
-using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
+using static HarmonyLib.Code;
+using static Kingmaker.EntitySystem.EntityDataBase;
 namespace Mesmerist.Mesmerist.Tricks
 {
-    public class ShadowBlend
+    public class GoodHope
     {
-        private static readonly string FeatName = "ShadowBlend";
-        internal const string DisplayName = "ShadowBlend.Name";
-        private static readonly string Description = "ShadowBlend.Description";
+        private static readonly string FeatName = "GoodHopeTrick";
+        internal const string DisplayName = "GoodHopeTrick.Name";
+        private static readonly string Description = "GoodHopeTrick.Description";
+
+
+
 
         public static void Configure()
         {
 
-            var Icon = AbilityRefs.CamouflageAbility.Reference.Get().Icon;
-            var TrickBuff = Guids.ShadowBlendBuff;
-            var Ability = Guids.ShadowBlendAbility;
-            var Feat = Guids.ShadowBlend;
+            var Icon = AbilityRefs.GoodHope.Reference.Get().Icon;
+            var TrickBuff = Guids.GoodHopeTrickBuff;
+            var Ability = Guids.GoodHopeTrickAbility;
+            var Feat = Guids.GoodHopeTrick;
 
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
-                .AddModifyD20(takeBest: true, rule: RuleType.SkillCheck,
-                rollsAmount: 1, rerollOnlyIfFailed: true, dispellOnRerollFinished: true,
-                skill: [StatType.SkillStealth])
+                .AddStatBonus(Kingmaker.Enums.ModifierDescriptor.Morale, false, Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus, 2)
+                .AddStatBonus(Kingmaker.Enums.ModifierDescriptor.Morale, false, Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage, 2)
+                .AddBuffAllSavesBonus(Kingmaker.Enums.ModifierDescriptor.Morale, 2)
+                .AddBuffAllSkillsBonus(Kingmaker.Enums.ModifierDescriptor.Morale, 2)
+                .AddBuffAbilityRollsBonus(true, Kingmaker.Enums.ModifierDescriptor.Morale, value: 2)
                 .Configure();
             TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false, masterfulTrick: true);
             var feature = TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);

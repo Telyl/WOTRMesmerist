@@ -412,5 +412,23 @@
   {
     "Key": "MasterfulTricks.Description",
     "enGB": "At 12th level, the mesmerist gains access to more powerful tricks."
+  },
+  {
+    "Key": "GoodHopeTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Good Hope"
+  },
+  {
+    "Key": "GoodHopeTrick.Description",
+    "enGB": "The subject is instilled with powerful hope. The subject gains a +2 morale bonus on saving throws, attack rolls, ability checks, skill checks, and weapon damage rolls."
+  },
+  {
+    "Key": "ShadowBlend.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shadow Blend"
+  },
+  {
+    "Key": "ShadowBlend.Description",
+    "enGB": "The subject can reroll a failed D20 on a stealth check."
   }
 ]

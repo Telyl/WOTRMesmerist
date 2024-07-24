@@ -27,7 +27,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 Guids.MesmericPantomimeAbility, Guids.MisdirectionAbility, Guids.PsychosomaticSurgeAbility,
                 Guids.ReflectFearAbility, Guids.SeeThroughInvisibilityAbility, Guids.ShadowSplinterAbility,
                 Guids.SpectralSmokeAbility, Guids.VanishArrowAbility, Guids.VoiceOfReasonAbility, 
-                Guids.CursedSanctionAbility, Guids.FreeInBodyAbility })
+                Guids.CursedSanctionAbility, Guids.FreeInBodyAbility, Guids.GoodHopeTrickAbility, Guids.ShadowBlendAbility })
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)

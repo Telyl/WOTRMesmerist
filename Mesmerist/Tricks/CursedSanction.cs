@@ -67,7 +67,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist], false))
                 .Configure();
 
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, masterfulTrick: true);
             var feature = TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
             FeatureConfigurator.For(feature)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 12)

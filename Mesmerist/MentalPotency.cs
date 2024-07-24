@@ -96,7 +96,7 @@ namespace Mesmerist.Mesmerist
                     {
                         __result = unit != null && (unit.Descriptor.Progression.CharacterLevel - awesomeDisplay_cha) <= __instance.HitDice + num + rank;
                     }
-                    else
+                    else 
                     {
                         __result = unit != null && unit.Descriptor.Progression.CharacterLevel <= __instance.HitDice + num + rank;
                     }

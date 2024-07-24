@@ -249,8 +249,6 @@ namespace Mesmerist.NewUnitParts
             }
             evt.Target.AddBuff(PainfulStareCooldown, base.Owner, new Rounds(1).Seconds);
             m_StareHolderCache.TrackedStare.Add(evt.Target);
-            Logger.Log(m_StareHolderCache.TrackedStare.ToString());
-            Logger.Log(m_StareHolderCache.TrackedStare.Count.ToString());
         }
 
         public void HandleUnitRest(UnitEntityData unit)

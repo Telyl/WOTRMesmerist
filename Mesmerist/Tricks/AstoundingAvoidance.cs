@@ -19,6 +19,9 @@ using BlueprintCore.Conditions.Builder.BasicEx;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using static Kingmaker.UnitLogic.Mechanics.Conditions.ContextConditionInContext;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using System;
+using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 
 namespace Mesmerist.Mesmerist.Tricks
 {
@@ -33,6 +36,7 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = FeatureRefs.Evasion.Reference.Get().Icon;
+            var TrickBuffImproved = Guids.AstoundingAvoidanceBuffImproved;
             var TrickBuff = Guids.AstoundingAvoidanceBuff;
             var Ability = Guids.AstoundingAvoidanceAbility;
             var Feat = Guids.AstoundingAvoidance;
@@ -46,7 +50,16 @@ namespace Mesmerist.Mesmerist.Tricks
                 .AddTemporaryFeat(FeatureRefs.Evasion.Reference.Get())
                 .Configure();
 
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            TrickTools.CreateTrickTrickBuff(FeatName + "BuffImproved", TrickBuffImproved, DisplayName, Description, Icon);
+
+            BuffConfigurator.For(TrickBuffImproved)
+                .AddComponent<AddAstoundingAvoidanceTrick>(c => {
+                    c.AstoundingAvoidance = BlueprintTool.GetRef<BlueprintBuffReference>(TrickBuffImproved);
+                })
+                .AddTemporaryFeat(FeatureRefs.ImprovedEvasion.Reference.Get())
+                .Configure();
+
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, false, true, TrickBuffImproved);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
         }
     }

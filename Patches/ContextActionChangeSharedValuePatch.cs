@@ -59,7 +59,6 @@ namespace Mesmerist.Patches
                             if (awesomeDisplay)
                             {
                                 characterLevel = characterLevel - awesomeDisplay_cha;
-                                Logger.Log("Awesome Display Character Level");
                             }
                             value = num - characterLevel;
                             break;

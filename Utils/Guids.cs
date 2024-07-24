@@ -218,7 +218,15 @@ namespace Mesmerist.Utils
         internal const string AstoundingAvoidanceAbility = "7ab206b8bc9246579edcb442a2c1c13d";
         internal const string AstoundingAvoidanceBuff = "15fd15056b1f46ec8ebd1d493b760fc6";
         internal const string AstoundingAvoidanceBuffEffect = "ea416aba50d346d78a6f7a341e042af5";
-        internal const string AstoundingAvoidanceBuffEffectImproved = "bb2d94b964f64220b87cb199cdc7c7ed";
+        internal const string AstoundingAvoidanceBuffImproved = "bb2d94b964f64220b87cb199cdc7c7ed";
+
+        internal const string GoodHopeTrick = "ad93412e2e17495dbcd682543ceac869";
+        internal const string GoodHopeTrickAbility = "a714d1f3126645b6b983a9e87b0e367d";
+        internal const string GoodHopeTrickBuff = "4f1f3c753bca4bf1994cf3620857569d";
+
+        internal const string ShadowBlend = "8326510aa6f74791949fb15634e8c959";
+        internal const string ShadowBlendAbility = "e98354f8169c4b9d9fae71c878480a73";
+        internal const string ShadowBlendBuff = "9fdd98ae95e64caaa0977fb1fa9dff0b";
 
         internal static readonly (string guid, string displayName)[] Classes =
          new (string, string)[]
@@ -233,7 +241,7 @@ namespace Mesmerist.Utils
         internal const string FatiguingStare = "ebd5a296b7e14ac2b26e6f3f4005802c";
         internal const string FatiguingStareBuff = "472ecb8bf69c4fac981b72f7e3711d4c";
         internal const string FatiguingStareActivatableAbility = "437717b029c9409e82e5fc4246eda382";
-        internal const string ExcoriatingStare = "c70863265fef4c769872ea51a293294e";
+        internal const string ExcoriatingStare = "c70863265fef4c769872ea51a293294e"; 
         internal const string ExcoriatingStareBuff = "7af5348debda49189407eb4a090a5fc0";
         internal const string ExcoriatingStareActivatableAbility = "924e9676a4254aa48628602c817d19d1";
         internal const string BleedingStare = "1664b8b643314272892bf79f80518b5f";
