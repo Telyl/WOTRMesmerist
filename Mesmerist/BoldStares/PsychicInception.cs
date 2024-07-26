@@ -24,6 +24,7 @@ namespace Mesmerist.Mesmerist.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .AddUniqueBuff()
+                .SetFlags(Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi)
                 .AddComponent<AddPsychicInceptionSpells>(c =>
                 {
                     c.IgnoreDescriptors = SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion;

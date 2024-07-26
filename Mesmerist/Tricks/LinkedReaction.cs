@@ -32,19 +32,24 @@ namespace Mesmerist.Mesmerist.Tricks
         public static void Configure()
         {
             var Icon = AbilityRefs.OracleRevelationLifeLinkAbility.Reference.Get().Icon;
+            var TrickBuffMesmerist = Guids.LinkedReactionMesmeristBuff;
             var TrickBuff = Guids.LinkedReactionBuff;
             var Ability = Guids.LinkedReactionAbility;
             var Feat = Guids.LinkedReaction;
 
+            TrickTools.CreateTrickTrickBuff(FeatName + "MesmeristBuff", TrickBuffMesmerist, DisplayName, Description, Icon);
+            BuffConfigurator.For(TrickBuffMesmerist)
+                .AddRemoveWhenCombatEnded()
+                .SetFlags(BlueprintBuff.Flags.HiddenInUi)
+                .AddComponent<AddLinkedReaction>()
+                .Configure();
+
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
-                //.AddPlayerLeaveCombatTrigger(ActionsBuilder.New().RemoveSelf())
-                //.AddComponent<AddLinkedReaction>()
-                .AddContextStatBonus(Kingmaker.EntitySystem.Stats.StatType.Initiative, ContextValues.Rank(), Kingmaker.Enums.ModifierDescriptor.UntypedStackable)
-                .AddContextRankConfig(ContextRankConfigs.StatBonus(Kingmaker.EntitySystem.Stats.StatType.Charisma, min: 1))
+                .AddComponent<AddLinkedReaction>()
                 .Configure();
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, linkedreact: true);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
 
             AbilityConfigurator.For(Ability)

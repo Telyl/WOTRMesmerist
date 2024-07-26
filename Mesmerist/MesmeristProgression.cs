@@ -44,13 +44,13 @@ namespace Mesmerist.Mesmerist
             ReflectFear.Configure();
             SeeThroughInvisibility.Configure();
             ShadowSplinter.Configure();
-            SpectralSmoke.Configure();
+            //SpectralSmoke.Configure();
             VanishArrow.Configure();
             VoiceOfReason.Configure();
             FreeInBody.Configure();
             CursedSanction.Configure();
             GoodHope.Configure();
-            ShadowBlend.Configure();
+            ShadowBlend.Configure(); 
 
             // Load Trick Variant Ability
             TrickVariants.Configure();

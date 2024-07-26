@@ -91,6 +91,7 @@ namespace Mesmerist.Mesmerist
                 StatType.SkillUseMagicDevice,
                 StatType.SkillStealth,
                 StatType.SkillThievery)
+                //.AddToArchetypes(Guids.VexingDaredevil)
                 .Configure();
 
             BlueprintCharacterClassReference classref = mesmeristClass.ToReference<BlueprintCharacterClassReference>();

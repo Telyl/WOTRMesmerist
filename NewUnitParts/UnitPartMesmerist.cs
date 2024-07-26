@@ -31,12 +31,14 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.References;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using HarmonyLib;
+using Kingmaker.Controllers.Combat;
+using static Kingmaker.RuleSystem.RulebookEvent;
 
 namespace Mesmerist.NewUnitParts
 {
     public class UnitPartMesmerist : OldStyleUnitPart,
         IGlobalRulebookHandler<RuleDealDamage>, IRulebookHandler<RuleDealDamage>, IGlobalRulebookSubscriber,
-        IUnitNewCombatRoundHandler, IUnitRestHandler, IUnitBuffHandler,
+        IUnitNewCombatRoundHandler, IUnitRestHandler, IUnitBuffHandler, IUnitCombatHandler,
         ISubscriber,
         IInitiatorRulebookSubscriber
     {
@@ -116,8 +118,12 @@ namespace Mesmerist.NewUnitParts
             }
         }
 
-        public BlueprintBuff PainfulStareCooldown
+        public int PainfulStareCooldown
         {
+            set
+            {
+                this.m_Settings.PainfulStareCooldown = value;
+            }
             get
             {
                 return this.m_Settings.PainfulStareCooldown;
@@ -137,12 +143,36 @@ namespace Mesmerist.NewUnitParts
                 return this.m_Settings.ManifoldStare;
             }
         }
+        public int LinkedReactionInitiative
+        {
+            set
+            {
+                this.m_Settings.LinkedReactionInitiative = value;
+            }
+            get
+            {
+                return this.m_Settings.LinkedReactionInitiative;
+            }
+        }
+        public RuleRollD20 LinkedReactionD20
+        {
+            set
+            {
+                this.m_Settings.LinkedReactionD20 = value;
+            }
+            get
+            {
+                return this.m_Settings.LinkedReactionD20;
+            }
+        }
 
         public void Setup(AddMesmeristPart settings)
         {
             this.m_TrickHolderCache = base.Owner.Ensure<UnitPartMesmeristTrickHolder>();
             this.m_StareHolderCache = base.Owner.Ensure<UnitPartMesmeristStareHolder>();
             this.m_Settings = settings;
+            LinkedReactionInitiative = base.Owner.Stats.Initiative;
+            LinkedReactionD20 = RulebookEvent.Dice.D20;
         }
 
         public void DequeueTrick()
@@ -164,14 +194,11 @@ namespace Mesmerist.NewUnitParts
         public void RemoveTrick(EntityRef<UnitEntityData> Unit, Buff Buff)
         {
             this.m_TrickHolderCache.TrackedTricks.Remove(entry => entry.Matches(Unit, Buff));
-
         }
-
         public bool HasActiveEntry(EntityRef<UnitEntityData> Unit, Buff Buff)
         {
             return this.m_TrickHolderCache.TrackedTricks.Any(entry => entry.Matches(Unit, Buff));
         }
-
         public int ActiveEntryCount()
         {
             return this.m_TrickHolderCache.TrackedTricks.Count();
@@ -181,14 +208,26 @@ namespace Mesmerist.NewUnitParts
             this.m_TrickHolderCache.TrackedTricks.Clear();
         }
 
+        public void LinkedReaction()
+        {
+            foreach (TrickData trick in this.m_TrickHolderCache.TrackedTricks)
+            {
+                if (trick.Buff.Blueprint.AssetGuid.ToString() == Guids.LinkedReactionBuff)
+                {
+                    LinkedReactionInitiative = Math.Max(trick.Unit.Entity.Stats.Initiative, LinkedReactionInitiative);
+                    var dice = RulebookEvent.Dice.D20;
+                    if (LinkedReactionD20 <= dice) {
+                        LinkedReactionD20 = dice;
+                    }
+                }
+            }
+        }
+
         public void HandleNewCombatRound(UnitEntityData unit)
         {
             if (unit.Progression.Features.HasFact(PainfulStare)) {
-                foreach (var u in m_StareHolderCache.TrackedStare)
-                {
-                    u.Entity.Descriptor.RemoveFact(PainfulStareCooldown);
-                }
-                m_StareHolderCache.TrackedStare.Clear();
+                PainfulStareCooldown = 0;
+                //m_StareHolderCache.TrackedStare.Clear();
             }
         }
 
@@ -215,20 +254,16 @@ namespace Mesmerist.NewUnitParts
 
         public void OnEventDidTrigger(RuleDealDamage evt)
         {
-            int CooldownPainfulStare;
-
             if (!evt.Target.Descriptor.HasFact(HypnoticStare)) { return; }
             if (evt.Reason.Fact == base.Owner.Facts.Get(PainfulStare)) { return; }
-            
-            if (evt.Target.HasFact(PainfulStareCooldown)) { 
-                CooldownPainfulStare = evt.Target.GetFact(PainfulStareCooldown).GetRank(); }
-            else { 
-                CooldownPainfulStare = 0; }
-
-            if ( CooldownPainfulStare >= PainfulStareAttackNumber) { return; }
-            
+            if ( PainfulStareCooldown >= PainfulStareAttackNumber) { return; }
+            var dicetype = DiceType.D6;
+            if (base.Owner.HasFact(BlueprintTool.Get<BlueprintFeature>(Guids.PiercingStrike)))
+            {
+                dicetype = DiceType.D8;
+            }            
             var BonusDamage = CalculateDamage(PainfulStareBonusDamage, DiceType.One, base.Owner.Facts.Get(PainfulStare));
-            var MesmeristDamage = CalculateDamage(PainfulStareDiceDamage, DiceType.D6, base.Owner.Facts.Get(PainfulStare));
+            var MesmeristDamage = CalculateDamage(PainfulStareDiceDamage, dicetype, base.Owner.Facts.Get(PainfulStare));
             DamageBundle CombinedDamage = new DamageBundle([BonusDamage, MesmeristDamage]);
             
             if (base.Owner == evt.Initiator)
@@ -247,13 +282,16 @@ namespace Mesmerist.NewUnitParts
                     Reason = new RuleReason(base.Owner.Facts.Get(PainfulStare))
                 });
             }
-            evt.Target.AddBuff(PainfulStareCooldown, base.Owner, new Rounds(1).Seconds);
-            m_StareHolderCache.TrackedStare.Add(evt.Target);
+            PainfulStareCooldown += 1;
+            //m_StareHolderCache.TrackedStare.Add(evt.Target);
         }
 
         public void HandleUnitRest(UnitEntityData unit)
         {
             CleanupTrackedTricks();
+            PainfulStareCooldown = 0;
+            LinkedReactionInitiative = base.Owner.Stats.Initiative;
+            LinkedReactionD20 = RulebookEvent.Dice.D20;
         }
 
         public void HandleBuffDidAdded(Buff buff)
@@ -283,6 +321,24 @@ namespace Mesmerist.NewUnitParts
             {
                 RemoveTrick(buff.Owner.Unit, buff);
                 return;
+            }
+        }
+
+        public void HandleUnitJoinCombat(UnitEntityData unit)
+        {
+            if (unit.Progression.Features.HasFact(PainfulStare))
+            {
+                PainfulStareCooldown = 0;
+            }
+        }
+
+        public void HandleUnitLeaveCombat(UnitEntityData unit)
+        {
+            if (unit.Progression.Features.HasFact(PainfulStare))
+            {
+                PainfulStareCooldown = 0;
+                LinkedReactionInitiative = base.Owner.Stats.Initiative;
+                LinkedReactionD20 = RulebookEvent.Dice.D20;
             }
         }
 

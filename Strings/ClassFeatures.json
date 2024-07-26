@@ -123,7 +123,7 @@
   },
   {
     "Key": "LinkedReaction.Description",
-    "enGB": "The subject of this trick gains an initiative bonus equal to the Mesmerist's charisma modifier."
+    "enGB": "A hive mind allows the mesmerist and an ally to share one another’s reaction times (initiative). The mesmerist cannot implant this trick in themselves."
   },
   {
     "Key": "MeekFacade.Name",

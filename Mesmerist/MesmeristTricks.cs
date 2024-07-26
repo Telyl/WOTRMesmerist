@@ -64,7 +64,6 @@ namespace Mesmerist.Mesmerist
                     c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Mesmerist);
                     c.m_MaxTrick = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
                     c.m_TrickResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MesmeristTrickResource);
-                    c.m_PainfulStareCooldown = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.PainfulStareCooldown);
                     c.m_PainfulStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PainfulStare);
                     c.m_ManifoldStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStarePainfulStare);
                     c.m_HypnoticStare = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.HypnoticStareBuff);
@@ -89,7 +88,7 @@ namespace Mesmerist.Mesmerist
                         Guids.SeeThroughInvisibilityBuff ,
                         Guids.ShadowBlendBuff,
                         Guids.ShadowSplinterBuff ,
-                        Guids.SpectralSmokeAreaEffect ,
+                        //Guids.SpectralSmokeAreaEffect ,
                         Guids.VanishArrowBuff ,
                         Guids.VoiceOfReasonBuff];
                     c.m_Stares = new BlueprintFeatureReference[] {
@@ -119,7 +118,7 @@ namespace Mesmerist.Mesmerist
                 Guids.LinkedReaction, Guids.MeekFacade, Guids.MesmericMirror,
                 Guids.MesmericPantomime, Guids.Misdirection, Guids.PsychosomaticSurge,
                 Guids.ReflectFear, Guids.SeeThroughInvisibility, Guids.ShadowSplinter,
-                Guids.SpectralSmoke, Guids.VanishArrow, Guids.VoiceOfReason,
+                Guids.VanishArrow, Guids.VoiceOfReason, //Guids.SpectralSmoke,
                 Guids.CursedSanction, Guids.FreeInBody, Guids.GoodHopeTrick,
                 Guids.ShadowBlend])
                 .Configure();

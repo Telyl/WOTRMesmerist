@@ -26,7 +26,7 @@ namespace Mesmerist.Mesmerist.Tricks
                 Guids.LinkedReactionAbility, Guids.MeekFacadeAbility, Guids.MesmericMirrorAbility,
                 Guids.MesmericPantomimeAbility, Guids.MisdirectionAbility, Guids.PsychosomaticSurgeAbility,
                 Guids.ReflectFearAbility, Guids.SeeThroughInvisibilityAbility, Guids.ShadowSplinterAbility,
-                Guids.SpectralSmokeAbility, Guids.VanishArrowAbility, Guids.VoiceOfReasonAbility, 
+                Guids.VanishArrowAbility, Guids.VoiceOfReasonAbility, //Guids.SpectralSmokeAbility, 
                 Guids.CursedSanctionAbility, Guids.FreeInBodyAbility, Guids.GoodHopeTrickAbility, Guids.ShadowBlendAbility })
                 .Configure();
 

@@ -173,7 +173,7 @@ namespace Mesmerist.Utils
         internal const string LinkedReaction = "8e93ffb7495a4a8998794571aad414b5";
         internal const string LinkedReactionAbility = "9e93ffb7495a4a8998794571aad414b5";
         internal const string LinkedReactionBuff = "bf2edec5d37b44afaed42ae3e827842c";
-        internal const string LinkedReactionBuffEffect = "236454f5294b45a1944dabc95750b3f0";
+        internal const string LinkedReactionMesmeristBuff = "236454f5294b45a1944dabc95750b3f0";
 
         internal const string LevitationBuffer = "bf801e5b8d59473e8bf09c3b3ddab321";
         internal const string LevitationBufferAbility = "cf801e5b8d59473e8bf09c3b3ddab321";
@@ -233,6 +233,34 @@ namespace Mesmerist.Utils
          {
              (Mesmerist, MesmeristClass.DisplayName)
          };
+        #endregion
+        #region VexingDaredevil
+        internal const string VexingDaredevil = "fc9d4b4690a945cfbf41051d8ac49bfd";
+        internal const string ShimmeringBody = "36d3132733eb494abb9d383295695078";
+        internal const string DazzlingFeint = "65fec7340d484983888980fa7dc3c54f";
+        internal const string BlindingStrike = "a555ff38ffd0429c8042001e64ada3e0";
+        internal const string BlindingStrikeAbility = "86c04055eece41eeaa0d3252f43dbb4d";
+        internal const string BlindingStrikeBuff = "3a1d9cbb52a14acb88ef4b071d81781c";
+        internal const string CombatManeuver = "20cd2dd2942d4c97b41322bfaed026e5";
+        internal const string CombatManeuverAbility = "3d9d1c8b0a5d43f582b6b5f364aa3896";
+        internal const string CombatManeuverBuff = "48d930aed7084b15ae206c4ae7c9a37d";
+        internal const string CriticalStrike = "2aacd300161348439edc89731fecf19c";
+        internal const string CriticalStrikeAbility = "e3b4924168d945c283f70591b32f8677";
+        internal const string CriticalStrikeBuff = "e4a0362dfbba4098ae059674cb2412b3";
+        internal const string Outmanuever = "52717e937f684b3c89d7cb015ddcc3a4";
+        internal const string OutmanueverAbility = "8f91dc5793e04c46895b80f08f9d49f1";
+        internal const string OutmanueverBuff = "55a78d16609a40d0bfb2e997727c01db";
+        internal const string PiercingStrike = "87f06d488b934edea884fd4c0ec25e55";
+        internal const string PiercingStrikeAbility = "5255e09bc78d406582f30467806015f1";
+        internal const string PiercingStrikeBuff = "effc67ee06c44cf782fa3be8f4462965";
+        internal const string SloppyDefense = "cfa9a4b776c547b69755977987e93457";
+        internal const string SloppyDefenseAbility = "f158e9926a9b42f4a7a2430a28366d31";
+        internal const string SloppyDefenseBuff = "41d6376a0e7842ac94ac3c47de7b3f0b";
+        internal const string SurpriseStrike = "d52fd8d74e3f405bb9e44f2678388fc9";
+        internal const string SurpriseStrikeAbility = "d5f7a0e441d84d8a8e8db7fdf8e0da7a";
+        internal const string SurpriseStrikeBuff = "3ee0ddbd940f416e89d1650199c6b049";
+        internal const string SurpriseStrikeBuffEffect = "6d050d9b5ab74eaebe930e6a970b1177";
+
         #endregion
         //** Feats **//
         #region Features

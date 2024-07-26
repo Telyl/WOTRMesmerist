@@ -1,3 +1,20 @@
 [
-
+  {
+    "Key": "VexingDaredevil.Name",
+    "ProcessTemplates": false,
+    "enGB": "Vexing Daredevil"
+  },
+  {
+    "Key": "VexingDaredevil.Description",
+    "enGB": "Vexing daredevils train their psychic powers for combat, specializing in momentarily blinding and confusing their foes with sudden feints and tricks."
+  },
+  {
+    "Key": "ShimmeringBody.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shimmering Body"
+  },
+  {
+    "Key": "ShimmeringBody.Description",
+    "enGB": "The Vexing Daredevil is under the constant effect of Blur."
+  }
 ]

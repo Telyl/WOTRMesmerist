@@ -70,6 +70,8 @@ namespace Mesmerist.Mesmerist
                 .SetCanTargetSelf(false)
                 .SetCanTargetFriends(false)
                 .SetCanTargetEnemies(true)
+                .AddAbilityTargetIsAlly(true)
+                .AddAbilityTargetHasFact(inverted:true, fromCaster:true, checkedFacts: [hypnoticStareBuff])
                 .SetSpellDescriptor(SpellDescriptor.MindAffecting)
                 .AddComponent<AddPsychicInceptionAllowGaze>(c =>
                 {

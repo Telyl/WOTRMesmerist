@@ -40,7 +40,8 @@ namespace Mesmerist.Utils
 
         public static BlueprintAbility CreateTrickAbility(string FeatName, string GUID,
             string DisplayName, string Description, UnityEngine.Sprite Icon, string TrickBuff, 
-            string FeatureRequired, bool permanent = true, bool astoundingAvoidance = false, string TrickBuffImproved = "", bool masterfulTrick = false)
+            string FeatureRequired, bool permanent = true, bool astoundingAvoidance = false, string TrickBuffImproved = "", bool masterfulTrick = false,
+            bool linkedreact = false)
         {
             var ability = AbilityConfigurator.New(FeatName, GUID)
                  .SetDisplayName(DisplayName)
@@ -78,6 +79,12 @@ namespace Mesmerist.Utils
                  .AddAbilityEffectRunAction(ActionsBuilder.New().Conditional(ConditionsBuilder.New().CasterHasFact(Guids.MasterfulTricks, true),
                     ifTrue: ActionsBuilder.New().ApplyBuffPermanent(TrickBuff, true, false, false, true),
                     ifFalse: ActionsBuilder.New().ApplyBuffPermanent(TrickBuffImproved, true, false, false, true)))
+                 .Configure();
+            }
+            else if (linkedreact)
+            {
+                AbilityConfigurator.For(GUID)
+                 .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(TrickBuff, true, false, false, true).ApplyBuffPermanent(Guids.LinkedReactionMesmeristBuff, true, false, false, true, false, true, true))
                  .Configure();
             }
             else if (!permanent)

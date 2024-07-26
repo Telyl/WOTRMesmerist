@@ -13,6 +13,8 @@ using Mesmerist.Mesmerist;
 using CharacterOptionsPlus.Util;
 using Mesmerist.Features;
 using Mesmerist.Mesmerist.BoldStares;
+using Mesmerist.Mesmerist.VexingDaredevil;
+using Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint;
 
 
 namespace Mesmerist
@@ -89,6 +91,7 @@ namespace Mesmerist
 
                     // First strings
                     LocalizationTool.LoadEmbeddedLocalizationPacks(
+                      "Mesmerist.Strings.Archetypes.json",
                       "Mesmerist.Strings.Homebrew.json",
                       "Mesmerist.Strings.Features.json",
                       "Mesmerist.Strings.Settings.json",
@@ -98,6 +101,7 @@ namespace Mesmerist
                     // Then settings
                     Settings.Init();
                     ConfigureClasses();
+                    ConfigureArchetypes();
                     ConfigureHomebrew();
                     ConfigureFeats();
                     ConfigureSpells();
@@ -120,6 +124,8 @@ namespace Mesmerist
             private static void ConfigureArchetypes()
             {
                 Logger.Log("Configuring archetypes.");
+                //VexingDaredevil.Configure();
+                //DazzlingFeint.Configure();
             }
             private static void ConfigureClassFeats()
             {

@@ -10,6 +10,7 @@ using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
@@ -76,16 +77,20 @@ namespace Mesmerist.NewUnitParts
                 return hypnoticStare.Get();
             }
         }
-        public BlueprintBuff PainfulStareCooldown
+        public int PainfulStareCooldown
         {
+            set
+            {
+                this.m_PainfulStareCooldown = value;
+            }
             get
             {
-                BlueprintBuffReference painfulStareCooldown = this.m_PainfulStareCooldown;
+                int? painfulStareCooldown = this.m_PainfulStareCooldown;
                 if (painfulStareCooldown == null)
                 {
-                    return null;
+                    return 0;
                 }
-                return painfulStareCooldown.Get();
+                return (int)painfulStareCooldown;
             }
         }
         public BlueprintFeature PainfulStare
@@ -117,6 +122,35 @@ namespace Mesmerist.NewUnitParts
             get
             {
                 return this.m_Tricks;
+            }
+        }
+
+        public int LinkedReactionInitiative
+        {
+            set
+            {
+                this.m_LinkedReactionInitiative = value;
+            }
+            get
+            {
+                int? lri = this.m_LinkedReactionInitiative;
+                if (lri == null)
+                {
+                    return 0;
+                }
+                return (int)lri;
+            }
+        }
+
+        public RuleRollD20 LinkedReactionD20
+        {
+            set
+            {
+                this.m_LinkedReactionD20 = value;
+            }
+            get
+            {
+                return this.m_LinkedReactionD20;                
             }
         }
 
@@ -222,7 +256,7 @@ namespace Mesmerist.NewUnitParts
 
         [SerializeField]
         [FormerlySerializedAs("PainfulStareCooldown")]
-        public BlueprintBuffReference m_PainfulStareCooldown;
+        public int? m_PainfulStareCooldown;
 
         [SerializeField]
         [FormerlySerializedAs("PainfulStare")]
@@ -240,6 +274,14 @@ namespace Mesmerist.NewUnitParts
         [SerializeField]
         [FormerlySerializedAs("Tricks")]
         public string[] m_Tricks = new string[0];
+
+        [SerializeField]
+        [FormerlySerializedAs("LinkedReactionInitiative")]
+        public int? m_LinkedReactionInitiative;
+
+        [SerializeField]
+        [FormerlySerializedAs("LinkedReactionD20")]
+        public RuleRollD20 m_LinkedReactionD20;
 
         [SerializeField]
         [FormerlySerializedAs("Stares")]
