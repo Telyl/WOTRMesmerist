@@ -262,6 +262,12 @@ namespace Mesmerist.Utils
         internal const string SurpriseStrikeBuffEffect = "6d050d9b5ab74eaebe930e6a970b1177";
 
         #endregion
+        #region VexingTrickster
+        internal const string VexingTrickster = "5e6334ebfbd34f809613b75fd0ca034e";
+        internal const string ManifoldHijinks = "c674c48d452d43e593e6878730db782a";
+        internal const string ConsummateTrickster = "0d846b9a3ec646aba707e860014d47ae";
+        internal const string TrickstersEgo = "972ee56f4ac14518b454fbf1b771002e";
+        #endregion
         //** Feats **//
         #region Features
         internal const string IntensePain = "a1cd3fdb625c48daa8326f02a7bdd3b4";

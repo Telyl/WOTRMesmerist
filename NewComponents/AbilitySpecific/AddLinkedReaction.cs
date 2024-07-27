@@ -25,36 +25,28 @@ namespace Mesmerist.NewComponents.AbilitySpecific
     [TypeId("f5a934142ccc4ebc882b3acf896ad81f")]
     public class AddLinkedReaction : UnitFactComponentDelegate,
         IInitiatorRulebookHandler<RuleInitiativeRoll>, IRulebookHandler<RuleInitiativeRoll>,
-        IInitiatorRulebookHandler<RuleApplySpell>, IRulebookHandler<RuleApplySpell>,
         ISubscriber, IInitiatorRulebookSubscriber
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddLinkedReaction));
-        private static UnitEntityData mesmerist;
+        private static UnitPartLinkedReaction unitPartLinkedReaction;
 
-
+        public override void OnTurnOn()
+        {
+            unitPartLinkedReaction = base.Context.MaybeCaster.Ensure<UnitPartLinkedReaction>();
+            unitPartLinkedReaction.TrackedReactions.Add(base.Owner);
+        }
+        public override void OnTurnOff()
+        {
+            unitPartLinkedReaction = base.Context.MaybeCaster.Ensure<UnitPartLinkedReaction>();
+            unitPartLinkedReaction.TrackedReactions.Remove(base.Owner);
+        }
         public void OnEventAboutToTrigger(RuleInitiativeRoll evt)
         {
-            try
-            {
-                var unitpart = mesmerist.Ensure<UnitPartMesmerist>();
-                unitpart.LinkedReaction();
-                evt.m_OverrideResult = unitpart.LinkedReactionD20 + unitpart.LinkedReactionInitiative;
-            }
-            catch
-            {
-                return;
-            }
+            Logger.Log("I am in RULEINITIATIVEROLL");
+            Logger.Log("Unit is: " + evt.Reason.SourceUnit.ToString());
+            evt.m_OverrideResult = unitPartLinkedReaction.LinkedReaction();
         }
-
-        public void OnEventAboutToTrigger(RuleApplySpell evt) {
-        }
-
         public void OnEventDidTrigger(RuleInitiativeRoll evt) {
-        }
-
-        public void OnEventDidTrigger(RuleApplySpell evt)
-        {
-            mesmerist = evt.Context.MaybeCaster;
         }
     }
 }

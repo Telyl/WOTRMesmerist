@@ -29,138 +29,18 @@ namespace Mesmerist.NewUnitParts
     public class AddMesmeristPart : UnitFactComponentDelegate<AddMesmeristPartData>
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(AddMesmeristPart));
-        public BlueprintCharacterClass Class
+        public BlueprintFeature ManifoldHijinks
         {
             get
             {
-                BlueprintCharacterClassReference @class = this.m_Class;
-                if (@class == null)
+                BlueprintFeatureReference manifoldHijinks = this.m_ManifoldHijinks;
+                if (manifoldHijinks == null)
                 {
                     return null;
                 }
-                return @class.Get();
+                return manifoldHijinks.Get();
             }
-        }
-        public BlueprintFeature MaxTrick
-        {
-            get
-            {
-                BlueprintFeatureReference maxTrick = this.m_MaxTrick;
-                if (maxTrick == null)
-                {
-                    return null;
-                }
-                return maxTrick.Get();
-            }
-        }
-        public BlueprintAbilityResource TrickResource
-        {
-            get
-            {
-                BlueprintAbilityResourceReference trickResource = this.m_TrickResource;
-                if (trickResource == null)
-                {
-                    return null;
-                }
-                return trickResource.Get();
-            }
-        }
-        public BlueprintBuff HypnoticStare
-        {
-            get
-            {
-                BlueprintBuffReference hypnoticStare = this.m_HypnoticStare;
-                if (hypnoticStare == null)
-                {
-                    return null;
-                }
-                return hypnoticStare.Get();
-            }
-        }
-        public int PainfulStareCooldown
-        {
-            set
-            {
-                this.m_PainfulStareCooldown = value;
-            }
-            get
-            {
-                int? painfulStareCooldown = this.m_PainfulStareCooldown;
-                if (painfulStareCooldown == null)
-                {
-                    return 0;
-                }
-                return (int)painfulStareCooldown;
-            }
-        }
-        public BlueprintFeature PainfulStare
-        {
-            get
-            {
-                BlueprintFeatureReference painfulStare = this.m_PainfulStare;
-                if (painfulStare == null)
-                {
-                    return null;
-                }
-                return painfulStare.Get();
-            }
-        }
-        public BlueprintFeature ManifoldStare
-        {
-            get
-            {
-                BlueprintFeatureReference manifoldStare = this.m_ManifoldStare;
-                if (manifoldStare == null)
-                {
-                    return null;
-                }
-                return manifoldStare.Get();
-            }
-        }
-        public string[] Tricks
-        {
-            get
-            {
-                return this.m_Tricks;
-            }
-        }
-
-        public int LinkedReactionInitiative
-        {
-            set
-            {
-                this.m_LinkedReactionInitiative = value;
-            }
-            get
-            {
-                int? lri = this.m_LinkedReactionInitiative;
-                if (lri == null)
-                {
-                    return 0;
-                }
-                return (int)lri;
-            }
-        }
-
-        public RuleRollD20 LinkedReactionD20
-        {
-            set
-            {
-                this.m_LinkedReactionD20 = value;
-            }
-            get
-            {
-                return this.m_LinkedReactionD20;                
-            }
-        }
-
-        public ReferenceArrayProxy<BlueprintFeature, BlueprintFeatureReference> Stares
-        {
-            get
-            {
-                return this.m_Stares;
-            }
-        }
+        }  
 
         public override void OnActivate()
         {
@@ -175,38 +55,40 @@ namespace Mesmerist.NewUnitParts
             {
                 return;
             }
-            base.Owner.Ensure<UnitPartMesmerist>().Setup(this);
+            //base.Owner.Ensure<UnitPartMesmerist>().Setup(this);
+            base.Owner.Ensure<UnitPartMesmerist>();
+            base.Owner.Ensure<UnitPartTricks>().Setup(this);
             base.Data.Initialized = true;
         }
 
         public override void OnPostLoad()
         {
             base.OnPostLoad();
-            UnitPartMesmerist unitPartMesmerist = base.Owner.Get<UnitPartMesmerist>();
-            if (unitPartMesmerist == null)
+            UnitPartTricks unitPartTricks = base.Owner.Get<UnitPartTricks>();
+            if (unitPartTricks == null)
             {
                 return;
             }
-            unitPartMesmerist.Setup(this);
-            unitPartMesmerist.CleanupTrackedTricks();
+            unitPartTricks.Setup(this);
+            /*unitPartTricks.CleanupTrackedTricks();
 
             foreach (Buff buff in base.Owner.Descriptor.Buffs)
             {
-                if (Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
+                if (m_Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
                 {
-                    unitPartMesmerist.AddTrick(base.Owner, buff);
+                    unitPartTricks.AddTrick(base.Owner, buff.Blueprint.AssetGuid);
                 }
             }
             foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
             {
                 foreach (Buff buff in unitEntityData.Descriptor.Buffs)
                 {
-                    if (Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
+                    if (m_Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
                     {
-                        unitPartMesmerist.AddTrick(unitEntityData, buff);
+                        unitPartTricks.AddTrick(unitEntityData, buff.Blueprint.AssetGuid);
                     }
                 }
-            }
+            }*/
         }
 
                 // Token: 0x0600CC34 RID: 52276 RVA: 0x003517A9 File Offset: 0x0034F9A9
@@ -216,75 +98,15 @@ namespace Mesmerist.NewUnitParts
             if (base.Data.Initialized)
             {
                 base.Owner.Remove<UnitPartMesmerist>();
+                base.Owner.Remove<UnitPartTricks>();
                 base.Data.Initialized = false;
             }
         }
-        
-        // Token: 0x0600CC35 RID: 52277 RVA: 0x003517D8 File Offset: 0x0034F9D8
-        [Obsolete]
-        public override void ApplyValidation(ValidationContext context, int parentIndex)
-        {
-            base.ApplyValidation(context, parentIndex);
-            if (!this.Class)
-            {
-                context.AddError("Class is missing", Array.Empty<object>());
-            }
-            if (!this.MaxTrick)
-            {
-                context.AddError("MaxTrick is missing", Array.Empty<object>());
-            }
-            if (!this.TrickResource)
-            {
-                context.AddError("TrickResource is missing", Array.Empty<object>());
-            }
-        }
-
-        // Token: 0x040087C7 RID: 34759
-        [SerializeField]
-        [FormerlySerializedAs("Class")]
-        public BlueprintCharacterClassReference m_Class;
-
-        // Token: 0x040087C9 RID: 34761
-        [SerializeField]
-        [FormerlySerializedAs("MaxTrick")]
-        public BlueprintFeatureReference m_MaxTrick;
-
-        // Token: 0x040087CB RID: 34763
-        [SerializeField]
-        [FormerlySerializedAs("TrickResource")]
-        public BlueprintAbilityResourceReference m_TrickResource;
 
         [SerializeField]
-        [FormerlySerializedAs("PainfulStareCooldown")]
-        public int? m_PainfulStareCooldown;
-
-        [SerializeField]
-        [FormerlySerializedAs("PainfulStare")]
-        public BlueprintFeatureReference m_PainfulStare;
-
-        [SerializeField]
-        [FormerlySerializedAs("PainfulStareCooldown")]
-        public BlueprintFeatureReference m_ManifoldStare;
-
-        [SerializeField]
-        [FormerlySerializedAs("HypnoticStare")]
-        public BlueprintBuffReference m_HypnoticStare;
-
-        // Token: 0x040087D0 RID: 34768
-        [SerializeField]
-        [FormerlySerializedAs("Tricks")]
-        public string[] m_Tricks = new string[0];
-
-        [SerializeField]
-        [FormerlySerializedAs("LinkedReactionInitiative")]
-        public int? m_LinkedReactionInitiative;
-
-        [SerializeField]
-        [FormerlySerializedAs("LinkedReactionD20")]
-        public RuleRollD20 m_LinkedReactionD20;
-
-        [SerializeField]
-        [FormerlySerializedAs("Stares")]
-        public BlueprintFeatureReference[] m_Stares = new BlueprintFeatureReference[0];
+        [FormerlySerializedAs("ManifoldHijinks")]
+        public BlueprintFeatureReference m_ManifoldHijinks;
+        public BlueprintFeatureReference m_ManifoldTrick;
+        public string[] m_Tricks;
     }
 }

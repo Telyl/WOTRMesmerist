@@ -9,6 +9,8 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Mesmerist.NewComponents.AbilitySpecific;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Conditions.Builder;
 
 namespace Mesmerist.Features
 {

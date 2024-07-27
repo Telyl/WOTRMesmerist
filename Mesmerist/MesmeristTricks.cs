@@ -61,12 +61,8 @@ namespace Mesmerist.Mesmerist
                 .SetHideInUI(true)
                 .AddComponent<AddMesmeristPart>(c =>
                 {
-                    c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Mesmerist);
-                    c.m_MaxTrick = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
-                    c.m_TrickResource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>(Guids.MesmeristTrickResource);
-                    c.m_PainfulStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PainfulStare);
-                    c.m_ManifoldStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStarePainfulStare);
-                    c.m_HypnoticStare = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.HypnoticStareBuff);
+                    c.m_ManifoldHijinks = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldHijinks);
+                    c.m_ManifoldTrick = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
                     c.m_Tricks = 
                        [Guids.AstoundingAvoidanceBuff,
                         Guids.AstoundingAvoidanceBuffImproved,
@@ -91,19 +87,6 @@ namespace Mesmerist.Mesmerist
                         //Guids.SpectralSmokeAreaEffect ,
                         Guids.VanishArrowBuff ,
                         Guids.VoiceOfReasonBuff];
-                    c.m_Stares = new BlueprintFeatureReference[] {
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Disorientation),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Disquiet),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Distracted),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Infiltration),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Lethality),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStare),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Nightmare),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PsychicInception),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.SappedMagic),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Sluggishness),
-                        BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.Timidity),
-                    };
                 })
                 .AddAbilityResources(resource: mtresource, restoreAmount: true, useThisAsResource: false)
                 .Configure();

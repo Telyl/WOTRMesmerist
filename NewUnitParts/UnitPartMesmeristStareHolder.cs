@@ -13,7 +13,7 @@ using Kingmaker.UnitLogic.Buffs;
 
 namespace Mesmerist.NewUnitParts
 {
-    internal class UnitPartMesmeristStareHolder : OldStyleUnitPart
+    public class UnitPartMesmeristStareHolder : OldStyleUnitPart
     {
         [JsonProperty]
 

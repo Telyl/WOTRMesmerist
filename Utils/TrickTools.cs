@@ -21,6 +21,7 @@ using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Mesmerist.Mesmerist.Tricks;
 using Mesmerist.NewComponents;
+using Mesmerist.NewComponents.AbilitySpecific;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 
 namespace Mesmerist.Utils
@@ -35,6 +36,7 @@ namespace Mesmerist.Utils
                 .SetDescription(Description)
                 .SetIcon(Icon)
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
+                .AddComponent<AddTrickComponent>()
                 .Configure();
         }
 

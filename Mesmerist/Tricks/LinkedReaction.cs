@@ -37,20 +37,17 @@ namespace Mesmerist.Mesmerist.Tricks
             var Ability = Guids.LinkedReactionAbility;
             var Feat = Guids.LinkedReaction;
 
-            TrickTools.CreateTrickTrickBuff(FeatName + "MesmeristBuff", TrickBuffMesmerist, DisplayName, Description, Icon);
-            BuffConfigurator.For(TrickBuffMesmerist)
-                .AddRemoveWhenCombatEnded()
-                .SetFlags(BlueprintBuff.Flags.HiddenInUi)
-                .AddComponent<AddLinkedReaction>()
-                .Configure();
-
             TrickTools.CreateTrickTrickBuff(FeatName + "Buff", TrickBuff, DisplayName, Description, Icon);
             BuffConfigurator.For(TrickBuff)
                 .AddRemoveWhenCombatEnded()
                 .AddComponent<AddLinkedReaction>()
                 .Configure();
-            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat, linkedreact: true);
+            TrickTools.CreateTrickAbility(FeatName + "Ability", Ability, DisplayName, Description, Icon, TrickBuff, Feat);
             TrickTools.CreateTrickFeature(FeatName, Feat, DisplayName, Description, Ability);
+
+            FeatureConfigurator.For(Feat)
+                .AddComponent<AddLinkedReaction>()
+                .Configure();
 
             AbilityConfigurator.For(Ability)
             .SetCanTargetSelf(false)

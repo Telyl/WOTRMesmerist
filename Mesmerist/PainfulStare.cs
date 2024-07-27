@@ -29,6 +29,9 @@ using System.Threading.Tasks;
 using static UnityModManagerNet.UnityModManager.ModEntry;
 using CharacterOptionsPlus.Util;
 using BlueprintCore.Actions.Builder.BasicEx;
+using Mesmerist.NewUnitParts;
+using BlueprintCore.Utils;
+using Mesmerist.NewComponents.AbilitySpecific;
 
 namespace Mesmerist.Mesmerist
 {
@@ -43,14 +46,6 @@ namespace Mesmerist.Mesmerist
 
         public static void Configure()
         {
-            /*BuffConfigurator.New(FeatName + "StaticCooldown", Guids.PainfulStareStaticCooldown)
-                .SetFlags(BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.RemoveOnRest)
-                .SetStacking(StackingType.Replace)
-                .SetDescription(Description)
-                .SetDisplayName(DisplayName)
-                .SetIcon(AbilityRefs.WitchHexEvilEyeACAbility.Reference.Get().Icon)
-                .SetRanks(0)
-                .Configure();*/
 
             BuffConfigurator.New(FeatName + "Cooldown", Guids.PainfulStareCooldown)
                 //.SetFlags(BlueprintBuff.Flags.HiddenInUi | BlueprintBuff.Flags.RemoveOnRest)
@@ -93,6 +88,15 @@ namespace Mesmerist.Mesmerist
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.WitchHexEvilEyeAttackAbility.Reference.Get().Icon)
                 .SetIsClassFeature(true)
+                .AddComponent<AddPainfulStareComponent>(c =>
+                {
+                    c.m_Class = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Guids.Mesmerist);
+                    c.m_ManifoldStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldStarePainfulStare);
+                    c.m_PainfulStare = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PainfulStare);
+                    c.m_IntensePain = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.IntensePain);
+                    c.m_PiercingStrike = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.PiercingStrike);
+                    c.m_HypnoticStare = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.HypnoticStareBuff);
+    })
                 .SetReapplyOnLevelUp(false)
                 .SetRanks(10)
                 .Configure();
