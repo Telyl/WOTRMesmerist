@@ -63,30 +63,8 @@ namespace Mesmerist.Mesmerist
                 {
                     c.m_ManifoldHijinks = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldHijinks);
                     c.m_ManifoldTrick = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ManifoldTrick);
-                    c.m_Tricks = 
-                       [Guids.AstoundingAvoidanceBuff,
-                        Guids.AstoundingAvoidanceBuffImproved,
-                        Guids.CompelAlacrityBuff,
-                        Guids.CursedSanctionBuff,
-                        Guids.FalseFlankerBuff ,
-                        Guids.FearsomeGuiseBuff ,
-                        Guids.FleetInShadowsBuff ,
-                        Guids.FreeInBodyBuff,
-                        Guids.GoodHopeTrickBuff,
-                        Guids.LevitationBufferBuff ,
-                        Guids.LinkedReactionBuff ,
-                        Guids.MeekFacadeBuff ,
-                        Guids.MesmericMirrorBuff ,
-                        Guids.MesmericPantomimeBuff ,
-                        Guids.MisdirectionBuff ,
-                        Guids.PsychosomaticSurgeBuff ,
-                        Guids.ReflectFearBuff ,
-                        Guids.SeeThroughInvisibilityBuff ,
-                        Guids.ShadowBlendBuff,
-                        Guids.ShadowSplinterBuff ,
-                        //Guids.SpectralSmokeAreaEffect ,
-                        Guids.VanishArrowBuff ,
-                        Guids.VoiceOfReasonBuff];
+                    c.m_BouncingTrick = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.BouncingTrickBuff);
+                    c.m_ReapplyTrick = BlueprintTool.GetRef<BlueprintBuffReference>(Guids.ReapplyTrickBuff);
                 })
                 .AddAbilityResources(resource: mtresource, restoreAmount: true, useThisAsResource: false)
                 .Configure();

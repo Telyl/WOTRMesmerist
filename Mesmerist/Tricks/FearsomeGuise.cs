@@ -17,6 +17,7 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.Blueprints.Classes.Spells;
 namespace Mesmerist.Mesmerist.Tricks
 {
     public class FearsomeGuise

@@ -73,12 +73,14 @@ namespace Mesmerist.Mesmerist
                 ItemEquipmentUsableRefs.PotionOfCureLightWounds.Reference.Get(),
                 ItemEquipmentUsableRefs.ScrollOfMageArmor.Reference.Get(),
                 ItemEquipmentUsableRefs.ScrollOfMageShield.Reference.Get())
-                .SetPrimaryColor(0)
-                .SetSecondaryColor(52)
+                .SetPrimaryColor(75) //44
+                .SetSecondaryColor(9) //47
                 .SetDifficulty(3)
                 .AddToEquipmentEntities("b6909b0518714fa695f5f7f80761524a", "21d733c2019c4db780a172680e16198c")
-                .AddToMaleEquipmentEntities("ae5e71563e46899428dd0205914391db", "195163e220b10fb43be4d86038cdb72f")
-                .AddToFemaleEquipmentEntities("a212481fa5646dd428e4c7fd9f720c8d", "b9a1009f8f1387c4f891e37a24e189ca")
+                .AddToMaleEquipmentEntities("ae1e5e4fc4163094ba8bc06dec79d325", "e2e011242ea29fd4593d6cfbd06c8a2b")
+                .AddToFemaleEquipmentEntities("46d879e169045334190df70681415f35", "b2fe1a2aa7dd60c41a185dfdfca2e33f")
+                //.AddToMaleEquipmentEntities("ae5e71563e46899428dd0205914391db", "195163e220b10fb43be4d86038cdb72f")
+                //.AddToFemaleEquipmentEntities("a212481fa5646dd428e4c7fd9f720c8d", "b9a1009f8f1387c4f891e37a24e189ca")
                 .AddToRecommendedAttributes(StatType.Charisma)
                 .AddPrerequisiteIsPet(not: true, hideInUI: true)
                 .AddToClassSkills(

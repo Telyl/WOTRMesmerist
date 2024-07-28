@@ -41,7 +41,12 @@ namespace Mesmerist.Mesmerist.VexingTrickster
                 .AddToRemoveFeatures(6, Guids.TouchTreatmentModerate)
                 .AddToRemoveFeatures(10, Guids.TouchTreatmentGreater)
                 .AddToRemoveFeatures(14, Guids.TouchTreatmentBreak)
-                .AddToAddFeatures(1, FeatureRefs.MartialWeaponProficiency.Reference.Get())
+                .AddToAddFeatures(1, Guids.ConsummateTrickster)
+                .AddToAddFeatures(2, Guids.TrickstersEgo)
+                .AddToAddFeatures(3, Guids.TrickFeats)
+                .AddToAddFeatures(6, Guids.ManifoldHijinks)
+                .AddToAddFeatures(10, Guids.TrickFeats)
+                .AddToAddFeatures(14, Guids.ManifoldHijinks)
                 .Configure();
 
         }

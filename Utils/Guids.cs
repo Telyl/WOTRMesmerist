@@ -267,6 +267,20 @@ namespace Mesmerist.Utils
         internal const string ManifoldHijinks = "c674c48d452d43e593e6878730db782a";
         internal const string ConsummateTrickster = "0d846b9a3ec646aba707e860014d47ae";
         internal const string TrickstersEgo = "972ee56f4ac14518b454fbf1b771002e";
+
+        internal const string TrickFeats = "77229e2108084575b3b35c0982a1c7a2";
+
+        internal const string SpellTrick = "2403d75d08d7484f915d1642002a6a8f";
+        internal const string SpellTrickAbility = "7c52195581f948539164cfd39133ecd9";
+        internal const string SpellTrickBuff = "239ebe0016194e12b3d6c3fac2d26cb1";
+
+        internal const string BouncingTrick = "0b12c2459f334fb4b13357f515e5c908";
+        internal const string BouncingTrickAbility = "cd355059e64e4627886624d569e13706";
+        internal const string BouncingTrickBuff = "6355c9faec6e4683890d27ba27a6389a";
+
+        internal const string ReapplyTrick = "bcd0cabf308a48c896e33089a74b64aa";
+        internal const string ReapplyTrickAbility = "937bb1a9afd347f49aab01f09565ace7";
+        internal const string ReapplyTrickBuff = "9dc485c0003b4c3eaa3e9ec7ab35a855";
         #endregion
         //** Feats **//
         #region Features

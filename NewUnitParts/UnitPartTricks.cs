@@ -14,6 +14,17 @@ using Kingmaker.Blueprints;
 using BlueprintCore.Blueprints.Configurators.AI;
 using CharacterOptionsPlus.Util;
 using static Kingmaker.EntitySystem.Properties.BaseGetter.ListPropertyGetter;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.Designers;
+using Kingmaker.Utility;
+using Kingmaker;
+using Kingmaker.RuleSystem.Rules.Abilities;
+using Kingmaker.RuleSystem;
+using Kingmaker.RuleSystem.Rules;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Controllers;
+using System.Net;
 
 namespace Mesmerist.NewUnitParts
 {
@@ -55,6 +66,8 @@ namespace Mesmerist.NewUnitParts
         }
         public BlueprintFeature ManifoldHijinks => this.settings.m_ManifoldHijinks?.Get();
         public BlueprintFeature ManifoldTrick => this.settings.m_ManifoldTrick?.Get();
+        public EntityFact BouncingTrick => Owner.GetFact(this.settings.m_BouncingTrick);
+        public EntityFact ReapplyTrick => Owner.GetFact(this.settings.m_ReapplyTrick);
         public void Setup(AddMesmeristPart settings)
         {
             this.settings = settings;
@@ -68,7 +81,7 @@ namespace Mesmerist.NewUnitParts
         {
             this.m_TrickHolderCache.TrackedTricks.Clear();
         }
-        public void AddTrick(EntityRef<UnitEntityData> Unit, BlueprintGuid Guid)
+        public void AddTrick(EntityRef<UnitEntityData> Unit, BlueprintGuid Guid, bool duplicate = false)
         {
 
             if (ActiveEntryCountUnit(Unit) > ManifoldHijinksRank)
@@ -84,15 +97,45 @@ namespace Mesmerist.NewUnitParts
                 var buff = GetBuffByTrickData(oldTrick);
                 oldTrick.Unit.Entity.RemoveFact(buff);
             }
+
+            var bounceTrick = CheckBounceTrick(duplicate);
+            var reapplyTrick = CheckReapplyTrick(duplicate);
+
             this.m_TrickHolderCache.TrackedTricks.Add(new TrickData
             {
                 Unit = Unit,
                 Guid = Guid,
+                ShouldBounce = bounceTrick,
+                ShouldReapply = reapplyTrick,
+
             });
         }
-        public void RemoveTrick(EntityRef<UnitEntityData> Unit, BlueprintGuid Guid)
+        public UnitEntityData TrickBounceToUnit(EntityRef<UnitEntityData> OriginalUnit)
         {
+            UnitEntityData Unit = OriginalUnit;
+            foreach (var unit in Game.Instance.Player.PartyAndPets)
+            {
+                if (unit == OriginalUnit) { continue; }
+                else if (ActiveEntryCountUnit(unit) > ManifoldHijinksRank) {
+                    continue;
+                }
+                else
+                {
+                    Unit = unit;
+                    break;
+                }
+            }
+            if (Unit == OriginalUnit) { return null; }
+            return Unit;
+        }
+        public TrickData RemoveTrick(EntityRef<UnitEntityData> Unit, BlueprintGuid Guid)
+        {
+            TrickData trickdata = this.m_TrickHolderCache.TrackedTricks.
+                Where(entry => entry.Matches(Unit,Guid)).
+                FirstOrDefault();
+
             this.m_TrickHolderCache.TrackedTricks.RemoveAll(entry => entry.Matches(Unit, Guid));
+            return trickdata;
         }
         public int ActiveEntryCount()
         {
@@ -116,7 +159,26 @@ namespace Mesmerist.NewUnitParts
                     .FirstOrDefault();
         }
 
+        public bool CheckBounceTrick(bool duplicate)
+        {
+            if (duplicate) { return false; }
+            if (BouncingTrick != null) {
+                return true; }
+            return false;
+        }
+
+        public bool CheckReapplyTrick(bool duplicate)
+        {
+            if (duplicate) { return false; }
+            if (ReapplyTrick != null) {
+                return true; }
+            return false;
+        }
+
+
         private UnitPartMesmeristTrickHolder m_TrickHolderCache;
         private AddMesmeristPart settings;
+        private bool bounced = false;
+        private EntityFact FilterNoFact;
     }
 }

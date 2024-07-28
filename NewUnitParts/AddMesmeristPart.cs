@@ -46,8 +46,6 @@ namespace Mesmerist.NewUnitParts
         {
 
         }
-
-                // Token: 0x0600CC32 RID: 52274 RVA: 0x0035170C File Offset: 0x0034F90C
         public override void OnTurnOn()
         {
             base.OnTurnOn();
@@ -55,7 +53,6 @@ namespace Mesmerist.NewUnitParts
             {
                 return;
             }
-            //base.Owner.Ensure<UnitPartMesmerist>().Setup(this);
             base.Owner.Ensure<UnitPartMesmerist>();
             base.Owner.Ensure<UnitPartTricks>().Setup(this);
             base.Data.Initialized = true;
@@ -70,25 +67,6 @@ namespace Mesmerist.NewUnitParts
                 return;
             }
             unitPartTricks.Setup(this);
-            /*unitPartTricks.CleanupTrackedTricks();
-
-            foreach (Buff buff in base.Owner.Descriptor.Buffs)
-            {
-                if (m_Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
-                {
-                    unitPartTricks.AddTrick(base.Owner, buff.Blueprint.AssetGuid);
-                }
-            }
-            foreach (UnitEntityData unitEntityData in Game.Instance.Player.ActiveCompanions)
-            {
-                foreach (Buff buff in unitEntityData.Descriptor.Buffs)
-                {
-                    if (m_Tricks.Contains(buff.Blueprint.AssetGuid.ToString()))
-                    {
-                        unitPartTricks.AddTrick(unitEntityData, buff.Blueprint.AssetGuid);
-                    }
-                }
-            }*/
         }
 
                 // Token: 0x0600CC34 RID: 52276 RVA: 0x003517A9 File Offset: 0x0034F9A9
@@ -107,6 +85,7 @@ namespace Mesmerist.NewUnitParts
         [FormerlySerializedAs("ManifoldHijinks")]
         public BlueprintFeatureReference m_ManifoldHijinks;
         public BlueprintFeatureReference m_ManifoldTrick;
-        public string[] m_Tricks;
+        public BlueprintBuffReference m_BouncingTrick;
+        public BlueprintBuffReference m_ReapplyTrick;
     }
 }

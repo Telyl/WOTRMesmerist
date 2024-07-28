@@ -52,5 +52,68 @@
   {
     "Key": "ManifoldStare.Description",
     "enGB": "Benefits: You can trigger your painful stare one additional time per round.\nSpecial:  This feat can be taken once by a 3rd-level mesmerist, and again when he reaches 9th and 15th levels. Its effects stack. A mesmerist can take this feat in place of a bold stare improvement."
+  },
+  {
+    "Key": "TrickFeats.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trick Features"
+  },
+  {
+    "Key": "TrickFeats.Description",
+    "enGB": "Allows the mesmerist to modify their tricks by altering or expanding how they can be used."
+  },
+  {
+    "Key": "BouncingTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bouncing Trick"
+  },
+  {
+    "Key": "BouncingTrick.Description",
+    "enGB": "After you trigger a bouncing trick, you can redirect the trick to one target within 30 feet as an immediate action. The redirected trick is immediately implanted in the new target’s mind, as if it were the original target. "
+  },
+  {
+    "Key": "SpellTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spell Trick"
+  },
+  {
+    "Key": "SpellTrick.Description",
+    "enGB": "Allows the mesmerist to cast their next spell as a swift action at the cost of one of their mesmerist tricks."
+  },
+  {
+    "Key": "ReapplyTrick.Name",
+    "ProcessTemplates": false,
+    "enGB": "Reapply Trick"
+  },
+  {
+    "Key": "ReapplyTrick.Description",
+    "enGB": "After you trigger a trick, the trick is reapplied to the target."
+  },
+  {
+    "Key": "ConsummateTrickster.Name",
+    "ProcessTemplates": false,
+    "enGB": "Consummate Trickster"
+  },
+  {
+    "Key": "ConsummateTrickster.Description",
+    "enGB": "A vexing trickster gains a +1 bonus on Bluff, Thievery, and Stealth checks. This bonus increases by 1 for every 3 mesmerist levels."
+  },
+  {
+    "Key": "TrickstersEgo.Name",
+    "ProcessTemplates": false,
+    "enGB": "Trickster's Ego'"
+  },
+  {
+    "Key": "TrickstersEgo.Description",
+    "enGB": "At 2nd level, a vexing trickster gains Combat Expertise as a bonus feat. If his Intelligence score is less than 13, his Intelligence counts as 13 for the purpose of meeting the prerequisites for combat feats."
+  },
+  {
+    "Key": "ManifoldHijinks.Name",
+    "ProcessTemplates": false,
+    "enGB": "Manifold Hijinks'"
+  },
+  {
+    "Key": "ManifoldHijinks.Description",
+    "enGB": "At 6th level, the vexing trickster learns to implant multiple mesmerist tricks that have been modified by trick feats (henceforth called modified tricks) in his targets’ minds simultaneously. At 6th level, the vexing trickster can implant up to two modified mesmerist tricks in a single target simultaneously. At 14th level, he can implant up to three modified mesmerist tricks in a single target simultaneously. This ability doesn’t allow a mesmerist to apply more than one trick feat to a single mesmerist trick at a time."
   }
 ]

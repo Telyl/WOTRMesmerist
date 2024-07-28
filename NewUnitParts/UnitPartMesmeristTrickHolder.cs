@@ -22,6 +22,8 @@ namespace Mesmerist.NewUnitParts
         {
             public EntityRef<UnitEntityData> Unit;
             public BlueprintGuid Guid;
+            public bool ShouldBounce;
+            public bool ShouldReapply;
 
             public bool Matches(UnitEntityData Unit, BlueprintGuid TrickID)
             {

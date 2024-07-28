@@ -9,6 +9,15 @@
     "enGB": "Vexing daredevils train their psychic powers for combat, specializing in momentarily blinding and confusing their foes with sudden feints and tricks."
   },
   {
+    "Key": "VexingTrickster.Name",
+    "ProcessTemplates": false,
+    "enGB": "Vexing Trickster"
+  },
+  {
+    "Key": "VexingTrickster.Description",
+    "enGB": "While many mesmerists are called to embrace the art of deception, using their mind-binding powers to make their foes believe that even the most outrageous realities are actually true, others indulge in the various hijinks their power enables. These mesmerists are known as vexing tricksters."
+  },
+  {
     "Key": "ShimmeringBody.Name",
     "ProcessTemplates": false,
     "enGB": "Shimmering Body"

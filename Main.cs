@@ -15,6 +15,8 @@ using Mesmerist.Features;
 using Mesmerist.Mesmerist.BoldStares;
 using Mesmerist.Mesmerist.VexingDaredevil;
 using Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint;
+using Mesmerist.Mesmerist.TrickFeats;
+using Mesmerist.Mesmerist.VexingTrickster;
 
 
 namespace Mesmerist
@@ -100,10 +102,10 @@ namespace Mesmerist
 
                     // Then settings
                     Settings.Init();
+                    ConfigureFeats();
                     ConfigureClasses();
                     ConfigureArchetypes();
                     ConfigureHomebrew();
-                    ConfigureFeats();
                     ConfigureSpells();
                 }
                 catch (Exception e)
@@ -125,21 +127,31 @@ namespace Mesmerist
             {
                 Logger.Log("Configuring archetypes.");
                 //VexingDaredevil.Configure();
-                //DazzlingFeint.Configure();
+                VexingTrickster.Configure();
             }
             private static void ConfigureClassFeats()
             {
                 Logger.Log("Configuring class features.");
+                
+
             }
             private static void ConfigureFeats()
             {
-                Logger.Log("Configuring features.");
+                Logger.Log("Configuring features."); 
                 IntensePain.Configure();
                 DemoralizingStare.Configure();
                 //BleedingStare.Configure();
                 ExcoriatingStare.Configure();
                 FatiguingStare.Configure();
                 //CompoundedPain.Configure();
+                BouncingTrick.Configure();
+                ReapplyTrick.Configure();
+                SpellTrick.Configure();
+                TrickFeats.Configure();
+                DazzlingFeint.Configure();
+                ConsummateTrickster.Configure();
+                TrickstersEgo.Configure();
+                ManifoldHijinks.Configure();
             }
             private static void ConfigureSpells()
             {
