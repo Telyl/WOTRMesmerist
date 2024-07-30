@@ -31,7 +31,9 @@ namespace Mesmerist.Mesmerist.TrickFeats
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(FeatureRefs.QuickenSpellFeat.Reference.Get().Icon)
-                .AddMetamagicOnNextSpell(false, metamagic: Kingmaker.UnitLogic.Abilities.Metamagic.Quicken)
+                //.AddMetamagicOnNextSpell(false, metamagic: Kingmaker.UnitLogic.Abilities.Metamagic.Quicken)
+                .AddFreeActionSpell(checkAbilityType: true, abilityType: Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Spell)
+                .AddAbilityUseTrigger(action: ActionsBuilder.New().RemoveSelf(), type: Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Spell)
                 .Configure();
 
             AbilityConfigurator.New(FeatName + "Ability", Guids.SpellTrickAbility)

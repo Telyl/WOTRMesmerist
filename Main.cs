@@ -126,7 +126,7 @@ namespace Mesmerist
             private static void ConfigureArchetypes()
             {
                 Logger.Log("Configuring archetypes.");
-                //VexingDaredevil.Configure();
+                VexingDaredevil.Configure();
                 VexingTrickster.Configure();
             }
             private static void ConfigureClassFeats()

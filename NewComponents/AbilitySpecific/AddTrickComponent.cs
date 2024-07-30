@@ -15,6 +15,8 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem;
 using static Kingmaker.Armies.TacticalCombat.Grid.TacticalCombatGrid;
 using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.EntitySystem.Persistence;
+using Kingmaker;
 
 namespace Mesmerist.NewComponents.AbilitySpecific
 {
@@ -31,23 +33,28 @@ namespace Mesmerist.NewComponents.AbilitySpecific
         public override void OnTurnOff() {
             var unitPartTricks = base.Context.MaybeCaster.Ensure<UnitPartTricks>();
             var trickdata = unitPartTricks.RemoveTrick(base.Owner, base.OwnerBlueprint.AssetGuid);
-            if (trickdata.ShouldBounce)
+            
+            if (Game.Instance.SaveManager.CurrentState != SaveManager.State.Saving)
             {
-                var unitbounce = unitPartTricks.TrickBounceToUnit(base.Owner);
-                Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.Context.SourceAbilityContext.Ability, unitbounce)
+                if (trickdata.ShouldBounce) 
                 {
-                    IsDuplicateSpellApplied = true
-                });
-                base.Context.SourceAbilityContext.Ability.Spend();
-            }
-            else if (trickdata.ShouldReapply)
-            {
-                Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.Context.SourceAbilityContext.Ability, base.Owner)
+                    var unitbounce = unitPartTricks.TrickBounceToUnit(base.Owner);
+                    Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.Context.SourceAbilityContext.Ability, unitbounce)
+                    {
+                        IsDuplicateSpellApplied = true
+                    });
+                    base.Context.SourceAbilityContext.Ability.Spend();
+                }
+                else if (trickdata.ShouldReapply)
                 {
-                    IsDuplicateSpellApplied = true
-                });
-                base.Context.SourceAbilityContext.Ability.Spend();
+                    Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.Context.SourceAbilityContext.Ability, base.Owner)
+                    {
+                        IsDuplicateSpellApplied = true
+                    });
+                    base.Context.SourceAbilityContext.Ability.Spend();
+                }
             }
+            
         }
 
     }

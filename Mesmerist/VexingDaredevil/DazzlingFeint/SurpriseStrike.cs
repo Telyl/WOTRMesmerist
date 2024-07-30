@@ -10,6 +10,7 @@ using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
+using Mesmerist.NewActions;
 using Mesmerist.Utils;
 using System;
 using System.Collections.Generic;
@@ -26,18 +27,11 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
         private static readonly string Description = "SurpriseStrike.Description";
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "BuffEffects", Guids.SurpriseStrikeBuffEffect)
-                .SetDisplayName(DisplayName)
-                .SetDescription(Description)
-                .AddBuffExtraAttack(false, number: 1, penalized: true)
-                .SetIcon(AbilityRefs.Haste.Reference.Get().Icon)
-                .Configure();
-
             BuffConfigurator.New(FeatName + "Buff", Guids.SurpriseStrikeBuff)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
                 .Conditional(ConditionsBuilder.New().UseOr().HasFact(BuffRefs.FeintBuffEnemy.Reference.Get()).HasFact(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
-                 ifTrue: ActionsBuilder.New().ApplyBuff(Guids.SurpriseStrikeBuffEffect, ContextDuration.Fixed(1))),
+                 ifTrue: ActionsBuilder.New().Add<ContextActionSurpriseStrike>()),
                 onlyOnFirstHit: true)
                 .Configure();
 
@@ -45,7 +39,7 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.FeintAbility.Reference.Get().Icon)
-                .SetBuff(Guids.SurpriseStrikeBuffEffect)
+                .SetBuff(Guids.SurpriseStrikeBuff)
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.SurpriseStrike)

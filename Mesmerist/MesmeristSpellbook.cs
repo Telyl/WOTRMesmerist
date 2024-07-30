@@ -34,7 +34,7 @@ namespace Mesmerist.Mesmerist
                 BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.Resistance.ToString()),
                 BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.Stabilize.ToString()),
                 BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.Virtue.ToString()),
-
+                BlueprintTool.GetRef<BlueprintAbilityReference>(AbilityRefs.DismissAreaEffect.ToString())
             };
             return spelllist;
         }

@@ -78,7 +78,7 @@
   },
   {
     "Key": "SpellTrick.Description",
-    "enGB": "Allows the mesmerist to cast their next spell as a swift action at the cost of one of their mesmerist tricks."
+    "enGB": "Allows the mesmerist to cast their next spell as a free action at the cost of one of their mesmerist tricks."
   },
   {
     "Key": "ReapplyTrick.Name",
@@ -115,5 +115,14 @@
   {
     "Key": "ManifoldHijinks.Description",
     "enGB": "At 6th level, the vexing trickster learns to implant multiple mesmerist tricks that have been modified by trick feats (henceforth called modified tricks) in his targets’ minds simultaneously. At 6th level, the vexing trickster can implant up to two modified mesmerist tricks in a single target simultaneously. At 14th level, he can implant up to three modified mesmerist tricks in a single target simultaneously. This ability doesn’t allow a mesmerist to apply more than one trick feat to a single mesmerist trick at a time."
+  },
+  {
+    "Key": "SloppyDefense.Name",
+    "ProcessTemplates": false,
+    "enGB": "Sloppy Defense'"
+  },
+  {
+    "Key": "SloppyDefense.Description",
+    "enGB": "The vexing daredevil’s attacks effortlessly penetrate the target’s defenses; she gains a +1 circumstance bonus on her next attack roll for every 5 mesmerist levels she has."
   }
 ]

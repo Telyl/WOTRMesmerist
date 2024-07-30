@@ -83,9 +83,10 @@ namespace Mesmerist.NewUnitParts
         }
         public void AddTrick(EntityRef<UnitEntityData> Unit, BlueprintGuid Guid, bool duplicate = false)
         {
-
+            Logger.Log("Adding Trick!");
             if (ActiveEntryCountUnit(Unit) > ManifoldHijinksRank)
             {
+                Logger.Log("Manifold Hijinks: " + ManifoldHijinksRank.ToString());
                 var trickdata = GetTrickDataByUnit(Unit);
                 var buff = GetBuffByTrickData(trickdata);
                 trickdata.Unit.Entity.RemoveFact(buff);
@@ -93,6 +94,7 @@ namespace Mesmerist.NewUnitParts
 
             else if (RemainingTricks == 0)
             {
+                Logger.Log("Am I in Remaining Tricks?");
                 var oldTrick = this.m_TrickHolderCache.TrackedTricks[0];
                 var buff = GetBuffByTrickData(oldTrick);
                 oldTrick.Unit.Entity.RemoveFact(buff);
@@ -135,6 +137,7 @@ namespace Mesmerist.NewUnitParts
                 FirstOrDefault();
 
             this.m_TrickHolderCache.TrackedTricks.RemoveAll(entry => entry.Matches(Unit, Guid));
+            Logger.Log("Removed trick!");
             return trickdata;
         }
         public int ActiveEntryCount()

@@ -256,10 +256,10 @@ namespace Mesmerist.Utils
         internal const string SloppyDefense = "cfa9a4b776c547b69755977987e93457";
         internal const string SloppyDefenseAbility = "f158e9926a9b42f4a7a2430a28366d31";
         internal const string SloppyDefenseBuff = "41d6376a0e7842ac94ac3c47de7b3f0b";
+        internal const string SloppyDefenseBuffEffect = "6d050d9b5ab74eaebe930e6a970b1177";
         internal const string SurpriseStrike = "d52fd8d74e3f405bb9e44f2678388fc9";
         internal const string SurpriseStrikeAbility = "d5f7a0e441d84d8a8e8db7fdf8e0da7a";
         internal const string SurpriseStrikeBuff = "3ee0ddbd940f416e89d1650199c6b049";
-        internal const string SurpriseStrikeBuffEffect = "6d050d9b5ab74eaebe930e6a970b1177";
 
         #endregion
         #region VexingTrickster

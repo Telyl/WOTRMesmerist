@@ -29,7 +29,7 @@ namespace Mesmerist.Mesmerist.VexingTrickster
             var entries = LevelEntryBuilder.New()
                 .AddEntry(1, FeatureRefs.MartialWeaponProficiency.Reference.Get());
 
-            ArchetypeConfigurator.New(ArchetypeName, Guids.VexingDaredevil, Guids.Mesmerist)
+            ArchetypeConfigurator.New(ArchetypeName, Guids.VexingTrickster, Guids.Mesmerist)
                 .SetLocalizedName(DisplayName)
                 .SetLocalizedDescription(Description)
                 .SetRemoveSpellbook(false)

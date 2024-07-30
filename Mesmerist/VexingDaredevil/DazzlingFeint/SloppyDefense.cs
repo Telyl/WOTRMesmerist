@@ -8,6 +8,7 @@ using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Mesmerist.Utils;
 using System;
 using System.Collections.Generic;
@@ -24,21 +25,31 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
         private static readonly string Description = "SloppyDefense.Description";
         public static void Configure()
         {
+            BuffConfigurator.New(FeatName + "BuffEffect", Guids.SloppyDefenseBuffEffect)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(BuffRefs.PackRagerCoordinatedDefenseBuff.Reference.Get().Icon)
+                .AddContextStatBonus(StatType.AdditionalAttackBonus, ContextValues.Rank(), ModifierDescriptor.Circumstance)
+                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithStartPlusDivStepProgression(5))
+                //.AddRemoveBuffOnAttack()
+                .Configure();
+
             BuffConfigurator.New(FeatName + "Buff", Guids.SloppyDefenseBuff)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(BuffRefs.PackRagerCoordinatedDefenseBuff.Reference.Get().Icon)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
                 .Conditional(ConditionsBuilder.New().UseOr().HasFact(BuffRefs.FeintBuffEnemy.Reference.Get()).HasFact(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
-                 ifTrue: ActionsBuilder.New().BuffActionAddStatBonus(Kingmaker.Enums.ModifierDescriptor.Circumstance,
-                 StatType.AdditionalAttackBonus, ContextValues.Rank())),
-                onlyOnFirstHit: true, triggerBeforeAttack: true)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithStartPlusDivStepProgression(5))
+                 ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SloppyDefenseBuffEffect, true, false, false, true)),
+                 triggerBeforeAttack: true)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.SloppyDefenseAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FeintAbility.Reference.Get().Icon)
-                .SetBuff(Guids.SloppyDefenseBuff)
+                .SetIcon(BuffRefs.PackRagerCoordinatedDefenseBuff.Reference.Get().Icon)
+                .SetBuff(Guids.SloppyDefenseBuffEffect)
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.SloppyDefense)
