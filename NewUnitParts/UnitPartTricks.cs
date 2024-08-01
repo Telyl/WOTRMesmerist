@@ -29,7 +29,7 @@ using System.Net;
 namespace Mesmerist.NewUnitParts
 {
     public class UnitPartTricks : OldStyleUnitPart,
-        ISubscriber,
+        ISubscriber, IUnitRestHandler,
         IInitiatorRulebookSubscriber
     {
         private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(UnitPartTricks));
@@ -44,7 +44,6 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                Logger.Log("Used tricks: " + this.ActiveEntryCount());
                 return this.ActiveEntryCount();
             }
         }
@@ -52,7 +51,6 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                Logger.Log("Max Tricks: " + (1 + base.Owner.Progression.Features.GetRank(ManifoldTrick)));
                 return Math.Max(0, 1 + base.Owner.Progression.Features.GetRank(ManifoldTrick));
             }
         }
@@ -60,7 +58,6 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                Logger.Log("Remaining Tricks: " + (this.MaxTricks - this.UsedTricks));
                 return Math.Max(0, this.MaxTricks - this.UsedTricks);
             }
         }
@@ -83,26 +80,27 @@ namespace Mesmerist.NewUnitParts
         }
         public void AddTrick(EntityRef<UnitEntityData> Unit, BlueprintGuid Guid, bool duplicate = false)
         {
-            Logger.Log("Adding Trick!");
             if (ActiveEntryCountUnit(Unit) > ManifoldHijinksRank)
             {
-                Logger.Log("Manifold Hijinks: " + ManifoldHijinksRank.ToString());
                 var trickdata = GetTrickDataByUnit(Unit);
                 var buff = GetBuffByTrickData(trickdata);
+                trickdata.ShouldReapply = false;
+                trickdata.ShouldBounce = false;
                 trickdata.Unit.Entity.RemoveFact(buff);
             }
 
             else if (RemainingTricks == 0)
             {
-                Logger.Log("Am I in Remaining Tricks?");
                 var oldTrick = this.m_TrickHolderCache.TrackedTricks[0];
                 var buff = GetBuffByTrickData(oldTrick);
+                this.m_TrickHolderCache.TrackedTricks.RemoveAt(0);
+                oldTrick.ShouldReapply = false;
+                oldTrick.ShouldBounce = false;
                 oldTrick.Unit.Entity.RemoveFact(buff);
             }
 
             var bounceTrick = CheckBounceTrick(duplicate);
             var reapplyTrick = CheckReapplyTrick(duplicate);
-
             this.m_TrickHolderCache.TrackedTricks.Add(new TrickData
             {
                 Unit = Unit,
@@ -137,7 +135,6 @@ namespace Mesmerist.NewUnitParts
                 FirstOrDefault();
 
             this.m_TrickHolderCache.TrackedTricks.RemoveAll(entry => entry.Matches(Unit, Guid));
-            Logger.Log("Removed trick!");
             return trickdata;
         }
         public int ActiveEntryCount()
@@ -178,10 +175,13 @@ namespace Mesmerist.NewUnitParts
             return false;
         }
 
+        public void HandleUnitRest(UnitEntityData unit)
+        {
+            CleanupTrackedTricks();
+        }
 
         private UnitPartMesmeristTrickHolder m_TrickHolderCache;
         private AddMesmeristPart settings;
-        private bool bounced = false;
         private EntityFact FilterNoFact;
     }
 }

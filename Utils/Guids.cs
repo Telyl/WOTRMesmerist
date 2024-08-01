@@ -244,12 +244,15 @@ namespace Mesmerist.Utils
         internal const string CombatManeuver = "20cd2dd2942d4c97b41322bfaed026e5";
         internal const string CombatManeuverAbility = "3d9d1c8b0a5d43f582b6b5f364aa3896";
         internal const string CombatManeuverBuff = "48d930aed7084b15ae206c4ae7c9a37d";
+        internal const string CombatManeuverBuffEffect = "d9aaa301751e4b9ab9dce2e40e99fbb3";
         internal const string CriticalStrike = "2aacd300161348439edc89731fecf19c";
         internal const string CriticalStrikeAbility = "e3b4924168d945c283f70591b32f8677";
         internal const string CriticalStrikeBuff = "e4a0362dfbba4098ae059674cb2412b3";
+        internal const string CriticalStrikeBuffEffect = "97f054bc0566422eadfbb97206369725";
         internal const string Outmanuever = "52717e937f684b3c89d7cb015ddcc3a4";
         internal const string OutmanueverAbility = "8f91dc5793e04c46895b80f08f9d49f1";
         internal const string OutmanueverBuff = "55a78d16609a40d0bfb2e997727c01db";
+        internal const string OutmanueverBuffEffect = "3b12715ed643494e966c463222b8abf3";
         internal const string PiercingStrike = "87f06d488b934edea884fd4c0ec25e55";
         internal const string PiercingStrikeAbility = "5255e09bc78d406582f30467806015f1";
         internal const string PiercingStrikeBuff = "effc67ee06c44cf782fa3be8f4462965";

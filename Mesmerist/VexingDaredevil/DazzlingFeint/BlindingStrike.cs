@@ -29,7 +29,7 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
             BuffConfigurator.New(FeatName + "Buff", Guids.BlindingStrikeBuff)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
-                .Conditional(ConditionsBuilder.New().UseOr().HasFact(BuffRefs.FeintBuffEnemy.Reference.Get()).HasFact(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
+                .Conditional(ConditionsBuilder.New().UseOr().HasBuffFromCaster(BuffRefs.FeintBuffEnemy.Reference.Get()).HasBuffFromCaster(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
                  ifTrue: ActionsBuilder.New()).SavingThrow(SavingThrowType.Fortitude, 
                     onResult: ActionsBuilder.New()
                     .ConditionalSaved(ActionsBuilder.New().ApplyBuff(BuffRefs.Blind.Reference.Get(), ContextDuration.Fixed(1)))),

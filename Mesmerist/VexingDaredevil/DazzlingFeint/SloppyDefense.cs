@@ -28,28 +28,27 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
             BuffConfigurator.New(FeatName + "BuffEffect", Guids.SloppyDefenseBuffEffect)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(BuffRefs.PackRagerCoordinatedDefenseBuff.Reference.Get().Icon)
+                .SetIcon(BuffRefs.DefensiveStanceBuff.Reference.Get().Icon)
                 .AddContextStatBonus(StatType.AdditionalAttackBonus, ContextValues.Rank(), ModifierDescriptor.Circumstance)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithStartPlusDivStepProgression(5))
-                //.AddRemoveBuffOnAttack()
+                .AddRemoveBuffOnAttack()
                 .Configure();
 
             BuffConfigurator.New(FeatName + "Buff", Guids.SloppyDefenseBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(BuffRefs.PackRagerCoordinatedDefenseBuff.Reference.Get().Icon)
-                .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
+                .SetIcon(BuffRefs.DefensiveStanceBuff.Reference.Get().Icon)
                 .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
-                .Conditional(ConditionsBuilder.New().UseOr().HasFact(BuffRefs.FeintBuffEnemy.Reference.Get()).HasFact(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
-                 ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SloppyDefenseBuffEffect, true, false, false, true)),
-                 triggerBeforeAttack: true)
+                .Conditional(ConditionsBuilder.New().UseOr().HasBuffFromCaster(BuffRefs.FeintBuffEnemy.Reference.Get()).HasBuffFromCaster(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
+                 ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SloppyDefenseBuffEffect, true, false, false, true, toCaster: true)),
+                 triggerBeforeAttack: true, onlyOnFirstAttack: true)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.SloppyDefenseAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(BuffRefs.PackRagerCoordinatedDefenseBuff.Reference.Get().Icon)
-                .SetBuff(Guids.SloppyDefenseBuffEffect)
+                .SetIcon(BuffRefs.DefensiveStanceBuff.Reference.Get().Icon)
+                .SetBuff(Guids.SloppyDefenseBuff)
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.SloppyDefense)

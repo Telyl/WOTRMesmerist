@@ -87,7 +87,7 @@
   },
   {
     "Key": "ReapplyTrick.Description",
-    "enGB": "After you trigger a trick, the trick is reapplied to the target."
+    "enGB": "After you trigger a trick, the trick is immediately reapplied to the target."
   },
   {
     "Key": "ConsummateTrickster.Name",
@@ -96,7 +96,7 @@
   },
   {
     "Key": "ConsummateTrickster.Description",
-    "enGB": "A vexing trickster gains a +1 bonus on Bluff, Thievery, and Stealth checks. This bonus increases by 1 for every 3 mesmerist levels."
+    "enGB": "A vexing trickster gains a +1 bonus on Bluff, Trickery, and Stealth checks. This bonus increases by 1 for every 3 mesmerist levels."
   },
   {
     "Key": "TrickstersEgo.Name",
@@ -119,10 +119,74 @@
   {
     "Key": "SloppyDefense.Name",
     "ProcessTemplates": false,
-    "enGB": "Sloppy Defense'"
+    "enGB": "Sloppy Defense"
   },
   {
     "Key": "SloppyDefense.Description",
-    "enGB": "The vexing daredevil’s attacks effortlessly penetrate the target’s defenses; she gains a +1 circumstance bonus on her next attack roll for every 5 mesmerist levels she has."
+    "enGB": "The vexing daredevil’s attacks effortlessly penetrate the target’s defenses; she gains a +1 circumstance bonus on her next attack roll and +1 for every 5 mesmerist levels she has."
+  },
+  {
+    "Key": "SurpriseStrike.Name",
+    "ProcessTemplates": false,
+    "enGB": "Surprise Strike"
+  },
+  {
+    "Key": "SurpriseStrike.Description",
+    "enGB": "The vexing daredevil creates an opening so she can squeeze in another strike. If her next attack hits, she can make another attack at her highest attack bonus – 5 as a free action. The vexing daredevil must be at least 7th level to select this dazzling feint"
+  },
+  {
+    "Key": "PiercingStrike.Name",
+    "ProcessTemplates": false,  
+    "enGB": "Piercing Strike"
+  },
+  {
+    "Key": "PiercingStrike.Description",
+    "enGB": "By psychically amplifying the target’s pain, the vexing daredevil causes more damage. If she hits with her next attack and deals damage with her painful stare, she increases the damage dice from d6s to d8s."
+  },
+  {
+    "Key": "Outmanuever.Name",
+    "ProcessTemplates": false,
+    "enGB": "Outmanuever"
+  },
+  {
+    "Key": "Outmanuever.Description",
+    "enGB": "The vexing daredevil’s darting movements foil the target’s attempts to box her in. If her next attack hits, the vexing daredevil gains a +1 circumstance bonus to AC and +1 for every 5 Mesmerist levels she has. "
+  },
+  {
+    "Key": "CriticalStrike.Name",
+    "ProcessTemplates": false,
+    "enGB": "Critical Strike"
+  },
+  {
+    "Key": "CriticalStrike.Description",
+    "enGB": "Ever alert, the vexing daredevil hones in on the target’s weak points. If her next attack is a critical threat against the target of this dazzling feint, the vexing daredevil gains a circumstance bonus on the roll to confirm that critical hit equal to +1 for every 3 mesmerist levels she possesses."
+  },
+  {
+    "Key": "CombatManeuver.Name",
+    "ProcessTemplates": false,
+    "enGB": "Combat Maneuver"
+  },
+  {
+    "Key": "CombatManeuver.Description",
+    "enGB": "The vexing daredevil’s attack patterns become more difficult to discern. The vexing daredevil does a disarm combat maneuver when attacking the target of their feint."
+  },
+  {
+    "Key": "BlindingStrike.Name",
+    "ProcessTemplates": false,
+    "enGB": "Blinding Strike"
+  },
+  {
+    "Key": "BlindingStrike.Description",
+    "enGB": "The vexing daredevil’s weapon emits a bright flash of light into the opponent’s eyes. If the vexing daredevil’s next attack hits, the target must succeed at a Fortitude saving throw or be blinded for 1 round."
+  },
+  {
+    "Key": "DazzlingFeint.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dazzling Feint"
+  },
+  {
+    "Key": "DazzlingFeint.Description",
+    "enGB": "At 3rd level, each time a vexing daredevil successfully feints against a creature, she also executes her dazzling feints. Unless otherwise stated, a dazzling feint’s benefit applies only on the vexing daredevil’s next attack this round. She selects one dazzling feint at 3rd level and another every 4 levels thereafter. The DC for any saving throw against a dazzling feint’s effect is equal to 10 + 1/2 the vexing daredevil’s class level + her Charisma modifier. The vexing daredevil can’t choose the same dazzling feint more than once."
   }
+
 ]

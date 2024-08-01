@@ -42,7 +42,14 @@ namespace Mesmerist.NewUnitParts
         {
             get
             {
-                return Math.Max(1, ClassLevel / 2);
+                if (IntensePain != null)
+                {
+                    return Math.Max(1, (ClassLevel / 2) + (ClassLevel / 4));
+                }
+                else
+                {
+                    return Math.Max(1, ClassLevel / 2);
+                }
             }
         }
         public int PainfulStareDiceDamage

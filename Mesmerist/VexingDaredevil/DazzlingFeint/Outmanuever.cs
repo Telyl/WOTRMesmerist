@@ -8,6 +8,7 @@ using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Mesmerist.Utils;
 using System;
 using System.Collections.Generic;
@@ -24,20 +25,28 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
         private static readonly string Description = "Outmanuever.Description";
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "Buff", Guids.OutmanueverBuff)
-                .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
-                .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
-                .Conditional(ConditionsBuilder.New().UseOr().HasFact(BuffRefs.FeintBuffEnemy.Reference.Get()).HasFact(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
-                 ifTrue: ActionsBuilder.New().BuffActionAddStatBonus(Kingmaker.Enums.ModifierDescriptor.Circumstance,
-                 StatType.AC, ContextValues.Rank())),
-                onlyOnFirstHit: true, triggerBeforeAttack: true)
+            BuffConfigurator.New(FeatName + "BuffEffect", Guids.OutmanueverBuffEffect)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
+                .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.Circumstance)
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithStartPlusDivStepProgression(5))
+                .Configure();
+
+            BuffConfigurator.New(FeatName + "Buff", Guids.OutmanueverBuff)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
+                .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
+                .Conditional(ConditionsBuilder.New().UseOr().HasBuffFromCaster(BuffRefs.FeintBuffEnemy.Reference.Get()).HasBuffFromCaster(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
+                 ifTrue: ActionsBuilder.New().ApplyBuff(Guids.OutmanueverBuffEffect, ContextDuration.Fixed(1), true, false, false, true, toCaster: true)),
+                 triggerBeforeAttack: true, onlyOnFirstAttack: true)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.OutmanueverAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FeintAbility.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
                 .SetBuff(Guids.OutmanueverBuff)
                 .Configure();
 

@@ -18,27 +18,16 @@ using Kingmaker.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using UnityEngine.Serialization;
 using UnityEngine;
+using TurnBased.Controllers;
 
 namespace Mesmerist.NewActions
 {
-    public class ContextActionAddTrick : ContextAction
+    public class ContextActionCompelAlacrity : ContextAction
     {
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ContextActionAddTrick));
-        public BlueprintBuff Buff
-        {
-            get
-            {
-                BlueprintBuffReference buff = this.m_Buff;
-                if (buff == null)
-                {
-                    return null;
-                }
-                return buff.Get();
-            }
-        }
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ContextActionCompelAlacrity));
         public override string GetCaption()
         {
-            return "Add Trick";
+            return "Compel Alacrity";
         }
 
         public override void RunAction()
@@ -46,22 +35,15 @@ namespace Mesmerist.NewActions
             UnitEntityData target = base.Target.Unit;
             if (target == null)
             {
-                Logger.Log("Target unit is missing - ContextActionAddTrick");
+                Logger.Log("Target unit is missing - ContextActionCompelAlacrity");
                 return;
             }
             UnitEntityData caster = base.Context.MaybeCaster;
             if (caster == null)
             {
-                Logger.Log("Attacker unit is missing - ContextActionAddTrick");
+                Logger.Log("Attacker unit is missing - ContextActionCompelAlacrity");
                 return;
             }
-
-            var unitPartTricks = caster.Get<UnitPartTricks>();
-            unitPartTricks.AddTrick(target, Buff.AssetGuid, base.AbilityContext.IsDuplicateSpellApplied);
         }
-
-        [SerializeField]
-        [FormerlySerializedAs("Buff")]
-        public BlueprintBuffReference m_Buff;
     }
 }

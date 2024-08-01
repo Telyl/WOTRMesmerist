@@ -1,14 +1,18 @@
 ﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.BasicEx;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
+using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Visual.Animation;
 using Mesmerist.Utils;
 using System;
 using System.Collections.Generic;
@@ -25,19 +29,24 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
         private static readonly string Description = "CombatManeuver.Description";
         public static void Configure()
         {
+            var value = WeaponCategory.Bardiche;
+
+            foreach (WeaponCategory val in Enum.GetValues(typeof(WeaponCategory)))
+            {
+                value = value | val;
+            }
+
             BuffConfigurator.New(FeatName + "Buff", Guids.CombatManeuverBuff)
-                .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
-                .AddCMBBonus(checkedFact: BuffRefs.FeintBuffEnemy.Reference.Get(), true, ModifierDescriptor.Circumstance,
-                ContextValues.Rank())
-                .AddCMBBonus(checkedFact: BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get(), true, ModifierDescriptor.Circumstance,
-                ContextValues.Rank())
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithStartPlusDivStepProgression(3))
+                .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
+                .Conditional(ConditionsBuilder.New().UseOr().HasBuffFromCaster(BuffRefs.FeintBuffEnemy.Reference.Get()).HasBuffFromCaster(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
+                 ifTrue: ActionsBuilder.New()).CastSpell(AbilityRefs.DisarmAction.Reference.Get(), false, false, true),
+                onlyOnFirstHit: true, actionsOnInitiator: false)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.CombatManeuverAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FeintAbility.Reference.Get().Icon)
+                .SetIcon(AbilityRefs.DisarmAction.Reference.Get().Icon)
                 .SetBuff(Guids.CombatManeuverBuff)
                 .Configure();
 

@@ -28,9 +28,12 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
         public static void Configure()
         {
             BuffConfigurator.New(FeatName + "Buff", Guids.SurpriseStrikeBuff)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(FeatureRefs.SneakAttack.Reference.Get().Icon)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
-                .Conditional(ConditionsBuilder.New().UseOr().HasFact(BuffRefs.FeintBuffEnemy.Reference.Get()).HasFact(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
+                .Conditional(ConditionsBuilder.New().UseOr().HasBuffFromCaster(BuffRefs.FeintBuffEnemy.Reference.Get()).HasBuffFromCaster(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
                  ifTrue: ActionsBuilder.New().Add<ContextActionSurpriseStrike>()),
                 onlyOnFirstHit: true)
                 .Configure();
@@ -38,7 +41,7 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.SurpriseStrikeAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FeintAbility.Reference.Get().Icon)
+                .SetIcon(FeatureRefs.SneakAttack.Reference.Get().Icon)
                 .SetBuff(Guids.SurpriseStrikeBuff)
                 .Configure();
 

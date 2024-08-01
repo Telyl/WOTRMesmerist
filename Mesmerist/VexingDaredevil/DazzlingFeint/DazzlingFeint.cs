@@ -33,7 +33,10 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
                 .SetIsClassFeature()
                 .AddToAllFeatures([Guids.BlindingStrike, Guids.CombatManeuver,
                 Guids.CriticalStrike, Guids.Outmanuever, Guids.PiercingStrike,
-                Guids.SloppyDefense, Guids.SurpriseStrike])
+                Guids.SloppyDefense, Guids.SurpriseStrike, Guids.Disorientation, Guids.Disquiet, Guids.Distracted,
+                Guids.Infiltration, Guids.Lethality, Guids.Nightmare,
+                Guids.PsychicInception, Guids.SappedMagic, Guids.Sluggishness,
+                Guids.Timidity, Guids.ManifoldStare, Guids.ManifoldStare2, Guids.ManifoldStare3])
                 .Configure();
         }
     }

@@ -56,19 +56,13 @@ namespace Mesmerist.NewActions
                 return;
             }
 
-            Logger.Log("target: " + target.ToString());
-            Logger.Log("caster: " + caster.ToString());
-
-            Logger.Log("RemoveTrick should be doing something here.");
-            var unitPartTricks = caster.Ensure<UnitPartTricks>();
+            var unitPartTricks = caster.Get<UnitPartTricks>();
             var trickdata = unitPartTricks.RemoveTrick(target, Buff.AssetGuid);
-
-            /*if (Game.Instance.SaveManager.CurrentState != SaveManager.State.Saving)
-            {*/
-            /*if (trickdata.ShouldBounce)
+            if (trickdata.ShouldBounce)
             {
+                Logger.Log("Should bounce");
                 var unitbounce = unitPartTricks.TrickBounceToUnit(target);
-                Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.AbilityContext.Ability, unitbounce)
+                Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.Context.SourceAbilityContext.Ability, unitbounce)
                 {
                     IsDuplicateSpellApplied = true
                 });
@@ -76,13 +70,20 @@ namespace Mesmerist.NewActions
             }
             else if (trickdata.ShouldReapply)
             {
-                Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.AbilityContext.Ability, target)
+                Logger.Log("ShouldReapply!");
+                try
                 {
-                    IsDuplicateSpellApplied = true
-                });
-                base.Context.SourceAbilityContext.Ability.Spend();
+                    Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(base.Context.SourceAbilityContext.Ability, target)
+                    {
+                        IsDuplicateSpellApplied = true
+                    });
+                    base.Context.SourceAbilityContext.Ability.Spend();
+                }
+                catch
+                {
+                    Logger.Log("Error!");
+                }
             }
-           // }*/
         }
 
         [SerializeField]

@@ -8,6 +8,7 @@ using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Mesmerist.Utils;
 using System;
 using System.Collections.Generic;
@@ -24,20 +25,29 @@ namespace Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint
         private static readonly string Description = "CriticalStrike.Description";
         public static void Configure()
         {
+            BuffConfigurator.New(FeatName + "BuffEffect", Guids.CriticalStrikeBuffEffect)
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(BuffRefs.CriticalFocusBuff.Reference.Get().Icon)
+                .AddCriticalConfirmationBonus(value: ContextValues.Rank())
+                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithStartPlusDivStepProgression(5))
+                .AddRemoveBuffOnAttack()
+                .Configure();
+
             BuffConfigurator.New(FeatName + "Buff", Guids.CriticalStrikeBuff)
-                .AddCriticalConfirmationACBonusAgainstFactOwner(value: ContextValues.Rank(), 
-                checkedFact: BuffRefs.FeintBuffEnemy.Reference.Get(), 
-                descriptor: Kingmaker.Enums.ModifierDescriptor.Circumstance)
-                .AddCriticalConfirmationACBonusAgainstFactOwner(value: ContextValues.Rank(),
-                checkedFact: BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get(),
-                descriptor: Kingmaker.Enums.ModifierDescriptor.Circumstance)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel([Guids.Mesmerist]).WithDivStepProgression(3))
+                .SetDisplayName(DisplayName)
+                .SetDescription(Description)
+                .SetIcon(BuffRefs.CriticalFocusBuff.Reference.Get().Icon)
+                .AddInitiatorAttackWithWeaponTrigger(ActionsBuilder.New()
+                .Conditional(ConditionsBuilder.New().UseOr().HasBuffFromCaster(BuffRefs.FeintBuffEnemy.Reference.Get()).HasBuffFromCaster(BuffRefs.FeintBuffEnemyFinalFeintEnemyBuff.Reference.Get()),
+                 ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.CriticalStrikeBuffEffect, true, false, false, true, toCaster: true)),
+                 triggerBeforeAttack: true, onlyOnFirstAttack: true)
                 .Configure();
 
             ActivatableAbilityConfigurator.New(FeatName + "Ability", Guids.CriticalStrikeAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.FeintAbility.Reference.Get().Icon)
+                .SetIcon(BuffRefs.CriticalFocusBuff.Reference.Get().Icon)
                 .SetBuff(Guids.CriticalStrikeBuff)
                 .Configure();
 

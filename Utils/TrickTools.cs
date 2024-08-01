@@ -4,6 +4,7 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.BasicEx;
 using BlueprintCore.Conditions.Builder.ContextEx;
@@ -17,9 +18,12 @@ using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.Utility;
 using Mesmerist.Mesmerist.Tricks;
+using Mesmerist.NewActions;
 using Mesmerist.NewComponents;
 using Mesmerist.NewComponents.AbilitySpecific;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
@@ -36,7 +40,14 @@ namespace Mesmerist.Utils
                 .SetDescription(Description)
                 .SetIcon(Icon)
                 .SetFlags(BlueprintBuff.Flags.RemoveOnRest)
-                .AddComponent<AddTrickComponent>()
+                .AddFactContextActions(activated: ActionsBuilder.New().Add<ContextActionAddTrick>(c =>
+                {
+                    c.m_Buff = BlueprintTool.GetRef<BlueprintBuffReference>(GUID);
+                }), dispose: ActionsBuilder.New().Add<ContextActionRemoveTrick>(c =>
+                {
+                    c.m_Buff = BlueprintTool.GetRef<BlueprintBuffReference>(GUID);
+                }))
+                //.AddComponent<AddTrickComponent>()
                 .Configure();
         }
 
@@ -54,6 +65,7 @@ namespace Mesmerist.Utils
                  .SetCanTargetEnemies(false)
                  .SetRange(AbilityRange.Touch)
                  .SetNotOffensive(true)
+                 .AddAbilityTargetHasFact(inverted:true, fromCaster:true, checkedFacts: [TrickBuff])
                  .AddAbilitySpawnFx(Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxAnchor.SelectedTarget, 0,
                    false, Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxAnchor.None,
                    Kingmaker.UnitLogic.Abilities.Components.Base.AbilitySpawnFxOrientation.Copy,
@@ -86,7 +98,7 @@ namespace Mesmerist.Utils
             else if (linkedreact)
             {
                 AbilityConfigurator.For(GUID)
-                 .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(TrickBuff, true, false, false, true).ApplyBuffPermanent(Guids.LinkedReactionMesmeristBuff, true, false, false, true, false, true, true))
+                 .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(TrickBuff, true, false, false, true))
                  .Configure();
             }
             else if (!permanent)
