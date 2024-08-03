@@ -12,7 +12,7 @@ using Mesmerist.NewComponents.AbilitySpecific;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Conditions.Builder;
 
-namespace Mesmerist.Features
+namespace Mesmerist.Mesmerist.Features
 {
     class FatiguingStare
     {
@@ -27,7 +27,8 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.TouchOfFatigueCast.Reference.Get().Icon)
-                .AddComponent<AddCombatStare>(c => {
+                .AddComponent<AddCombatStare>(c =>
+                {
                     c.SavingThrow = SavingThrowType.Fortitude;
                     c.CombatStareDebuff = BuffRefs.Fatigued.Reference.Get();
                 })
@@ -38,7 +39,7 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.TouchOfFatigueCast.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1818))
+                .SetGroup((ActivatableAbilityGroup)(ExtentedActivatableAbilityGroup)1818)
                 .SetBuff(Guids.FatiguingStareBuff)
                 .SetDeactivateImmediately()
                 .Configure();

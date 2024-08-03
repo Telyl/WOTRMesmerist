@@ -9,7 +9,7 @@ using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 
-namespace Mesmerist.Features
+namespace Mesmerist.Mesmerist.Features
 {
     class BleedingStare
     {

@@ -12,7 +12,7 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Mesmerist.NewComponents.AbilitySpecific;
 
-namespace Mesmerist.Features
+namespace Mesmerist.Mesmerist.Features
 {
     class DemoralizingStare
     {
@@ -27,10 +27,11 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.PersuasionUseAbility.Reference.Get().Icon)
-                .AddComponent<AddCombatStare>(c => {
+                .AddComponent<AddCombatStare>(c =>
+                {
                     c.SavingThrow = SavingThrowType.Will;
-                    c.CombatStareDebuff = BuffRefs.Shaken.Reference.Get(); 
-                    })
+                    c.CombatStareDebuff = BuffRefs.Shaken.Reference.Get();
+                })
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
                 .Configure();
 
@@ -38,7 +39,7 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(AbilityRefs.PersuasionUseAbility.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1818))
+                .SetGroup((ActivatableAbilityGroup)(ExtentedActivatableAbilityGroup)1818)
                 .SetBuff(Guids.DemoralizingStareBuff)
                 .SetDeactivateImmediately()
                 .Configure();

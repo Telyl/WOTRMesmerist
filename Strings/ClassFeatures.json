@@ -430,5 +430,59 @@
   {
     "Key": "ShadowBlend.Description",
     "enGB": "The subject can reroll a failed D20 on a stealth check."
+  },
+  {
+    "Key": "MediumClass.Name",
+    "ProcessTemplates": false,
+    "enGB": "Medium"
+  },
+  {
+    "Key": "MediumClass.Description",
+    "enGB": "Mediums channel spirits into themselves, using their own bodies as vessels for astral entities spawned from myths and legends. A medium balances his need for the spirits’ power with the danger of allowing such beings influence over his mind."
+  },
+  {
+    "Key": "MediumProficiencies.Name",
+    "ProcessTemplates": false,
+    "enGB": "Medium Proficiencies"
+  },
+  {
+    "Key": "MediumProficiencies.Description",
+    "enGB": "Mediums are proficient with all simple weapons, light armor, and medium armor, but not with shields."
+  },
+  {
+    "Key": "SpiritBonus.Name",
+    "ProcessTemplates": false,
+    "enGB": "Spirit Bonus"
+  },
+  {
+    "Key": "SpiritBonus.Description",
+    "enGB": "When a medium channels a spirit, he gains a bonus on certain checks and to certain statistics, depending on the spirit. A 1st-level medium’s spirit bonus is +1; it increases by 1 at 4th level and every 4 levels thereafter."
+  },
+  {
+    "Key": "Archmage.Name",
+    "ProcessTemplates": false,
+    "enGB": "Archmage"
+  },
+  {
+    "Key": "Archmage.Description",
+    "enGB": "The medium can channel the spirit of a wizard from long ago. She gains a variety of abilities that revolve around spellcasting."
+  },
+  {
+    "Key": "ArchmageIntermediate.Name",
+    "ProcessTemplates": false,
+    "enGB": "Archmage Intermediate"
+  },
+  {
+    "Key": "ArchmageIntermediate.Description",
+    "enGB": "When a medium channels the Archmage, he gains a DC and Caster Level bonus equal to his Spirit Bonus."
+  },
+  {
+    "Key": "ArchmageGreater.Name",
+    "ProcessTemplates": false,
+    "enGB": "Archmage Greater"
+  },
+  {
+    "Key": "ArchmageGreater.Description",
+    "enGB": "When a medium channels the Archmage, during the first round of a new combat the medium can cast a spell as though quickened and maximized."
   }
 ]

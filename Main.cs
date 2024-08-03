@@ -11,12 +11,13 @@ using Mesmerist.Utils;
 using Kingmaker.PubSubSystem;
 using Mesmerist.Mesmerist;
 using CharacterOptionsPlus.Util;
-using Mesmerist.Features;
 using Mesmerist.Mesmerist.BoldStares;
 using Mesmerist.Mesmerist.VexingDaredevil;
 using Mesmerist.Mesmerist.VexingDaredevil.DazzlingFeint;
 using Mesmerist.Mesmerist.TrickFeats;
 using Mesmerist.Mesmerist.VexingTrickster;
+using Mesmerist.Mesmerist.Features;
+using Mesmerist.Medium;
 
 
 namespace Mesmerist
@@ -117,6 +118,7 @@ namespace Mesmerist
             {
                 Logger.Log("Configuring classes.");
                 MesmeristClass.Configure();
+                MediumClass.Configure();
             }
             private static void ConfigureHomebrew()
             {

@@ -1,6 +1,7 @@
 using CharacterOptionsPlus.Util;
 using Kingmaker.Kingdom.Buffs;
 using Kingmaker.Utility;
+using Mesmerist.Medium;
 using Mesmerist.Mesmerist;
 using System;
 using System.Collections.Generic;
@@ -227,12 +228,6 @@ namespace Mesmerist.Utils
         internal const string ShadowBlend = "8326510aa6f74791949fb15634e8c959";
         internal const string ShadowBlendAbility = "e98354f8169c4b9d9fae71c878480a73";
         internal const string ShadowBlendBuff = "9fdd98ae95e64caaa0977fb1fa9dff0b";
-
-        internal static readonly (string guid, string displayName)[] Classes =
-         new (string, string)[]
-         {
-             (Mesmerist, MesmeristClass.DisplayName)
-         };
         #endregion
         #region VexingDaredevil
         internal const string VexingDaredevil = "fc9d4b4690a945cfbf41051d8ac49bfd";
@@ -285,6 +280,69 @@ namespace Mesmerist.Utils
         internal const string ReapplyTrickAbility = "937bb1a9afd347f49aab01f09565ace7";
         internal const string ReapplyTrickBuff = "9dc485c0003b4c3eaa3e9ec7ab35a855";
         #endregion
+        #region Medium
+        internal const string Medium = "0acab2d6b878416b9016b12b08cda7d4";
+        internal const string MediumProgression = "64fa54e92dcb4170be0aeb74fb9728ce";
+        internal const string MediumProficiencies = "21f93fed7c6f41c3a41fec03e0c087c1";
+        internal const string MediumSpellbook = "7811a3c4b27c4ce9ade7648096efc2db";
+        internal const string MediumSpellsPerDayTable = "9220589038b841939c17d50c97a3bf39";
+        internal const string MediumSpellsKnownTable = "1d320953f5934f77a9af701f42bce922";
+        internal const string MediumSpellList = "52cf244210054bd08183ee83b179d382";
+        internal const string MediumSpellcasterFeat = "f70266cd8cf04cfe8d1b1a704280cb93";
+        internal const string Spirit = "fdc706f252564558a5e83974aec105b8";
+        internal const string Lesser = "4269ee052f0849fbaf0b30456c46d448";
+        internal const string Intermediate = "10c56bbd087448a685b0fa8a437f8326";
+        internal const string Greater = "e1e1e51785314c8da35d264aa387bfda";
+        internal const string Supreme = "475a9a6874744ac5861f561284cfcd50";
+        internal const string ArchmageActivatableAbility = "d5f7b88ac0ae41b9a04871c21e889b4a";
+        internal const string ArchmageBuff = "00924abce2844f849e59dfee3dbe2903";
+        internal const string ArchmageProgression = "84aa90a6f8e04569a6f38d66cc7e563f";
+        internal const string ArchmageSpellbook = "ea8b02efa0d148159b9455f03cd24eec";
+        internal const string ArchmageSpellsPerDayTable = "52710103825a4267bcde89c736ae59b2";
+        internal const string ArchmageSpellSlotsTable = "fc0c1e3b9b304e9c80bbb05e335091b0";
+        internal const string ArchmageSpellList = "c096d37cabf040a6b20785d5ab2502a3";
+        internal const string ProhibitArchmageSpellbook = "4ce3eb6b137e4c568d3bc2aade670c64";
+        internal const string ArchmageIntermediate = "2a4664b9d4cc4aa696ef3dac099c6e9e";
+        internal const string ArchmageGreater = "1c5b22fe43834ec0b5c7bd0a005f32ae";
+        internal const string ArchmageGreaterBuff = "758deed54c5b4e1092419a025dcf1929";
+        internal const string ArchmageSupreme = "958e3e27d5014cfc8ef2f67b701ed3f5";
+        internal const string ChampionActivatableAbility = "506992ea1be2415bb460efd526f86fc3";
+        internal const string ChampionBuff = "d6f2f8c819214695bca598feefe83403";
+        internal const string ChampionLesser = "e94f19ce74604fccb707cf931cbde9d9";
+        internal const string ChampionLesserBuff = "ac77112f15094b70bb399557a093cde3";
+        internal const string ChampionIntermediate = "317492ef38c24b60b82320afa7f27d46";
+        internal const string ChampionGreater = "95d2527d94b840fdac66d7457f6a533b";
+        internal const string ChampionSupreme = "034dd35929144bbcb0e3491e9a029107";
+        internal const string Guardian = "92ad9166bf7d40c6b2c163633cc3187c";
+        internal const string Marshal = "3a5e27e879b541f4bbd32fac58c547cc";
+        internal const string Trickster = "a4dbf3ba14bf49e8beae79315080636d";
+        internal const string Hierophant = "11b1ae52d7ed4e1b9c2dffe3ce7761a4";
+        internal const string HierophantProgression = "185fb38a17b14fdfaad4732ede7e7770";
+        internal const string HierophantSpellbook = "b9ffe7f5cbb048ffa54180eb790a29d2";
+        internal const string HierophantSpellsPerDayTable = "215b86348af444199d960e9dbca474cf";
+        internal const string HierophantSpellsKnownTable = "c12977bd3c654437bce0182b6df45032";
+        internal const string HierophantSpellList = "90888b34be4e4d1591dbe141cd4f5445";
+        internal const string ProhibitHierophantSpellbook = "48925e792bee41a5918e93de997932cb";
+        internal const string SpiritBonus = "d84686657859476791e5642229602e1d";
+        internal const string SharedSeance = "aeb4af8fdec64be2b27167859635ecfc";
+        internal const string SharedSeanceArchmageAbility = "6cdf5e622d9b46a48a1d68df83534746";
+        internal const string SharedSeanceChampionAbility = "1d9df1b76ce54cf0b935981e1745feea";
+        internal const string SharedSeanceArchmageBuff = "11842e1f81944fc3b553040a1e8d4bc6";
+        internal const string SharedSeanceChampionBuff = "2fae9ac31bad405f811173bd03f60a70";
+        internal const string SharedSeanceHierophantBuff = "";
+        internal const string SharedSeanceGuardianBuff = "";
+        internal const string SharedSeanceMarshalBuff = "";
+        internal const string SharedSeanceTricksterBuff = "";
+        internal const string SpiritSurge = "4349c8948ee34ce6849ea78566f0775f";
+        internal const string SpiritSurgeAbility = "df69a1ec78fe4566bf94bac64e5226cf";
+        internal const string SpiritSurgeBuff = "bb921574ea3942419d0aa39b9b7a2c28";
+        #endregion
+        internal static readonly (string guid, string displayName)[] Classes =
+         new (string, string)[]
+         {
+                     (Mesmerist, MesmeristClass.DisplayName),
+                     (Medium, MediumClass.DisplayName)
+         };
         //** Feats **//
         #region Features
         internal const string IntensePain = "a1cd3fdb625c48daa8326f02a7bdd3b4";

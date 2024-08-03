@@ -25,7 +25,6 @@ using BlueprintCore.Conditions.Builder.BasicEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Utility;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Mesmerist.Features;
 using Mesmerist.Mesmerist;
 using Kingmaker.Blueprints.Classes;
 using static HarmonyLib.Code;

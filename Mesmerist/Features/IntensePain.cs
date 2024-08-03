@@ -3,7 +3,7 @@ using Mesmerist.Utils;
 using CharacterOptionsPlus.Util;
 using Kingmaker.Blueprints.Classes;
 
-namespace Mesmerist.Features
+namespace Mesmerist.Mesmerist.Features
 {
     class IntensePain
     {

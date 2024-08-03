@@ -10,7 +10,7 @@ using Kingmaker.UnitLogic.ActivatableAbilities;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 using Mesmerist.NewComponents.AbilitySpecific;
 
-namespace Mesmerist.Features
+namespace Mesmerist.Mesmerist.Features
 {
     class ExcoriatingStare
     {
@@ -26,7 +26,8 @@ namespace Mesmerist.Features
                 .SetDescription(Description)
                 .SetIcon(BuffRefs.Sickened.Reference.Get().Icon)
                 .AddContextCalculateAbilityParamsBasedOnClass(Guids.Mesmerist, statType: StatType.Charisma)
-                .AddComponent<AddCombatStare>(c => {
+                .AddComponent<AddCombatStare>(c =>
+                {
                     c.SavingThrow = SavingThrowType.Will;
                     c.CombatStareDebuff = BuffRefs.Sickened.Reference.Get();
                 })
@@ -36,7 +37,7 @@ namespace Mesmerist.Features
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIcon(BuffRefs.Sickened.Reference.Get().Icon)
-                .SetGroup((ActivatableAbilityGroup)((ExtentedActivatableAbilityGroup)1818))
+                .SetGroup((ActivatableAbilityGroup)(ExtentedActivatableAbilityGroup)1818)
                 .SetBuff(Guids.ExcoriatingStareBuff)
                 .SetDeactivateImmediately()
                 .Configure();
