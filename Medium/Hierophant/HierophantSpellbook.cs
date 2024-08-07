@@ -7,18 +7,18 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.EntitySystem.Stats;
 using Mesmerist.Utils;
 
-namespace Mesmerist.Medium.Archmage
+namespace Mesmerist.Medium.Hierophant
 {
-    class ArchmageSpellbook
+    class HierophantSpellbook
     {
-        private static readonly string ClassName = "Archmage";
-        internal const string ArchmageName = "Archmage.Name";
-        private static readonly string ArchmageDescription = "Archmage.Description";
-        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(ArchmageSpellbook));
+        private static readonly string ClassName = "Hierophant";
+        internal const string HierophantName = "Hierophant.Name";
+        private static readonly string HierophantDescription = "Hierophant.Description";
+        private static readonly Logging.Logger Logger = Logging.GetLogger(nameof(HierophantSpellbook));
 
         public static void Configure()
         {
-            var SpellSlotsTable = SpellsTableConfigurator.New(ClassName + "SpellSlotsTable", Guids.ArchmageSpellSlotsTable)
+            var SpellSlotsTable = SpellsTableConfigurator.New(ClassName + "SpellSlotsTable", Guids.HierophantSpellSlotsTable)
                 .SetLevels(new SpellsLevelEntry[] {
                     new SpellsLevelEntry{ Count = new int[] { 0 } },//0
                     new SpellsLevelEntry{ Count = new int[] { 0, 1 } },//1
@@ -44,7 +44,7 @@ namespace Mesmerist.Medium.Archmage
                     })
                 .Configure();
 
-            var SpellsPerDayTable = SpellsTableConfigurator.New(ClassName + "SpellPerDayTable", Guids.ArchmageSpellsPerDayTable)
+            var SpellsPerDayTable = SpellsTableConfigurator.New(ClassName + "SpellPerDayTable", Guids.HierophantSpellsPerDayTable)
                 .SetLevels(new SpellsLevelEntry[] {
                     new SpellsLevelEntry{ Count = new int[] { 0 } },//0
                     new SpellsLevelEntry{ Count = new int[] { 0, 1 } },//1
@@ -70,11 +70,11 @@ namespace Mesmerist.Medium.Archmage
                     })
                 .Configure();
 
-            SpellbookConfigurator.New(ClassName + "Spellbook", Guids.ArchmageSpellbook)
-                .SetName(ArchmageName)
+            SpellbookConfigurator.New(ClassName + "Spellbook", Guids.HierophantSpellbook)
+                .SetName(HierophantName)
                 .SetSpellsPerDay(SpellsPerDayTable)
                 .SetSpellSlots(SpellSlotsTable)
-                .SetSpellList(SpellListRefs.WizardSpellList.Reference.Get())
+                .SetSpellList(SpellListRefs.ClericSpellList.Reference.Get())
                 .SetCastingAttribute(StatType.Charisma)
                 .SetAllSpellsKnown(true)
                 .SetIsMythic(false)

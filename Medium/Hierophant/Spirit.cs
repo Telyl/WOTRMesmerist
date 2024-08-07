@@ -18,70 +18,72 @@ using Kingmaker.UnitLogic.Commands.Base;
 using Mesmerist.NewActions;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 
-namespace Mesmerist.Medium.Archmage
+namespace Mesmerist.Medium.Hierophant
 {
-    public class ArchmageSpirit
+    public class HierophantSpirit
     {
-        private static readonly string FeatName = "ArchmageSpirit";
-        internal const string DisplayName = "ArchmageSpirit.Name";
-        private static readonly string Description = "ArchmageSpirit.Description";
+        private static readonly string FeatName = "HierophantSpirit";
+        internal const string DisplayName = "HierophantSpirit.Name";
+        private static readonly string Description = "HierophantSpirit.Description";
 
         private static readonly Logging.Logger Logger = Logging.GetLogger(FeatName);
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "Buff", Guids.ArchmageBuff)
+            BuffConfigurator.New(FeatName + "Buff", Guids.HierophantBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterSummonPerpetuallyAnnoyedWizard.Reference.Get().Icon)
-                .AddContextStatBonus(StatType.SkillKnowledgeArcana, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
-                .AddContextStatBonus(StatType.SkillKnowledgeWorld, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .SetIcon(AbilityRefs.HealMass.Reference.Get().Icon)
+                .AddContextStatBonus(StatType.SkillLoreNature, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .AddContextStatBonus(StatType.SkillLoreReligion, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .AddContextStatBonus(StatType.SkillPerception, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
                 .AddConcentrationBonus(value: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.SpiritBonus))
                 .Configure();
 
-            ActivatableAbilityConfigurator.New(FeatName, Guids.ArchmageActivatableAbility)
+            ActivatableAbilityConfigurator.New(FeatName, Guids.HierophantActivatableAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterSummonPerpetuallyAnnoyedWizard.Reference.Get().Icon)
                 .SetGroup((ActivatableAbilityGroup)(ExtentedActivatableAbilityGroup)1824)
+                .SetIcon(AbilityRefs.HealMass.Reference.Get().Icon)
                 .AddTriggerOnActivationChanged(actionList: ActionsBuilder.New()
-                    .ApplyBuffPermanent(Guids.ArchmageBuff, true, false, false, true, false, false, true)
-                    .CastSpell(Guids.SharedSeanceArchmageAbility)
+                    .ApplyBuffPermanent(Guids.HierophantBuff, true, false, false, true, false, false, true)
+                    .CastSpell(Guids.SharedSeanceHierophantAbility)
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Lesser), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ProhibitArchmageSpellbook);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ProhibitHierophantSpellbook);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Intermediate), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantIntermediate);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Greater), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantGreater);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Supreme), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSupreme);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSupreme);
                     })),
                     stage: AddTriggerOnActivationChanged.Stage.OnSwitchOn)
                 .AddTriggerOnActivationChanged(actionList: ActionsBuilder.New()
-                    .RemoveBuff(Guids.ArchmageBuff)
-                    .RemoveBuff(Guids.SharedSeanceArchmageBuff)
+                    .RemoveBuff(Guids.HierophantBuff)
+                    .RemoveBuff(Guids.SharedSeanceHierophantBuff)
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Lesser), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ProhibitArchmageSpellbook);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ProhibitHierophantSpellbook);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Intermediate), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantIntermediate);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Greater), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantGreater);
                     })).Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Supreme), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSupreme);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.HierophantSupreme);
                     })),
                     stage: AddTriggerOnActivationChanged.Stage.OnSwitchOff)
                 .AddActionPanelLogic(

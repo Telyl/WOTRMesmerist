@@ -63,7 +63,9 @@ namespace Mesmerist.Medium
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
-                .AddFacts(new() { Guids.ArchmageActivatableAbility, Guids.ChampionActivatableAbility })
+                .AddFacts(new() { Guids.ArchmageActivatableAbility, Guids.ChampionActivatableAbility, 
+                    Guids.HierophantActivatableAbility, Guids.GuardianActivatableAbility,
+                    Guids.MarshalActivatableAbility })
                 .SetRanks(1)
                 .Configure();
         }

@@ -8,6 +8,7 @@ using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Mesmerist.Medium.Archmage;
+using Mesmerist.Medium.Hierophant;
 using Mesmerist.Utils;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Mesmerist.Medium
         public static void Configure()
         {
             ArchmageSpellbook.Configure();
+            HierophantSpellbook.Configure();
 
             FeatureConfigurator.New(FeatName, Guids.MediumSpellcasterFeat)
                 .AddSpellbook(ContextValues.Rank(), spellbook: Guids.ArchmageSpellbook)

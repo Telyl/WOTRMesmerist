@@ -18,70 +18,71 @@ using Kingmaker.UnitLogic.Commands.Base;
 using Mesmerist.NewActions;
 using static TabletopTweaks.Core.MechanicsChanges.AdditionalActivatableAbilityGroups;
 
-namespace Mesmerist.Medium.Archmage
+namespace Mesmerist.Medium.Guardian
 {
-    public class ArchmageSpirit
+    public class GuardianSpirit
     {
-        private static readonly string FeatName = "ArchmageSpirit";
-        internal const string DisplayName = "ArchmageSpirit.Name";
-        private static readonly string Description = "ArchmageSpirit.Description";
+        private static readonly string FeatName = "GuardianSpirit";
+        internal const string DisplayName = "GuardianSpirit.Name";
+        private static readonly string Description = "GuardianSpirit.Description";
 
         private static readonly Logging.Logger Logger = Logging.GetLogger(FeatName);
 
         public static void Configure()
         {
-            BuffConfigurator.New(FeatName + "Buff", Guids.ArchmageBuff)
+            BuffConfigurator.New(FeatName + "Buff", Guids.GuardianBuff)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterSummonPerpetuallyAnnoyedWizard.Reference.Get().Icon)
-                .AddContextStatBonus(StatType.SkillKnowledgeArcana, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
-                .AddContextStatBonus(StatType.SkillKnowledgeWorld, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .SetIcon(AbilityRefs.ImitationFighterAbility.Reference.Get().Icon)
+                .AddContextStatBonus(StatType.AC, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .AddContextStatBonus(StatType.SaveReflex, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
+                .AddContextStatBonus(StatType.SaveFortitude, ContextValues.Rank(), ModifierDescriptor.UntypedStackable)
                 .AddConcentrationBonus(value: ContextValues.Rank())
                 .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.SpiritBonus))
                 .Configure();
 
-            ActivatableAbilityConfigurator.New(FeatName, Guids.ArchmageActivatableAbility)
+            ActivatableAbilityConfigurator.New(FeatName, Guids.GuardianActivatableAbility)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
-                .SetIcon(AbilityRefs.TricksterSummonPerpetuallyAnnoyedWizard.Reference.Get().Icon)
                 .SetGroup((ActivatableAbilityGroup)(ExtentedActivatableAbilityGroup)1824)
+                .SetIcon(AbilityRefs.ImitationFighterAbility.Reference.Get().Icon)
                 .AddTriggerOnActivationChanged(actionList: ActionsBuilder.New()
-                    .ApplyBuffPermanent(Guids.ArchmageBuff, true, false, false, true, false, false, true)
-                    .CastSpell(Guids.SharedSeanceArchmageAbility)
-                    .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Lesser), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
+                    .ApplyBuffPermanent(Guids.GuardianBuff, true, false, false, true, false, false, true)
+                    .CastSpell(Guids.SharedSeanceGuardianAbility)
+                    .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Lesser), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ProhibitArchmageSpellbook);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianLesser);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Intermediate), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianIntermediate);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Greater), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianGreater);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Supreme), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSupreme);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianSupreme);
                     })),
                     stage: AddTriggerOnActivationChanged.Stage.OnSwitchOn)
                 .AddTriggerOnActivationChanged(actionList: ActionsBuilder.New()
-                    .RemoveBuff(Guids.ArchmageBuff)
-                    .RemoveBuff(Guids.SharedSeanceArchmageBuff)
-                    .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Lesser), ifTrue: ActionsBuilder.New().Add<ContextActionAddFact>(c =>
+                    .RemoveBuff(Guids.GuardianBuff)
+                    .RemoveBuff(Guids.SharedSeanceGuardianBuff)
+                    .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Lesser), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ProhibitArchmageSpellbook);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianLesser);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Intermediate), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageIntermediate);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianIntermediate);
                     }))
                     .Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Greater), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageGreater);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianGreater);
                     })).Conditional(ConditionsBuilder.New().CasterHasFact(Guids.Supreme), ifTrue: ActionsBuilder.New().Add<ContextActionRemoveFact>(c =>
                     {
-                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.ArchmageSupreme);
+                        c.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(Guids.GuardianSupreme);
                     })),
                     stage: AddTriggerOnActivationChanged.Stage.OnSwitchOff)
                 .AddActionPanelLogic(

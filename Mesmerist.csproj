@@ -130,6 +130,8 @@
 
   <ItemGroup>
     <Folder Include="MechanicsChange\" />
+    <Folder Include="Medium\Marshal\" />
+    <Folder Include="Medium\Trickster\" />
     <Folder Include="NewComponents\ContextCondition\" />
     <Folder Include="NewSpells\" />
   </ItemGroup>
