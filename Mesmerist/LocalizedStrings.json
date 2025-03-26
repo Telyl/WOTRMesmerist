@@ -1,0 +1,326 @@
+[
+    {
+        "Key": "MesmeristClass.Name",
+        "ProcessTemplates": false,
+        "enGB": "Mesmerist"
+    },
+    {
+        "Key": "MesmeristClass.Description",
+        "enGB": "Experts at charm and deceit, mesmerists compel others to heed their words and bend to their will. Psychic powers, primarily those of enchantment and illusion, give mesmerists the tools they need to manipulate others—usually for their own personal gain. The very gaze of a mesmerist can hypnotize someone into following his whims. Mesmerists frequently form cults of personality around themselves, and they develop skills and contingency plans in case their ploys are discovered."
+    },
+    {
+        "Key": "MesmeristProficiencies.Name",
+        "ProcessTemplates": false,
+        "enGB": "Mesmerist Proficiencies"
+    },
+    {
+        "Key": "MesmeristProficiencies.Description",
+        "enGB": "A Mesmerist is proficient with all simple weapons. He is proficient with light armor, but not with shields."
+    },
+    {
+        "Key": "ConsummateLiar.Name",
+        "ProcessTemplates": false,
+        "enGB": "Consummate Liar"
+    },
+    {
+        "Key": "ConsummateLiar.Description",
+        "enGB": "A mesmerist adds 1/2 his mesmerist level (minimum 1) as a bonus on all Bluff checks. In addition, the mesmerist uses his charisma in place of his intelligence to qualify for feats. This feat counts as having Combat Expertise for the purposes of feat prerequisites."
+    },
+    {
+        "Key": "HypnoticStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Hypnotic Stare"
+    },
+    {
+        "Key": "HypnoticStare.Description",
+        "enGB": "A mesmerist can focus his stare on one creature within 30 feet as a swift action. That creature takes a –2 penalty on Will saving throws for 1 round. This penalty changes to –3 at 8th level, and -5 at 20th level."
+    },
+    {
+        "Key": "MasterfulTricks.Name",
+        "ProcessTemplates": false,
+        "enGB": "Masterful Tricks"
+    },
+    {
+        "Key": "MasterfulTricks.Description",
+        "enGB": "At 12th level, a mesmerist can choose masterful tricks in place of a mesmerist trick. He gains an additional masterful trick every 2 levels thereafter. Using a masterful trick consumes two uses of the mesmerist trick class feature instead of one."
+    },
+    {
+        "Key": "PainfulStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Painful Stare"
+    },
+    {
+        "Key": "PainfulStare.Description",
+        "enGB": "When an attack that deals damage hits the target of a mesmerist’s hypnotic stare, the mesmerist can cause the target to take an amount of additional damage equal to 1/2 the mesmerist’s class level (minimum 1). The mesmerist can use this ability as a free action, and can use it even if it isn’t his turn. If the mesmerist uses this ability to increase his own damage, the additional damage increases by 1d6 points for every 3 class levels the mesmerist possesses. This damage is precision damage and is not multiplied on a critical hit."
+    },
+    {
+        "Key": "MesmeristTrick.Name",
+        "ProcessTemplates": false,
+        "enGB": "Mesmerist Trick"
+    },
+    {
+        "Key": "MesmeristTrick.Description",
+        "enGB": "A mesmerist can create hypnotic bonds with his allies, implanting magical suggestions in their minds that he can later activate. Each day, he can implant a number of these tricks equal to 1/2 his mesmerist level (minimum 1) plus his Charisma bonus (if any). He can have only one trick implanted at a given time, and implanting a new trick ends the previous one (the mesmerist still loses the use of this ability he spent on the previous trick).\nTo implant a trick, the mesmerist must take a standard action and either touch a willing creature or implant the trick in himself. A creature can be the subject of only one mesmerist trick at a time.\nOnce triggered, a trick is no longer implanted, and can’t be triggered again until the mesmerist implants the trick again. The duration of the effect caused by triggering a trick is either instantaneous or appears in the trick’s entry. The DC for any mesmerist trick or masterful trick that requires a saving throw or skill check is 10 + 1/2 the mesmerist’s level + the mesmerist’s Charisma modifier. The Mesmerist gains the ability to add additional tricks at any given time through the Manifold Trick feature."
+    },
+    {
+        "Key": "BoldStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Bold Stare"
+    },
+    {
+        "Key": "BoldStare.Description",
+        "enGB": "At 3rd level and every 4 levels thereafter, a mesmerist’s hypnotic stare imposes a further effect upon its target. The mesmerist chooses one option each time he gains a new bold stare improvement, and the choice can’t be changed later. The mesmerist can’t choose the same bold stare improvement more than once unless otherwise noted. All of the mesmerist’s bold stare improvements affect the target as long as it is affected by the mesmerist’s hypnotic stare."
+    },
+    {
+        "Key": "Disorientation.Name",
+        "ProcessTemplates": false,
+        "enGB": "Disorientation"
+    },
+    {
+        "Key": "Disorientation.Description",
+        "enGB": "The hypnotic stare penalty also applies on attack rolls."
+    },
+    {
+        "Key": "Disquiet.Name",
+        "ProcessTemplates": false,
+        "enGB": "Disquiet"
+    },
+    {
+        "Key": "Disquiet.Description",
+        "enGB": "The target of the hypnotic stare is shaken."
+    },
+    {
+        "Key": "Distracted.Name",
+        "ProcessTemplates": false,
+        "enGB": "Distracted"
+    },
+    {
+        "Key": "Distracted.Description",
+        "enGB": "The hypnotic stare penalty also applies to concentration checks."
+    },
+    {
+        "Key": "Infiltration.Name",
+        "ProcessTemplates": false,
+        "enGB": "Infiltration"
+    },
+    {
+        "Key": "Infiltration.Description",
+        "enGB": "The hypnotic stare penalty also applies to the target’s Perception checks and CMD."
+    },
+    {
+        "Key": "Lethality.Name",
+        "ProcessTemplates": false,
+        "enGB": "Lethality"
+    },
+    {
+        "Key": "Lethality.Description",
+        "enGB": "The hypnotic stare penalty also applies to the target’s Fortitude saves."
+    },
+    {
+        "Key": "Nightmare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Nightmare"
+    },
+    {
+        "Key": "Nightmare.Description",
+        "enGB": "The target of the hypnotic stare rolls twice on all Will saves versus fear, taking the lower result."
+    },
+    {
+        "Key": "PsychicInception.Name",
+        "ProcessTemplates": false,
+        "enGB": "Psychic Inception"
+    },
+    {
+        "Key": "PsychicInception.Description",
+        "enGB": "The mesmerist gains the ability to affect creatures that would normally be immune to mind-affecting spells and abilities."
+    },
+    {
+        "Key": "SappedMagic.Name",
+        "ProcessTemplates": false,
+        "enGB": "Sapped Magic"
+    },
+    {
+        "Key": "SappedMagic.Description",
+        "enGB": "The hypnotic stare penalty also applies to the DCs of spells and spell-like abilities used by the target, and to the target’s spell resistance (if any)."
+    },
+    {
+        "Key": "Sluggishness.Name",
+        "ProcessTemplates": false,
+        "enGB": "Sluggishness"
+    },
+    {
+        "Key": "Sluggishness.Description",
+        "enGB": "The target of the hypnotic stare has all of its speeds reduced by 5 feet (to a minimum of 5 feet), and the hypnotic stare penalty also applies to the target’s Reflex saving throws."
+    },
+    {
+        "Key": "Timidity.Name",
+        "ProcessTemplates": false,
+        "enGB": "Timidity"
+    },
+    {
+        "Key": "Timidity.Description",
+        "enGB": "The hypnotic stare penalty also applies to damage rolls."
+    },
+    {
+        "Key": "ToweringEgo.Name",
+        "ProcessTemplates": false,
+        "enGB": "Towering Ego"
+    },
+    {
+        "Key": "ToweringEgo.Description",
+        "enGB": "At 2nd level, a mesmerist gains a bonus equal to his Charisma bonus (minimum 0) on Will saving throws."
+    },
+    {
+        "Key": "FalseFlanker.Name",
+        "ProcessTemplates": false,
+        "enGB": "False Flanker"
+    },
+    {
+        "Key": "FalseFlanker.Description",
+        "enGB": "This mesmerist trick grants a +2 attack bonus to flanked targets. This effect stacks with feats such as Outflank."
+    },
+    {
+        "Key": "MeekFacade.Name",
+        "ProcessTemplates": false,
+        "enGB": "Meek Facade"
+    },
+    {
+        "Key": "MeekFacade.Description",
+        "enGB": "This mesmerist trick grants a +2 dodge bonus to AC. This bonus increases by +1 for ever 5 levels the mesmerist possess."
+    },
+    {
+        "Key": "MesmericPantomime.Name",
+        "ProcessTemplates": false,
+        "enGB": "Mesmeric Pantomime"
+    },
+    {
+        "Key": "MesmericPantomime.Description",
+        "enGB": "This mesmerist trick grants a morale bonus on Strength or Dexterity skill checks equal to the mesmerist's charisma modifier."
+    },
+    {
+        "Key": "MesmericMirror.Name",
+        "ProcessTemplates": false,
+        "enGB": "Mesmeric Mirror"
+    },
+    {
+        "Key": "MesmericMirror.Description",
+        "enGB": "Illusory images appears near the subject to throw off attackers. This ability functions similarly to the wizard spell Mirror Image."
+    },
+    {
+        "Key": "PsychosomaticSurge.Name",
+        "ProcessTemplates": false,
+        "enGB": "Psychosomatic Surge"
+    },
+    {
+        "Key": "PsychosomaticSurge.Description",
+        "enGB": "The subject gains a number of temporary hit points equal to 1d10 + 1 per mesmerist’s level."
+    },
+    {
+        "Key": "VoiceOfReason.Name",
+        "ProcessTemplates": false,
+        "enGB": "Voice Of Reason"
+    },
+    {
+        "Key": "VoiceOfReason.Description",
+        "enGB": "The subject gains an insight bonus to their will saves equal to the mesmerist's charisma modifier."
+    },
+    {
+        "Key": "UnwittingMessanger.Name",
+        "ProcessTemplates": false,
+        "enGB": "Unwitting Messanger"
+    },
+    {
+        "Key": "UnwittingMessanger.Description",
+        "enGB": "The subject gains a morale bonus to Persuasion and Use Magic Device equal to the mesmerist's charisma modifier."
+    },
+    {
+        "Key": "SeeInDarkness.Name",
+        "ProcessTemplates": false,
+        "enGB": "See In Darkness"
+    },
+    {
+        "Key": "SeeInDarkness.Description",
+        "enGB": "The subject gains blindsense & blindsight up to 30 feet."
+    },
+    {
+        "Key": "FearsomeGuise.Name",
+        "ProcessTemplates": false,
+        "enGB": "Fearsome Guise"
+    },
+    {
+        "Key": "FearsomeGuise.Description",
+        "enGB": "The mesmerist implants a trick in the subject such that whenever the subject hits with an attack, the mesmerist attempts to demoralize their target as a free action."
+    },
+    {
+        "Key": "SlipBonds.Name",
+        "ProcessTemplates": false,
+        "enGB": "Slip Bonds"
+    },
+    {
+        "Key": "SlipBonds.Description",
+        "enGB": "The subject gains a +2 circumstance bonus to CMB and CMD. This bonus increases to +6 at 12th level."
+    },
+    {
+        "Key": "VanishArrow.Name",
+        "ProcessTemplates": false,
+        "enGB": "Vanish Arrow"
+    },
+    {
+        "Key": "VanishArrow.Description",
+        "enGB": "The subject gains the ability to deflect arrows. The subject does not need a free hand to use this ability."
+    },
+    {
+        "Key": "FreeInBody.Name",
+        "ProcessTemplates": false,
+        "enGB": "Free In Body"
+    },
+    {
+        "Key": "FreeInBody.Description",
+        "enGB": "The subject gains Freedom of Movement."
+    },
+    {
+        "Key": "ShadowBlend.Name",
+        "ProcessTemplates": false,
+        "enGB": "Shadow Blend"
+    },
+    {
+        "Key": "ShadowBlend.Description",
+        "enGB": "The subject gains Total Concealment."
+    },
+    {
+        "Key": "ConcealingVeil.Name",
+        "ProcessTemplates": false,
+        "enGB": "Concealing Veil"
+    },
+    {
+        "Key": "ConcealingVeil.Description",
+        "enGB": "The subject gains Greater Invisibility with a stealth bonus of +5."
+    },
+    {
+        "Key": "ManifoldStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Manifold Stare"
+    },
+    {
+        "Key": "ManifoldStare.Description",
+        "enGB": "You can trigger your painful stare one additional time per round. You may select this feat at 3rd, 9th, and 15th level."
+    },
+    {
+        "Key": "ForcedHope.Name",
+        "ProcessTemplates": false,
+        "enGB": "Forced Hope"
+    },
+    {
+        "Key": "ForcedHope.Description",
+        "enGB": "The subject gains a +4 morale bonus to attack and damage rolls."
+    },
+    {
+        "Key": "MentalPotency.Name",
+        "ProcessTemplates": false,
+        "enGB": "Mental Potency"
+    },
+    {
+        "Key": "MentalPotency.Description",
+        "enGB": "At 5th level, the mesmerist can affect more powerful creatures or a greater number of creatures than normal with his mental effects. Both the HD limit and the total number of HD affected with each enchantment or illusion spell he casts increase by 1. For enchantment and illusion spells he casts that target a number of creatures greater than one, the number of creatures affected also increases by one (so a spell that targets one creature per level would be affected, but a spell that targets only one creature would not be). For example, a 5thlevel mesmerist could affect 5 HD worth of creatures with sleep, affect 2d4+1 HD worth of creatures with hypnotism, and change the categories for color spray to “3 HD or fewer,” “4 or 5 HD,” and “6 or more HD.” The number of additional HD or creatures increases by an additional 1 for every 5 levels beyond 5th, to a maximum increase of 4 at 20th level."
+    }
+]

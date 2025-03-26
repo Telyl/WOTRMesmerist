@@ -1,0 +1,12 @@
+﻿{
+  "Id": "Mesmerist",
+  "DisplayName": "Mesmerist",
+  "Author": "",
+  "Version": "1.0.0",
+  "ManagerVersion": "0.27.11",
+  "Requirements": ["ModMenu-1.1.0"],
+  "AssemblyName": "Mesmerist.dll",
+  "EntryMethod": "Mesmerist.Main.Load",
+  "HomePage": "",
+  "Repository": ""
+}
