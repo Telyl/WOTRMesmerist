@@ -177,7 +177,7 @@
     },
     {
         "Key": "FalseFlanker.Description",
-        "enGB": "This mesmerist trick grants a +2 attack bonus to flanked targets. This effect stacks with feats such as Outflank."
+        "enGB": "This mesmerist trick grants a +2 attack bonus to flanked targets. This effect stacks with feats such as Outflank. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "MeekFacade.Name",
@@ -186,7 +186,7 @@
     },
     {
         "Key": "MeekFacade.Description",
-        "enGB": "This mesmerist trick grants a +2 dodge bonus to AC. This bonus increases by +1 for ever 5 levels the mesmerist possess."
+        "enGB": "This mesmerist trick grants a +2 dodge bonus to AC. This bonus increases by +1 for ever 5 levels the mesmerist possess. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "MesmericPantomime.Name",
@@ -195,7 +195,7 @@
     },
     {
         "Key": "MesmericPantomime.Description",
-        "enGB": "This mesmerist trick grants a morale bonus on Strength or Dexterity skill checks equal to the mesmerist's charisma modifier."
+        "enGB": "This mesmerist trick grants a morale bonus on Strength or Dexterity skill checks equal to the mesmerist's charisma modifier. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "MesmericMirror.Name",
@@ -204,7 +204,7 @@
     },
     {
         "Key": "MesmericMirror.Description",
-        "enGB": "Illusory images appears near the subject to throw off attackers. This ability functions similarly to the wizard spell Mirror Image."
+        "enGB": "An illusory image appears near the subject to throw off attackers. The mesmerist can trigger this trick when the subject is attacked or becomes the target of a spell that requires an attack roll. When this trick is used, 1d4 images plus one image per three caster levels (maximum eight images total) are created. These images remain in your space and move with you, mimicking your movements, sounds, and actions exactly. Whenever you are attacked or are the target of a spell that requires an attack roll, there is a possibility that the attack targets one of your images instead. If the attack is a hit, roll randomly to see whether the selected target is real or a figment. If it is a figment, the figment is destroyed. If the attack misses by 5 or less, one of your figments is destroyed by the near miss. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "PsychosomaticSurge.Name",
@@ -213,7 +213,7 @@
     },
     {
         "Key": "PsychosomaticSurge.Description",
-        "enGB": "The subject gains a number of temporary hit points equal to 1d10 + 1 per mesmerist’s level."
+        "enGB": "The subject gains a number of temporary hit points equal to 1d10 + 1 per mesmerist’s level. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "VoiceOfReason.Name",
@@ -222,7 +222,7 @@
     },
     {
         "Key": "VoiceOfReason.Description",
-        "enGB": "The subject gains an insight bonus to their will saves equal to the mesmerist's charisma modifier."
+        "enGB": "The subject gains an insight bonus to their will saves equal to the mesmerist's charisma modifier. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "UnwittingMessanger.Name",
@@ -231,7 +231,7 @@
     },
     {
         "Key": "UnwittingMessanger.Description",
-        "enGB": "The subject gains a morale bonus to Persuasion and Use Magic Device equal to the mesmerist's charisma modifier."
+        "enGB": "The subject gains a morale bonus to Persuasion and Use Magic Device equal to the mesmerist's charisma modifier. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "SeeInDarkness.Name",
@@ -240,7 +240,7 @@
     },
     {
         "Key": "SeeInDarkness.Description",
-        "enGB": "The subject gains blindsense & blindsight up to 30 feet."
+        "enGB": "The subject gains blindsense and blindsight up to 30 feet. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "FearsomeGuise.Name",
@@ -249,7 +249,7 @@
     },
     {
         "Key": "FearsomeGuise.Description",
-        "enGB": "The mesmerist implants a trick in the subject such that whenever the subject hits with an attack, the mesmerist attempts to demoralize their target as a free action."
+        "enGB": "The mesmerist implants a trick in the subject such that whenever the subject hits with an attack, the mesmerist attempts to demoralize their target as a free action. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "SlipBonds.Name",
@@ -258,7 +258,7 @@
     },
     {
         "Key": "SlipBonds.Description",
-        "enGB": "The subject gains a +2 circumstance bonus to CMB and CMD. This bonus increases to +6 at 12th level."
+        "enGB": "The subject gains a +2 circumstance bonus to CMB and CMD. This bonus increases to +6 at 12th level. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "VanishArrow.Name",
@@ -267,7 +267,7 @@
     },
     {
         "Key": "VanishArrow.Description",
-        "enGB": "The subject gains the ability to deflect arrows. The subject does not need a free hand to use this ability."
+        "enGB": "The subject gains the ability to deflect arrows. The subject does not need a free hand to use this ability. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "FreeInBody.Name",
@@ -276,7 +276,7 @@
     },
     {
         "Key": "FreeInBody.Description",
-        "enGB": "The subject gains Freedom of Movement."
+        "enGB": "This trick enables you or a creature you touch to move and attack normally for the duration of the spell, even under the influence of magic that usually impedes movement, such as paralysis, solid fog, slow, and web. All combat maneuver checks made to grapple the target automatically fail. This effect lasts 1 minute/mesmerist level."
     },
     {
         "Key": "ShadowBlend.Name",
@@ -285,7 +285,7 @@
     },
     {
         "Key": "ShadowBlend.Description",
-        "enGB": "The subject gains Total Concealment."
+        "enGB": "The creature or object touched becomes invisible. If the recipient is a creature carrying gear, that vanishes, too. If you cast the spell on someone else, neither you nor your allies can see the subject, unless you can normally see invisible things or you employ magic to do so. Of course, the subject is not magically silenced, and certain other conditions can render the recipient detectable (such as swimming in water or stepping in a puddle). The subject gains a +5 bonus to stealth checks. This effect does not end when attacking and lasts 1 minute/mesmerist level."
     },
     {
         "Key": "ConcealingVeil.Name",
@@ -322,5 +322,50 @@
     {
         "Key": "MentalPotency.Description",
         "enGB": "At 5th level, the mesmerist can affect more powerful creatures or a greater number of creatures than normal with his mental effects. Both the HD limit and the total number of HD affected with each enchantment or illusion spell he casts increase by 1. For enchantment and illusion spells he casts that target a number of creatures greater than one, the number of creatures affected also increases by one (so a spell that targets one creature per level would be affected, but a spell that targets only one creature would not be). For example, a 5thlevel mesmerist could affect 5 HD worth of creatures with sleep, affect 2d4+1 HD worth of creatures with hypnotism, and change the categories for color spray to “3 HD or fewer,” “4 or 5 HD,” and “6 or more HD.” The number of additional HD or creatures increases by an additional 1 for every 5 levels beyond 5th, to a maximum increase of 4 at 20th level."
+    },
+    {
+        "Key": "IntensePain.Name",
+        "ProcessTemplates": false,
+        "enGB": "Intense Pain"
+    },
+    {
+        "Key": "IntensePain.Description",
+        "enGB": "When you use your painful stare ability to increase your own damage, you deal an additional 1d6 points of damage. This damage increases to 2d6 at mesmerist level 12th and to 3d6 at mesmerist level 18th.\nWhen you use painful stare to augment an ally’s damage, the target of the painful stare takes 1 additional point of damage for every 4 mesmerist levels you possess."
+    },
+    {
+        "Key": "FatiguingStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Fatiguing Stare"
+    },
+    {
+        "Key": "FatiguingStare.Description",
+        "enGB": "When a target takes damage from your painful stare, it must succeed at a Fortitude saving throw (DC = 10 + 1/2 your mesmerist level + your Charisma modifier) or become fatigued for 1 round. This can’t cause the target to become exhausted, even if the target is already fatigued."
+    },
+    {
+        "Key": "DemoralizingStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Demoralizing Stare"
+    },
+    {
+        "Key": "DemoralizingStare.Description",
+        "enGB": "When you trigger your painful stare, the target must succeed at a Will Save (DC = 10 + 1/2 your mesmerist level + your Charisma modifier) or become shaken for 1 round. This can’t cause the target to become frightened, even if the target is already shaken."
+    },
+    {
+        "Key": "ExcoriatingStare.Name",
+        "ProcessTemplates": false,
+        "enGB": "Excoriating Stare"
+    },
+    {
+        "Key": "ExcoriatingStare.Description",
+        "enGB": "Whenever you trigger a painful stare, the target must succeed at a Will saving throw (DC = 10 + 1/2 your mesmerist level + your Charisma modifier) or become sickened by the pain for 1 round."
+    },
+    {
+        "Key": "CompoundedPain.Name",
+        "ProcessTemplates": false,
+        "enGB": "Compounded Pain"
+    },
+    {
+        "Key": "CompoundedPain.Description",
+        "enGB": "Benefits: You can apply the effects of two stare feats to your painful stares.\nNormal: You can apply the effects of only one stare feat to a given painful stare."
     }
 ]

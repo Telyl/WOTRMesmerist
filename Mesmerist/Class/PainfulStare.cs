@@ -78,7 +78,8 @@ namespace Mesmerist.Class
                 .SetRanks(4)
                 .SetStacking(StackingType.Rank)
                 .SetFlags(BlueprintBuff.Flags.HiddenInUi)
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageBonus).WithOnePlusDiv2Progression())
+                .AddUniqueBuff()
+                .AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageBonus).WithStartPlusDivStepProgression(2, 2))
                 .AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageDice).WithStartPlusDivStepProgression(3,3, true))
                 .AddIncomingDamageTrigger(actions: ActionsBuilder.New().Conditional(ConditionsBuilder.New().Add<ContextConditionInitiatorHasFact>(c =>
                 {

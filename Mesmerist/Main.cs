@@ -9,6 +9,7 @@ using UnityModManagerNet;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.JsonSystem;
 using Mesmerist.Class;
+using Mesmerist.Class.Features;
 
 namespace Mesmerist;
 
@@ -56,9 +57,13 @@ public static class Main {
 
                 log.Log("Patching blueprints.");
                 // Insert your mod's patching methods here
-                // Example
-                // SuperAwesomeFeat.Configure()
                 Class.Mesmerist.Configure();
+                //BleedingStare.Configure();
+                //CompoundedPain.Configure();
+                DemoralizingStare.Configure();
+                ExcoriatingStare.Configure();
+                FatiguingStare.Configure();
+                //IntensePain.Configure();
                 
             } catch (Exception e) {
                 log.Log(string.Concat("Failed to initialize.", e));

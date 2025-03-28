@@ -18,7 +18,7 @@ namespace Mesmerist.Class.Tricks
                                           AbilityRefs.FalseLife.Reference.Get().Icon,
                                           Guids.PsychosomaticSurge,
                                           Guids.PsychosomaticSurgeAbility,
-                                          Guids.PsychosomaticSurgeBuff);
+                                          Guids.PsychosomaticSurgeBuff); 
 
             BuffConfigurator.For(Guids.PsychosomaticSurgeBuff)
                 .CopyFrom(BuffRefs.FalseLifeBuff.Reference.Get(), typeof(TemporaryHitPointsFromAbilityValue))

@@ -42,6 +42,8 @@ namespace Mesmerist.Class
             MasterfulTricks.Configure();
             MentalPotency.Configure();
 
+            TouchTreatment.Configure();
+
 
             var entries = LevelEntryBuilder.New()
                 .AddEntry(1, Guids.ConsummateLiar, Guids.MesmeristProficiencies, Guids.HypnoticStare,
@@ -49,16 +51,16 @@ namespace Mesmerist.Class
                 Guids.MesmeristTrickResourceFeature,
                 Guids.TouchTreatmentResourceFeature, Guids.PainfulStare)
                 .AddEntry(2, Guids.ToweringEgo, Guids.MesmeristTrickSelection)
-                .AddEntry(3, Guids.BoldStareSelection, Guids.PsychicInception)
+                .AddEntry(3, Guids.BoldStareSelection, Guids.PsychicInception, Guids.TouchTreatment)
                 .AddEntry(4, Guids.MesmeristTrickSelection)
                 .AddEntry(5, Guids.MentalPotency)
-                .AddEntry(6, Guids.MesmeristTrickSelection)
+                .AddEntry(6, Guids.MesmeristTrickSelection, Guids.TouchTreatmentModerate)
                 .AddEntry(7, Guids.BoldStareSelection)
                 .AddEntry(8, Guids.MesmeristTrickSelection, Guids.HypnoticStareUpgrade)
-                .AddEntry(10, Guids.MesmeristTrickSelection, Guids.MentalPotency)
+                .AddEntry(10, Guids.MesmeristTrickSelection, Guids.MentalPotency, Guids.TouchTreatmentGreater)
                 .AddEntry(11, Guids.BoldStareSelection)
                 .AddEntry(12, Guids.MesmeristTrickSelection, Guids.MasterfulTricks)
-                .AddEntry(14, Guids.MesmeristTrickSelection)
+                .AddEntry(14, Guids.MesmeristTrickSelection, Guids.TouchTreatmentBreak)
                 .AddEntry(15, Guids.BoldStareSelection, Guids.MentalPotency)
                 .AddEntry(16, Guids.MesmeristTrickSelection)
                 .AddEntry(18, Guids.MesmeristTrickSelection)
