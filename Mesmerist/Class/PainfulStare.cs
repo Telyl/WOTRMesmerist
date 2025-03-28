@@ -71,6 +71,16 @@ namespace Mesmerist.Class
                 }))
                 .Configure();
 
+            var PainfulStareRank = FeatureConfigurator.New(FeatName + "Rank", Guids.PainfulStareRank)
+                .SetHideInUI(true)
+                .SetRanks(20)
+                .Configure();
+
+            var PainfulStareBaseDmg = FeatureConfigurator.New(FeatName + "BaseDamage", Guids.PainfulStareBaseDmg)
+                .SetHideInUI(true)
+                .SetRanks(20)
+                .Configure();
+
             // Painful Stare Buff
             BuffConfigurator.New(FeatName + "Buff", Guids.PainfulStareBuff)
                 .SetDisplayName(DisplayName)
@@ -79,8 +89,10 @@ namespace Mesmerist.Class
                 .SetStacking(StackingType.Rank)
                 .SetFlags(BlueprintBuff.Flags.HiddenInUi)
                 .AddUniqueBuff()
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageBonus).WithStartPlusDivStepProgression(2, 2))
-                .AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageDice).WithStartPlusDivStepProgression(3,3, true))
+                //.AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageBonus).WithStartPlusDivStepProgression(2, 2))
+                //.AddContextRankConfig(ContextRankConfigs.ClassLevel(new[] { Guids.Mesmerist }, type: AbilityRankType.DamageDice).WithStartPlusDivStepProgression(3,3, true))
+                .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.PainfulStareBaseDmg, type: AbilityRankType.DamageBonus))
+                .AddContextRankConfig(ContextRankConfigs.FeatureRank(Guids.PainfulStareRank, type: AbilityRankType.DamageDice))
                 .AddIncomingDamageTrigger(actions: ActionsBuilder.New().Conditional(ConditionsBuilder.New().Add<ContextConditionInitiatorHasFact>(c =>
                 {
                     c.FactToCheck = BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PainfulStare);

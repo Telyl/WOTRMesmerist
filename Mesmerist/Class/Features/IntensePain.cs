@@ -20,9 +20,12 @@ namespace Mesmerist.Class.Features
                 .SetHideInUI()
                 .SetClasses([Guids.Mesmerist])
                 .SetGiveFeaturesForPreviousLevels(true)
-                .AddToLevelEntry(7, Guids.PainfulStare)
-                .AddToLevelEntry(12, Guids.PainfulStare)
-                .AddToLevelEntry(18, Guids.PainfulStare)
+                .AddToLevelEntry(7, Guids.PainfulStareRank, Guids.PainfulStareBaseDmg)
+                .AddToLevelEntry(8, Guids.PainfulStareBaseDmg)
+                .AddToLevelEntry(12, Guids.PainfulStareRank, Guids.PainfulStareBaseDmg)
+                .AddToLevelEntry(16, Guids.PainfulStareBaseDmg)
+                .AddToLevelEntry(18, Guids.PainfulStareRank)
+                .AddToLevelEntry(20, Guids.PainfulStareBaseDmg)
                 .Configure();
 
             FeatureConfigurator.New(FeatName, Guids.IntensePain, [FeatureGroup.CombatFeat, FeatureGroup.Feat])

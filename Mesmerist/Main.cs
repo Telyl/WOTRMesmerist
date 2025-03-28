@@ -63,7 +63,7 @@ public static class Main {
                 DemoralizingStare.Configure();
                 ExcoriatingStare.Configure();
                 FatiguingStare.Configure();
-                //IntensePain.Configure();
+                IntensePain.Configure();
                 
             } catch (Exception e) {
                 log.Log(string.Concat("Failed to initialize.", e));

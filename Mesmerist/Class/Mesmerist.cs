@@ -49,23 +49,24 @@ namespace Mesmerist.Class
                 .AddEntry(1, Guids.ConsummateLiar, Guids.MesmeristProficiencies, Guids.HypnoticStare,
                 Guids.MesmeristTrickSelection,
                 Guids.MesmeristTrickResourceFeature,
-                Guids.TouchTreatmentResourceFeature, Guids.PainfulStare)
+                Guids.TouchTreatmentResourceFeature, Guids.PainfulStare, Guids.PainfulStareBaseDmg)
                 .AddEntry(2, Guids.ToweringEgo, Guids.MesmeristTrickSelection)
-                .AddEntry(3, Guids.BoldStareSelection, Guids.PsychicInception, Guids.TouchTreatment)
-                .AddEntry(4, Guids.MesmeristTrickSelection)
+                .AddEntry(3, Guids.BoldStareSelection, Guids.PsychicInception, Guids.TouchTreatment, Guids.PainfulStareRank)
+                .AddEntry(4, Guids.MesmeristTrickSelection, Guids.PainfulStareBaseDmg)
                 .AddEntry(5, Guids.MentalPotency)
-                .AddEntry(6, Guids.MesmeristTrickSelection, Guids.TouchTreatmentModerate)
+                .AddEntry(6, Guids.MesmeristTrickSelection, Guids.TouchTreatmentModerate, Guids.PainfulStareRank, Guids.PainfulStareBaseDmg)
                 .AddEntry(7, Guids.BoldStareSelection)
-                .AddEntry(8, Guids.MesmeristTrickSelection, Guids.HypnoticStareUpgrade)
-                .AddEntry(10, Guids.MesmeristTrickSelection, Guids.MentalPotency, Guids.TouchTreatmentGreater)
+                .AddEntry(8, Guids.MesmeristTrickSelection, Guids.HypnoticStareUpgrade, Guids.PainfulStareBaseDmg)
+                .AddEntry(9, Guids.PainfulStareRank)
+                .AddEntry(10, Guids.MesmeristTrickSelection, Guids.MentalPotency, Guids.TouchTreatmentGreater, Guids.PainfulStareBaseDmg)
                 .AddEntry(11, Guids.BoldStareSelection)
-                .AddEntry(12, Guids.MesmeristTrickSelection, Guids.MasterfulTricks)
-                .AddEntry(14, Guids.MesmeristTrickSelection, Guids.TouchTreatmentBreak)
-                .AddEntry(15, Guids.BoldStareSelection, Guids.MentalPotency)
-                .AddEntry(16, Guids.MesmeristTrickSelection)
-                .AddEntry(18, Guids.MesmeristTrickSelection)
+                .AddEntry(12, Guids.MesmeristTrickSelection, Guids.MasterfulTricks, Guids.PainfulStareRank, Guids.PainfulStareBaseDmg)
+                .AddEntry(14, Guids.MesmeristTrickSelection, Guids.TouchTreatmentBreak, Guids.PainfulStareBaseDmg)
+                .AddEntry(15, Guids.BoldStareSelection, Guids.MentalPotency, Guids.PainfulStareRank)
+                .AddEntry(16, Guids.MesmeristTrickSelection, Guids.PainfulStareBaseDmg)
+                .AddEntry(18, Guids.MesmeristTrickSelection, Guids.PainfulStareRank, Guids.PainfulStareBaseDmg)
                 .AddEntry(19, Guids.BoldStareSelection)
-                .AddEntry(20, Guids.MesmeristTrickSelection, Guids.HypnoticStarePiercingGaze, Guids.MentalPotency);
+                .AddEntry(20, Guids.MesmeristTrickSelection, Guids.HypnoticStarePiercingGaze, Guids.MentalPotency, Guids.PainfulStareBaseDmg);
 
 
             BlueprintProgression mesmeristProgression = ProgressionConfigurator.New("MesmeristProgression", Guids.MesmeristProgression)

@@ -38,7 +38,8 @@
 
         internal const string PainfulStare = "c8ce0b5e91c14348bec839465aaea136";
         internal const string PainfulStareBuff = "fac154513a9c4140b5274d0f0f9f16a7";
-        internal const string PainfulStareRankTracker = "977a2ca2155f45ad877e63b1a1267c18";
+        internal const string PainfulStareRank = "977a2ca2155f45ad877e63b1a1267c18";
+        internal const string PainfulStareBaseDmg = "9697cb9b577c433199441808b4009e24";
 
 
 

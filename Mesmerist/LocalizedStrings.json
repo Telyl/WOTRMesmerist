@@ -367,5 +367,32 @@
     {
         "Key": "CompoundedPain.Description",
         "enGB": "Benefits: You can apply the effects of two stare feats to your painful stares.\nNormal: You can apply the effects of only one stare feat to a given painful stare."
+    },
+    {
+        "Key": "TouchTreatment.Name",
+        "ProcessTemplates": false,
+        "enGB": "Touch Treatment"
+    },
+    {
+        "Key": "TouchTreatment.Description",
+        "enGB": "At 3rd level, the mesmerist can help allies shake off harmful conditions—especially those that affect their minds—by channeling psychic energy through his healing hands. He can use touch treatment a number of times per day equal to 3 + his Charisma modifier. Using the ability is a standard action (or a swift action if the mesmerist uses it on himself ), and the mesmerist must be able to touch his target. He can remove one condition from one target each time he uses this ability. At 3rd level, he can remove any condition on the minor conditions list. At 6th level, he can remove any condition on the minor or moderate conditions list, and at 10th level, he can remove any condition on the minor, moderate, or greater conditions list.\n\nMinor Conditions: Fascinated, shaken.\nModerate Conditions: Confused, dazed, frightened, sickened.\nGreater Conditions: Cowering, nauseated, panicked, stunned.\nA 14th level, the mesmerist can instead expend one use of touch treatment to replicate the effects of break enchantment."
+    },
+    {
+        "Key": "TouchTreatmentSelf.Name",
+        "ProcessTemplates": false,
+        "enGB": "Touch Treatment - Self"
+    },
+    {
+        "Key": "TouchTreatmentSelf.Description",
+        "enGB": "The Mesmerist can touch himself up to 3 + his Charisma modifier times per day as a swift action to remove one condition from one target each time he uses this ability. \n\nMinor Conditions (3rd level): Fascinated, shaken.\nModerate Conditions (6th level): Confused, dazed, frightened, sickened.\nGreater Conditions (10th level): Cowering, nauseated, panicked, stunned.\nA 14th level, the mesmerist can instead expend one use of touch treatment to replicate the effects of break enchantment."
+    },
+    {
+        "Key": "TouchTreatmentOther.Name",
+        "ProcessTemplates": false,
+        "enGB": "Touch Treatment - Other"
+    },
+    {
+        "Key": "TouchTreatmentOther.Description",
+        "enGB": "The Mesmerist can touch an ally up to 3 + his Charisma modifier times per day as a standard action to remove one condition from one target each time he uses this ability. \n\nMinor Conditions (3rd level): Fascinated, shaken.\nModerate Conditions (6th level): Confused, dazed, frightened, sickened.\nGreater Conditions (10th level): Cowering, nauseated, panicked, stunned.\nA 14th level, the mesmerist can instead expend one use of touch treatment to replicate the effects of break enchantment."
     }
 ]
