@@ -98,7 +98,7 @@ namespace Mesmerist.Class
             // Nauseated & Stunned
             FeatureConfigurator.New(FeatName + "Greater", Guids.TouchTreatmentGreater)
                 .SetHideInUI()
-                .SetIsClassFeature()
+                .SetIsClassFeature() 
                 .Configure();
 
 

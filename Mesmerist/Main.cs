@@ -1,15 +1,10 @@
 ﻿using HarmonyLib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
 using UnityModManagerNet;
-using BlueprintCore.Utils;
 using Kingmaker.Blueprints.JsonSystem;
-using Mesmerist.Class;
 using Mesmerist.Class.Features;
+using Mesmerist.Class.MythicFeature;
 
 namespace Mesmerist;
 
@@ -64,6 +59,7 @@ public static class Main {
                 ExcoriatingStare.Configure();
                 FatiguingStare.Configure();
                 IntensePain.Configure();
+                MythicAwesomeDisplay.Configure();
                 
             } catch (Exception e) {
                 log.Log(string.Concat("Failed to initialize.", e));

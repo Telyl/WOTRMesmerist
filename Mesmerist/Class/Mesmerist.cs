@@ -45,7 +45,7 @@ namespace Mesmerist.Class
             TouchTreatment.Configure();
 
 
-            var entries = LevelEntryBuilder.New()
+            var entries = LevelEntryBuilder.New() 
                 .AddEntry(1, Guids.ConsummateLiar, Guids.MesmeristProficiencies, Guids.HypnoticStare,
                 Guids.MesmeristTrickSelection,
                 Guids.MesmeristTrickResourceFeature,
