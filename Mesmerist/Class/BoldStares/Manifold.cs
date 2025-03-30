@@ -17,7 +17,7 @@ namespace Mesmerist.Class.BoldStares
         public static void Configure()
         {
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
-            FeatureConfigurator.New(FeatName, Guids.ManifoldStare3rd, FeatureGroup.CombatFeat)
+            FeatureConfigurator.New(FeatName, Guids.ManifoldStare3rd, [FeatureGroup.CombatFeat, FeatureGroup.Feat])
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
@@ -27,7 +27,7 @@ namespace Mesmerist.Class.BoldStares
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 3)
                 .Configure();
 
-            FeatureConfigurator.New(FeatName + "9th", Guids.ManifoldStare9th, FeatureGroup.CombatFeat)
+            FeatureConfigurator.New(FeatName + "9th", Guids.ManifoldStare9th, [FeatureGroup.CombatFeat, FeatureGroup.Feat])
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
@@ -38,13 +38,14 @@ namespace Mesmerist.Class.BoldStares
                 .AddFacts(new() { Guids.PainfulStare })
                 .Configure();
 
-            FeatureConfigurator.New(FeatName + "15th", Guids.ManifoldStare15th, FeatureGroup.CombatFeat)
+            FeatureConfigurator.New(FeatName + "15th", Guids.ManifoldStare15th, [FeatureGroup.CombatFeat, FeatureGroup.Feat])
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
                 .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 15)
                 .AddPrerequisitePlayerHasFeature(Guids.ManifoldStare9th)
+                .AddRecommendationHasClasses(recommendedClasses: [Guids.Mesmerist])
                 .AddFacts(new() { Guids.PainfulStare })
                 .Configure(); 
 
