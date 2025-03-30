@@ -16,6 +16,7 @@ namespace Mesmerist.Class.Tricks
             FearsomeGuise.Configure();
             ForcedHope.Configure();
             FreeInBody.Configure();
+            LinkedReaction.Configure();
             MeekFacade.Configure();
             MesmericMirror.Configure();
             MesmericPantomime.Configure();
