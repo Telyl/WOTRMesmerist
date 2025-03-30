@@ -30,15 +30,15 @@ namespace Mesmerist.NewComponents.AbilitySpecific
         {
             UnitPartSpellResistance unitpart = base.Owner.Ensure<UnitPartSpellResistance>();
             UnitPartIgnoreBuffDescriptorImmunity buffunitpart = base.Owner.Ensure<UnitPartIgnoreBuffDescriptorImmunity>();
-            unitpart.IgnoreImmunity(SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion | SpellDescriptor.Fear | SpellDescriptor.Emotion | SpellDescriptor.NegativeEmotion);
-            buffunitpart.AddEntry(SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion | SpellDescriptor.Fear | SpellDescriptor.Emotion | SpellDescriptor.NegativeEmotion, base.Fact);
+            unitpart.IgnoreImmunity(SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion | SpellDescriptor.Fear | SpellDescriptor.Emotion | SpellDescriptor.NegativeEmotion | SpellDescriptor.Shaken | SpellDescriptor.Frightened | SpellDescriptor.Confusion | SpellDescriptor.Sleep);
+            buffunitpart.AddEntry(SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion | SpellDescriptor.Fear | SpellDescriptor.Emotion | SpellDescriptor.NegativeEmotion | SpellDescriptor.Shaken | SpellDescriptor.Frightened | SpellDescriptor.Confusion | SpellDescriptor.Sleep, base.Fact);
         }
 
         public override void OnTurnOff()
         {
             UnitPartSpellResistance unitpart = base.Owner.Ensure<UnitPartSpellResistance>();
             UnitPartIgnoreBuffDescriptorImmunity buffunitpart = base.Owner.Ensure<UnitPartIgnoreBuffDescriptorImmunity>();
-            unitpart.RestoreImmunity(SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion | SpellDescriptor.Fear | SpellDescriptor.Emotion | SpellDescriptor.NegativeEmotion);
+            unitpart.RestoreImmunity(SpellDescriptor.MindAffecting | SpellDescriptor.Charm | SpellDescriptor.Compulsion | SpellDescriptor.Fear | SpellDescriptor.Emotion | SpellDescriptor.NegativeEmotion | SpellDescriptor.Shaken | SpellDescriptor.Frightened | SpellDescriptor.Confusion | SpellDescriptor.Sleep);
             buffunitpart.RemoveEntry(base.Fact);
         }
     }

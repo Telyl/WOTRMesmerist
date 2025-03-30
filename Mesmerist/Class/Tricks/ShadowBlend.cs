@@ -22,7 +22,7 @@ namespace Mesmerist.Class.Tricks
 
             BuffConfigurator.For(Guids.ShadowBlendBuff)
                 .AddConcealment(false, false, Concealment.Total, ConcealmentDescriptor.Displacement)
-                .Configure();
+                .Configure(); 
         }
     }
 }
