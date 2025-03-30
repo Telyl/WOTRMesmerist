@@ -24,6 +24,7 @@ namespace Mesmerist.Class.BoldStares
                 .SetIcon(AbilityRefs.TrueSeeing.Reference.Get().Icon)
                 .AddFacts(new() { Guids.PainfulStare })
                 .SetIsPrerequisiteFor(Guids.ManifoldStare9th, Guids.ManifoldStare15th)
+                .AddRecommendationHasClasses(recommendedClasses: [Guids.Mesmerist])
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 3)
                 .Configure();
 
@@ -35,6 +36,7 @@ namespace Mesmerist.Class.BoldStares
                 .SetIsPrerequisiteFor(Guids.ManifoldStare15th)
                 .AddPrerequisiteClassLevel(Guids.Mesmerist, 9)
                 .AddPrerequisitePlayerHasFeature(Guids.ManifoldStare3rd)
+                .AddRecommendationHasClasses(recommendedClasses: [Guids.Mesmerist])
                 .AddFacts(new() { Guids.PainfulStare })
                 .Configure();
 
