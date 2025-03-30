@@ -60,7 +60,7 @@
     },
     {
         "Key": "MesmeristTrick.Description",
-        "enGB": "A mesmerist can create hypnotic bonds with his allies, implanting magical suggestions in their minds that he can later activate. Each day, he can implant a number of these tricks equal to 1/2 his mesmerist level (minimum 1) plus his Charisma bonus (if any). He can have only one trick implanted at a given time, and implanting a new trick ends the previous one (the mesmerist still loses the use of this ability he spent on the previous trick).\nTo implant a trick, the mesmerist must take a standard action and either touch a willing creature or implant the trick in himself. A creature can be the subject of only one mesmerist trick at a time.\nOnce triggered, a trick is no longer implanted, and can’t be triggered again until the mesmerist implants the trick again. The duration of the effect caused by triggering a trick is either instantaneous or appears in the trick’s entry. The DC for any mesmerist trick or masterful trick that requires a saving throw or skill check is 10 + 1/2 the mesmerist’s level + the mesmerist’s Charisma modifier. The Mesmerist gains the ability to add additional tricks at any given time through the Manifold Trick feature."
+        "enGB": "A mesmerist can create hypnotic bonds with his allies, implanting magical suggestions in their minds that he can later activate. Each day, he can implant a number of these tricks equal to 1/2 his mesmerist level (minimum 1) plus his Charisma bonus (if any).\nTo implant a trick, the mesmerist must take a standard action and either touch a willing creature or implant the trick in himself. A creature can be the subject of only one mesmerist trick at a time.\nOnce triggered, a trick is no longer implanted, and can’t be triggered again until the mesmerist implants the trick again. The duration of the effect caused by triggering a trick is either instantaneous or appears in the trick’s entry. The DC for any mesmerist trick or masterful trick that requires a saving throw or skill check is 10 + 1/2 the mesmerist’s level + the mesmerist’s Charisma modifier."
     },
     {
         "Key": "BoldStare.Name",
@@ -86,8 +86,8 @@
         "enGB": "Disquiet"
     },
     {
-        "Key": "Disquiet.Description",
-        "enGB": "The target of the hypnotic stare is shaken."
+      "Key": "Disquiet.Description",
+      "enGB": "The target of the hypnotic stare is shaken. A shaken character takes a –2 penalty on attack rolls, saving throws, skill checks, and ability checks. Shaken is a less severe state of fear than frightened."
     },
     {
         "Key": "Distracted.Name",

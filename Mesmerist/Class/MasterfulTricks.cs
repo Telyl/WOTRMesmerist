@@ -17,7 +17,6 @@ namespace Mesmerist.Class
         private static readonly string Description = "MasterfulTricks.Description";
         public static void Configure()
         {
-
             FeatureConfigurator.New(FeatName, Guids.MasterfulTricks)
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)

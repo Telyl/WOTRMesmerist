@@ -62,7 +62,7 @@ namespace Mesmerist.Class
                 .SetCanTargetEnemies(true)
                 //.AddAbilityTargetIsAlly(true)
                 .AddAbilityTargetHasFact(inverted: true, fromCaster: true, checkedFacts: [hypnoticStareBuff])
-                .SetSpellDescriptor(SpellDescriptor.MindAffecting)
+                //.SetSpellDescriptor(SpellDescriptor.MindAffecting)
                 .SetNotOffensive(true)
                 .AddAbilityEffectRunAction(
                    actions: ActionsBuilder.New()
@@ -86,7 +86,7 @@ namespace Mesmerist.Class
                                ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.NightmareBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.PsychicInception),
-                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychicInceptionBuff, true, false, toCaster: true))
+                               ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsychicInceptionBuff, true, false))
                    .Conditional(
                                ConditionsBuilder.New().CasterHasFact(Guids.SappedMagic),
                                ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SappedMagicBuff, true, false))

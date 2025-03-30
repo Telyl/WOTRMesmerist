@@ -89,6 +89,7 @@
         internal const string NightmareBuff = "8217c88f4ae34fd990654fc6db11424a";
         internal const string PsychicInception = "885cfcb34bdd4bb08e561c390b8d756b";
         internal const string PsychicInceptionBuff = "91c8f2f30aff4986b72c5358d5701ae3";
+        internal const string PsychicInceptionImmunities = "59f55e9be6e749dc969630df90a3e34e";
         internal const string SappedMagic = "e1b9be852b054a2ab7db5c1d95cca367";
         internal const string SappedMagicBuff = "bf632891f03c486591f8ec3c35cc0386";
         internal const string Sluggishness = "2e0542e1d68547f1b81791ccdde0b636";
