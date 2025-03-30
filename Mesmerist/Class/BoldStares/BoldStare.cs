@@ -31,11 +31,9 @@ namespace Mesmerist.Class.BoldStares
                 .SetIsClassFeature()
                 .AddToAllFeatures([Guids.Disorientation, Guids.Disquiet, Guids.Distracted,
                 Guids.Infiltration, Guids.Lethality, Guids.Nightmare,
-                Guids.SappedMagic, Guids.Sluggishness, Guids.Timidity,
+                Guids.SappedMagic, Guids.Sluggishness, Guids.Timidity, Guids.PsychicInception,
                 Guids.ManifoldStare3rd, Guids.ManifoldStare9th, Guids.ManifoldStare15th])
                 .Configure();
-
-
         }
     }
 }

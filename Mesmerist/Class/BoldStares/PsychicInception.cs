@@ -7,6 +7,8 @@ using TabletopTweaks.Core.NewComponents;
 using Mesmerist.NewComponents.AbilitySpecific;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using Kingmaker.UnitLogic.Abilities.Components.TargetCheckers;
 
 namespace Mesmerist.Class.BoldStares
 {
@@ -23,10 +25,6 @@ namespace Mesmerist.Class.BoldStares
                 .SetDisplayName(DisplayName)
                 .SetDescription(Description)
                 .SetIsClassFeature()
-                //.AddComponent<SpellDescriptorImmunityIgnore>(c => c.Descriptor = SpellDescriptor.MindAffecting)
-                //.AddComponent<SpellDescriptorImmunityIgnore>(c => c.Descriptor = SpellDescriptor.Compulsion)
-                //.AddComponent<SpellDescriptorImmunityIgnore>(c => c.Descriptor = SpellDescriptor.Charm)
-                //.AddFacts(new() { FeatureRefs.BloodlineSerpentineArcana.Reference.Get(), FeatureRefs.BloodlineUndeadArcana.Reference.Get() })
                 .Configure();
             
             BuffConfigurator.New(FeatName + "Buff", Guids.PsychicInceptionBuff)
@@ -35,14 +33,76 @@ namespace Mesmerist.Class.BoldStares
                 .AddUniqueBuff()
                 .AddComponent<AddPsychicInception>()
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
-                //.AddRemoveFeatureOnApply(FeatureRefs.VerminImmunities.Reference.Get())
-                //.AddRemoveFeatureOnApply(FeatureRefs.UndeadImmunities.Reference.Get())
-                //.AddBuffDescriptorImmunity(descriptor: SpellDescriptor.MindAffecting | SpellDescriptor.Compulsion | SpellDescriptor.Charm, 
-                //    ignoreFeature: BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsychicInception))
-                //.AddSpellImmunity(spellDescriptor: SpellDescriptor.MindAffecting | SpellDescriptor.Compulsion | SpellDescriptor.Charm,
-                //    casterIgnoreImmunityFact: BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsychicInception))
                 .Configure();
 
+            /*.AddAbilityTargetHasNoFactUnless(
+                checkedFacts: [FeatureRefs.AnimalType.Reference.Get(), FeatureRefs.VerminType.Reference.Get(), FeatureRefs.MagicalBeastType.Reference.Get()],
+                unlessFact: BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsychicInception))*/
+            AbilityConfigurator.For(AbilityRefs.Daze)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CauseFear)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.Doom)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandApproach)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandFall)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandFlee)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandHalt)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.Castigate)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.HideousLaughter)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.HoldPerson)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.PhantasmalKiller)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.ConstrictingCoils)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.DominatePerson)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.HoldMonster)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandGreaterApproach)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandGreaterFall)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandGreaterFlee)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.CommandGreaterHalt)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.HoldPersonMass)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.PowerWordKill)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.DominateMonster)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
+
+            AbilityConfigurator.For(AbilityRefs.Insanity)
+                .RemoveComponents(c => c is AbilityTargetHasNoFactUnless).Configure();
         }
     }
 }

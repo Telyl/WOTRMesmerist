@@ -51,7 +51,7 @@ namespace Mesmerist.Class
                 Guids.MesmeristTrickResourceFeature,
                 Guids.TouchTreatmentResourceFeature, Guids.PainfulStare, Guids.PainfulStareBaseDmg)
                 .AddEntry(2, Guids.ToweringEgo, Guids.MesmeristTrickSelection)
-                .AddEntry(3, Guids.BoldStareSelection, Guids.PsychicInception, Guids.TouchTreatment, Guids.PainfulStareRank)
+                .AddEntry(3, Guids.BoldStareSelection, Guids.TouchTreatment, Guids.PainfulStareRank)
                 .AddEntry(4, Guids.MesmeristTrickSelection, Guids.PainfulStareBaseDmg)
                 .AddEntry(5, Guids.MentalPotency)
                 .AddEntry(6, Guids.MesmeristTrickSelection, Guids.TouchTreatmentModerate, Guids.PainfulStareRank, Guids.PainfulStareBaseDmg)
