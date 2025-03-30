@@ -22,7 +22,7 @@ namespace Mesmerist.Class.Tricks
             BuffConfigurator.For(Guids.VoiceOfReasonBuff)
                 .AddContextStatBonus(StatType.SaveWill, ContextValues.Rank(), ModifierDescriptor.Insight)
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Charisma))
-                .Configure();
+                .Configure(); 
         }
     }
 }
