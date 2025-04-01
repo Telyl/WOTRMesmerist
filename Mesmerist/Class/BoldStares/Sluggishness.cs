@@ -24,7 +24,7 @@ namespace Mesmerist.Class.BoldStares
                 .SetIcon(BuffRefs.DebilitatingInjuryDisorientedEffectBuff.Reference.Get().Icon)
                 .AddContextStatBonus(StatType.SaveReflex, ContextValues.Rank(), ModifierDescriptor.UntypedStackable, 2, -1)
                 .AddBuffMovementSpeed(descriptor: ModifierDescriptor.UntypedStackable, value: -5, cappedMinimum: true, minimumCap: 5)
-                .AddContextRankConfig(ContextRankConfigs.CharacterLevel().WithCustomProgression((7, 2), (20, 3)))
+                .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((7, 2), (19, 3), (20, 5)))
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)

@@ -2,7 +2,7 @@
   "Id": "Mesmerist",
   "DisplayName": "Mesmerist",
   "Author": "Telyl",
-  "Version": "3.2.0b",
+  "Version": "3.4",
   "ManagerVersion": "0.27.11",
   "Requirements": [ "TabletopTweaks-Core" ],
   "AssemblyName": "Mesmerist.dll",

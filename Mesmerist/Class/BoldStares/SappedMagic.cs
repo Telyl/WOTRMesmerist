@@ -24,7 +24,7 @@ namespace Mesmerist.Class.BoldStares
                 .SetIcon(BuffRefs.SappingAssaultIBuff.Reference.Get().Icon)
                 .AddIncreaseAllSpellsDC(descriptor: ModifierDescriptor.UntypedStackable, spellsOnly: false, value: ContextValues.Rank())
                 .AddSpellResistance(true, value: ContextValues.Rank())
-                .AddContextRankConfig(ContextRankConfigs.CharacterLevel().WithCustomProgression((7, -2), (20, -3)))
+                .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((7, -2), (19, -3), (20, -5)))
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)

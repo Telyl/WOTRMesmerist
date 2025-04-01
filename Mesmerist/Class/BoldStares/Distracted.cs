@@ -4,6 +4,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using Mesmerist.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Enums;
 
 namespace Mesmerist.Class.BoldStares
 {
@@ -21,7 +22,7 @@ namespace Mesmerist.Class.BoldStares
                 .AddUniqueBuff()
                 .SetIcon(BuffRefs.DistractingShotsBuff.Reference.Get().Icon)
                 .AddConcentrationBonus(value: ContextValues.Rank())
-                .AddContextRankConfig(ContextRankConfigs.CharacterLevel().WithCustomProgression((7, -2), (20, -3)))
+                .AddContextRankConfig(ContextRankConfigs.CharacterLevel(AbilityRankType.Default).WithCustomProgression((7, -2), (19, -3), (20, -5)))
                 .Configure();
 
             //TODO: Change CharacterLevel to ClassLevel(Mesmerist)
