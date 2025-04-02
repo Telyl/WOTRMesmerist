@@ -293,23 +293,33 @@
         internal const string MediumSpellsKnownTable = "1d320953f5934f77a9af701f42bce922";
         internal const string MediumSpellList = "52cf244210054bd08183ee83b179d382";
         internal const string MediumSpellcasterFeat = "f70266cd8cf04cfe8d1b1a704280cb93";
-        internal const string Spirit = "fdc706f252564558a5e83974aec105b8";
-        internal const string Lesser = "4269ee052f0849fbaf0b30456c46d448";
-        internal const string Intermediate = "10c56bbd087448a685b0fa8a437f8326";
-        internal const string Greater = "e1e1e51785314c8da35d264aa387bfda";
-        internal const string Supreme = "475a9a6874744ac5861f561284cfcd50";
+        internal const string MediumSpiritResource = "fdc706f252564558a5e83974aec105b8";
+        internal const string MediumSpiritResourceFeature = "3d46d61295524ba2bbd14861f1924aeb";
+
+        internal const string SpiritFeature = "0ed60f3accdc447ab7b170579e640695";
+
+        internal const string SpiritPowerLesser = "4269ee052f0849fbaf0b30456c46d448";
+        internal const string SpiritPowerIntermediate = "10c56bbd087448a685b0fa8a437f8326";
+        internal const string SpiritPowerGreater = "e1e1e51785314c8da35d264aa387bfda";
+        internal const string SpiritPowerSupreme = "475a9a6874744ac5861f561284cfcd50";
+
+        internal const string Archmage = "7604f22acf4841d48a8f1260b88da7e8";
         internal const string ArchmageActivatableAbility = "d5f7b88ac0ae41b9a04871c21e889b4a";
         internal const string ArchmageBuff = "00924abce2844f849e59dfee3dbe2903";
+        internal const string ArchmageLesser = "c5696395f19d40d5b09c9013a9cc7e67";
         internal const string ArchmageProgression = "84aa90a6f8e04569a6f38d66cc7e563f";
         internal const string ArchmageSpellbook = "ea8b02efa0d148159b9455f03cd24eec";
         internal const string ArchmageSpellsPerDayTable = "52710103825a4267bcde89c736ae59b2";
         internal const string ArchmageSpellSlotsTable = "fc0c1e3b9b304e9c80bbb05e335091b0";
         internal const string ArchmageSpellList = "c096d37cabf040a6b20785d5ab2502a3";
+
         internal const string ProhibitArchmageSpellbook = "4ce3eb6b137e4c568d3bc2aade670c64";
         internal const string ArchmageIntermediate = "2a4664b9d4cc4aa696ef3dac099c6e9e";
         internal const string ArchmageGreater = "1c5b22fe43834ec0b5c7bd0a005f32ae";
         internal const string ArchmageGreaterBuff = "758deed54c5b4e1092419a025dcf1929";
         internal const string ArchmageSupreme = "958e3e27d5014cfc8ef2f67b701ed3f5";
+
+        internal const string Champion = "30e6ddbba22b4ed0bd1950a62657a9b9";
         internal const string ChampionActivatableAbility = "506992ea1be2415bb460efd526f86fc3";
         internal const string ChampionBuff = "d6f2f8c819214695bca598feefe83403";
         internal const string ChampionLesser = "e94f19ce74604fccb707cf931cbde9d9";
@@ -317,6 +327,8 @@
         internal const string ChampionIntermediate = "317492ef38c24b60b82320afa7f27d46";
         internal const string ChampionGreater = "95d2527d94b840fdac66d7457f6a533b";
         internal const string ChampionSupreme = "034dd35929144bbcb0e3491e9a029107";
+
+        internal const string Guardian = "c8f9f998a3804399a1e0c9243797b6c9";
         internal const string GuardianActivatableAbility = "92ad9166bf7d40c6b2c163633cc3187c";
         internal const string GuardianBuff = "982b7417d9694587a6ba2f7614f56bc9";
         internal const string GuardianLesser = "6d87bd6347f14fb798929b308ac32524";
@@ -325,6 +337,7 @@
         internal const string GuardianGreater = "9caf94436cc94a2c91f5b375e39a5238";
         internal const string GuardianSupreme = "f47c84dae5d640a485acc78fe585d797";
 
+        internal const string Marshal = "a87a378c18ff41dfa09f1528a5ee43ba";
         internal const string MarshalActivatableAbility = "3a5e27e879b541f4bbd32fac58c547cc";
         internal const string MarshalBuff = "8d9d82a6c7604d5d917dbc89941f9c2d";
         internal const string MarshalLesser = "6548ec6d5aff42b98371ca980bb1717d";
@@ -349,9 +362,11 @@
         internal const string MarshalGreater = "9a2dc10d3dd34f7bb59b3255d4faed8c";
         internal const string MarshalSupreme = "07db3fea20194377bb73addde6c720fb";
 
+        internal const string Trickster = "29b95fd83745472a92f61d54e42c9586";
         internal const string TricksterActivatableAbility = "a4dbf3ba14bf49e8beae79315080636d";
         internal const string TricksterBuff = "b347b82d45c847489f0894f022a81908";
 
+        internal const string Hierophant = "17f1fe75aa5b47c88caae2b02fa40b24";
         internal const string HierophantActivatableAbility = "11b1ae52d7ed4e1b9c2dffe3ce7761a4";
         internal const string HierophantBuff = "8a9fb06855b14453bed7fefa0aa107d7";
         internal const string HierophantProgression = "185fb38a17b14fdfaad4732ede7e7770";
